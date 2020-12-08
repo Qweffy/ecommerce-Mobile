@@ -31,4 +31,7 @@ module.exports = (sequelize) => {
       allowNull: false
     }
   });
+
+  // Product belongs to one or more categories
+  Product.belongsToMany(Category, { through: Product_Category });
 };
