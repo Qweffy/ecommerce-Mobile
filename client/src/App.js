@@ -1,6 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Searchbar from "./components/Searchbar/Searchbar";
+import axios from "axios";
 
 function App() {
   return (
@@ -18,6 +20,12 @@ function App() {
         >
           Learn React
         </a>
+        <Searchbar
+          onSearch={(product) => {
+            console.log(product);
+            axios.get("http://localhost:4000/products/search?query=" + product);
+          }}
+        ></Searchbar>
       </header>
     </div>
   );
