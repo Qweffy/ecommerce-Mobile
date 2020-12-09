@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import ProductCard from '../ProductCard/ProductCard.jsx';
 
 const Catalogue = () => {
     // Get store state
