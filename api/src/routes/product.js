@@ -1,12 +1,12 @@
-const server = require('express').Router();
-const { Product } = require('../db.js');
+const server = require("express").Router();
+const { Product } = require("../db.js");
 
-server.get('/', (req, res, next) => {
-	Product.findAll()
-		.then(products => {
-			res.send(products);
-		})
-		.catch(next);
+server.get("/", (req, res, next) => {
+  Product.findAll()
+    .then((products) => {
+      res.send(products);
+    })
+    .catch(next);
 });
 
 
@@ -30,8 +30,29 @@ server.post('/', (req, res, next) => {
     }).then(data => {
      	res.send(data);
 		})
-		.catch(next); */
+    .catch(next); */
+  });
+  
+server.get("/search", (req, res) => {
+  Product.findAll({
+    where: {
+      productName: req.query.query,
+    },
+  });
 });
 
+server.post("/", (req, res, next) => {
+  Product.create({
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    stock: req.body.stock,
+    img: req.body.img,
+  })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch(next);
+});
 
 module.exports = server;
