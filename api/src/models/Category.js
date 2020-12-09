@@ -7,5 +7,5 @@ const Category = db.define("category", {
     }
 })
 
-Category.belongsToMany(Products, { through: Product_Category });
+
 export default Category;
