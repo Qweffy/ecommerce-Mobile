@@ -1,29 +1,25 @@
 const server = require("express").Router();
-const { Product } = require("../db.js");
+const { Category } = require("../db.js");
 
 server.get("/", (req, res, next) => {
-  Product.findAll()
-    .then((products) => {
-      res.send(products);
+  Category.findAll()
+    .then((category) => {
+      res.send(category);
     })
     .catch(next);
 });
 
 server.get("/search", (req, res) => {
-  Product.findAll({
+  Category.findAll({
     where: {
-      productName: req.query.query,
+      categoryName: req.query.query,
     },
   });
 });
 
 server.post("/", (req, res, next) => {
-  Product.create({
+  Category.create({
     name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-    stock: req.body.stock,
-    img: req.body.img,
   })
     .then((data) => {
       res.send(data);
