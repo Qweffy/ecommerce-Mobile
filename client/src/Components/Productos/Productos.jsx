@@ -8,6 +8,8 @@ const Productos = () => {
   const state = useSelector( (state) => state)
   const dispatch = useDispatch()
 
+  const Products = [ {}, {}, {}, {}, {}, {}, {}, {} ]
+
   useEffect(()=>{
     dispatch(getProduct())
   }, [])
