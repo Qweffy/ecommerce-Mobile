@@ -1,11 +1,10 @@
-import Sequalize from "sequelize";
+const { DataTypes } = require("sequelize");
 
-const Category = db.define("category", {
-    name: {
-        type: Sequalize.STRING,
-        allowNull: false
-    }
-})
-
-
-export default Category;
+module.exports = (sequelize) => {
+    sequelize.define("category", {
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+    });
+};
