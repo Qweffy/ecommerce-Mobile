@@ -7,6 +7,7 @@ import CreateProduct from './Components/CRUDproduct/CreateProduct.jsx'
 function App() {
   return (
     <Router >
+      <Route exact path='/showProducts' component={Productos} />
       <Route exact path='/createproduct' component={CreateProduct} />
     </Router>
   );

@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import {useSelector, useDispatch} from 'react-redux'
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+
+import { createProduct } from '../../store/Actions/Product_Actions'
 
 
 
 export default function CreateProduct(){
-const [products, setProducts] = useState({});
+const [products, setProducts] = useState({
+  name: '',
+  description: '',
+  price: '',
+  stock: '',
+  img: ''
+});
+
+const history = useHistory();
+const dispatch = useDispatch()
 
 
 function handleChange(e) {
@@ -15,10 +28,12 @@ function handleChange(e) {
   );
 };
 
-function postproducts(){
-  axios.post('http://localhost:4000/products/', products).
-  then(function (response) {});
-
+function handlerSubmnit(e){
+  /* axios.post('http://localhost:4000/products/', products).
+  then(function (response) {}); */
+  e.preventDefault()
+  dispatch(createProduct(products))
+  history.push('/showProducts')
 }
 
 
@@ -27,7 +42,7 @@ function postproducts(){
 
           <div>
             <h3>CREAR PRODUCTO</h3>
-            <form onSubmit = {(e)=> {postproducts()}}>
+            <form onSubmit = {handlerSubmnit}>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nombre:</label>
                     <div class="col-sm-10">
