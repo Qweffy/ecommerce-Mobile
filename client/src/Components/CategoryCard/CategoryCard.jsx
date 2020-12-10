@@ -3,7 +3,7 @@ import './CategoryCard.css';
 
 const CategoryCard = ({categories}) => {
     return (
-        <div className="m-5">
+        <div className="mx-5">
             <h4>Categories</h4>
             {
                 categories.map(category => {
