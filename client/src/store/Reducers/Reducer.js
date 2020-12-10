@@ -1,5 +1,5 @@
 const initalState = {
-  productos: [],
+  products: [],
   categories: []
 }
 
