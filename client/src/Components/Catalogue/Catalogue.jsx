@@ -17,7 +17,9 @@ const Catalogue = () => {
                     <div className="categories-list">
                         {
                             categories.map((category, index) => {
-                                return <h3 key={index}>{category.name}</h3>
+                                return (
+                                    <h3 key={index}>{category.name}</h3>
+                                )
                             })
                         }
                     </div>

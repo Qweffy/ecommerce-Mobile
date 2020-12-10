@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
-const ProductCard = ({ img, name, price }) => {
-    const state = useSelector(state => state);
-
+const ProductCard = ({ name, price, img }) => {
     return (
         <div className="d-flex">
             <img src="" alt="Img not found"/>
