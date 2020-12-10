@@ -13,7 +13,7 @@ const Catalogue = () => {
             setAllProducts(allProducts.concat(products.data));
         })
 
-        axios.get('http://localhost:4000/categories/')
+        axios.get('http://localhost:4000/category/')
         .then((categories) => {
             setAllCategories(allCategories.concat(categories.data));
         })
