@@ -25,7 +25,7 @@ const Catalogue = () => {
                         products.map(product => {
                             return (
                                 <div>
-                                    <ProductCard />
+                                    <ProductCard product={product}/>
                                 </div>
                             )
                         })
