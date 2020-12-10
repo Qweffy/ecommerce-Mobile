@@ -4,15 +4,19 @@ import ProductCard from '../ProductCard/ProductCard.jsx';
 
 const Catalogue = () => {
     const [allProducts, setAllProducts] = useState([]);
+    const [allCategories, setAllCategories] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:4000/products/')
         .then((products) => {
             setAllProducts(allProducts.concat(products.data));
         })
-    }, []);
 
-    console.log(allProducts);
+        axios.get('http://localhost:4000/categories/')
+        .then((categories) => {
+            setAllCategories(allCategories.concat(categories.data));
+        })
+    }, []);
 
     return (
         <div className='container m-4'>
@@ -21,7 +25,7 @@ const Catalogue = () => {
                     <div className="categories-header m-3">Categories</div>
                     <div className="categories-list">
                         {
-                            categories.map((category, index) => {
+                            allCategories.map((category, index) => {
                                 return (
                                     <h3 key={index}>{category.name}</h3>
                                 )
