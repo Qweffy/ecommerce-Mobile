@@ -17,7 +17,7 @@ const [products, setProducts] = useState({
 });
 
 const history = useHistory();
-const dispatch = useDispatch()
+const dispatch = useDispatch();
 
 
 function handleChange(e) {
@@ -29,11 +29,11 @@ function handleChange(e) {
 };
 
 function handlerSubmnit(e){
-  /* axios.post('http://localhost:4000/products/', products).
-  then(function (response) {}); */
   e.preventDefault()
-  dispatch(createProduct(products))
+  axios.post('http://localhost:4000/products/', products).
+  then(function (response) {});
   history.push('/showProducts')
+  
 }
 
   // el prevent default sirve para q no recargue la pagina con el primer post
