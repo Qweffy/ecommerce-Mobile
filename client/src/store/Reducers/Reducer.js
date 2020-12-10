@@ -6,10 +6,10 @@ const initalState = {
 const Reducer = (state = initalState, action)=>{
   switch( action.type ){
     case 'GET_PRODUCTS':
-      return { ...state, productos: action.payload }
+      return { ...state, products: action.payload }
     
     case 'POST_PRODUCTS':
-      return { ...state, productos: state.productos.concat(action.payload)}
+      return { ...state, products: state.products.concat(action.payload)}
 
     default:
       return state
