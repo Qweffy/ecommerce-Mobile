@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProductCard from '../ProductCard/ProductCard.jsx';
 
 const Catalogue = () => {
+    // Get list of products and categories from DB
     const [allProducts, setAllProducts] = useState([]);
     const [allCategories, setAllCategories] = useState([]);
 
