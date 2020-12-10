@@ -6,17 +6,20 @@ import { getProduct } from '../../store/Actions/Product_Actions'
 const Productos = () => {
 
   const state = useSelector( (state) => state)
-  const dispatch = useDispatch()
-
-  const Products = [ {}, {}, {}, {}, {}, {}, {}, {} ]
+  const dispatch = useDispatch();
+  const allProducts = state.productos
 
   useEffect(()=>{
     dispatch(getProduct())
   }, [])
-
-  console.log(state.categories)
   return ( 
-    <div>Desde el componente de Productos</div>
+    <div>
+      <ul>
+        { allProducts.map((producto, index) =>{
+          return <li key={index}>{producto.name}</li>
+        })}
+      </ul>
+    </div>
    );
 }
  

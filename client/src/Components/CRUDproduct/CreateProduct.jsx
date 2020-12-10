@@ -1,36 +1,53 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import {useSelector, useDispatch} from 'react-redux'
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-export default function CreateProduct() {
-  const [products, setProducts] = useState({});
+import { createProduct } from '../../store/Actions/Product_Actions'
 
-  function handleChange(e) {
-    setProducts({
-      ...products,
-      [e.target.name]: e.target.value,
-    });
+
+
+export default function CreateProduct(){
+const [products, setProducts] = useState({
+  name: '',
+  description: '',
+  price: '',
+  stock: '',
+  img: ''
+});
+
+const history = useHistory();
+const dispatch = useDispatch()
+
+
+function handleChange(e) {
+  setProducts({
+    ...products,
+    [e.target.name]: e.target.value
   }
+  );
+};
 
-  function postproducts() {
-    axios
-      .post("http://localhost:4000/products/", products)
-      .then(function (response) {});
-  }
+function handlerSubmnit(e){
+  /* axios.post('http://localhost:4000/products/', products).
+  then(function (response) {}); */
+  e.preventDefault()
+  dispatch(createProduct(products))
+  history.push('/showProducts')
+}
 
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
     <div>
       <h3>CREAR PRODUCTO</h3>
       <form
-        onSubmit={(e) => {
-          postproducts();
-        }}
+        onSubmit={handlerSubmnit}
       >
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Nombre:</label>
-          <div class="col-sm-10">
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Nombre:</label>
+          <div className="col-sm-10">
             <input
-              class="form-control"
+              className="form-control"
               placeholder="Ingresar Nombre del Producto"
               onChange={(e) => {
                 handleChange(e);
@@ -41,11 +58,11 @@ export default function CreateProduct() {
             />
           </div>
         </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Description:</label>
-          <div class="col-sm-10">
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Description:</label>
+          <div className="col-sm-10">
             <input
-              class="form-control"
+              className="form-control"
               placeholder="Ingresar Descripcion del Producto"
               onChange={(e) => {
                 handleChange(e);
@@ -56,11 +73,11 @@ export default function CreateProduct() {
             />
           </div>
         </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Price:</label>
-          <div class="col-sm-10">
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Price:</label>
+          <div className="col-sm-10">
             <input
-              class="form-control"
+              className="form-control"
               placeholder="Ingresar Precio del Producto"
               onChange={(e) => {
                 handleChange(e);
@@ -71,11 +88,11 @@ export default function CreateProduct() {
             />
           </div>
         </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Stock:</label>
-          <div class="col-sm-10">
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Stock:</label>
+          <div className="col-sm-10">
             <input
-              class="form-control"
+              className="form-control"
               placeholder="Ingresar Cantidad de Stock"
               onChange={(e) => {
                 handleChange(e);
@@ -86,11 +103,11 @@ export default function CreateProduct() {
             />
           </div>
         </div>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Image:</label>
-          <div class="col-sm-10">
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Image:</label>
+          <div className="col-sm-10">
             <input
-              class="form-control"
+              className="form-control"
               placeholder="Ingresar Nombre de la imagen"
               onChange={(e) => {
                 handleChange(e);
@@ -104,7 +121,7 @@ export default function CreateProduct() {
 
         <br />
 
-        <button type="submit" class="btn btn-primary mb-2">
+        <button type="submit" className="btn btn-primary mb-2">
           CREAR
         </button>
       </form>

@@ -7,7 +7,8 @@ import Catalogue from "./Components/Catalogue/Catalogue.jsx";
 
 function App() {
   return (
-    <Router>
+    <Router >
+      <Route exact path='/showProducts' component={Productos} />
       <Route exact path="/createproduct" component={CreateProduct} />
       <Route exact path="/createcategory" component={CreateCategory} />
       <Route exact path="/catalogue" component={Catalogue} />
