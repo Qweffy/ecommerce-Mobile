@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { st } from '../../store/index.js';
 import ProductCard from '../ProductCard/ProductCard.jsx';
 
 const Catalogue = () => {
     // Get store state
-    const state = useSelector((state) => state );
+    //const state = useSelector((state) => state );
+    const state = st.getState();
     const { products, categories } = state;
 
     return (
