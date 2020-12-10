@@ -1,13 +1,18 @@
-import React, { useEffect } from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import { st } from '../../store/index.js';
+import React, { useEffect , useState} from 'react';
+import axios from 'axios';
 import ProductCard from '../ProductCard/ProductCard.jsx';
 
 const Catalogue = () => {
-    // Get store state
-    //const state = useSelector((state) => state );
-    const state = st.getState();
-    const { products, categories } = state;
+    const [allProducts, setAllProducts] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:4000/products/')
+        .then((products) => {
+            setAllProducts(allProducts.concat(products.data));
+        })
+    }, []);
+
+    console.log(allProducts);
 
     return (
         <div className='container m-4'>
@@ -26,9 +31,9 @@ const Catalogue = () => {
                 </div>
                 <div className="cards-category">
                     {
-                        products.map(product => {
+                        allProducts.map((product, index) => {
                             return (
-                                <div>
+                                <div key={index}>
                                     <ProductCard product={product}/>
                                 </div>
                             )
