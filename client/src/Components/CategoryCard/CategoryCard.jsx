@@ -3,11 +3,12 @@ import './CategoryCard.css';
 
 const CategoryCard = ({categories}) => {
     return (
-        <div>
+        <div className="m-5">
+            <h4>Categories</h4>
             {
                 categories.map(category => {
                     return (
-                        <h4>{category.name}</h4>
+                        <h4 className="border-bottom py-3 px-1">{category.name}</h4>
                     )
                 })
             }

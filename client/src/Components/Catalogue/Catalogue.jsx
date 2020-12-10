@@ -21,15 +21,12 @@ const Catalogue = () => {
     }, []);
 
     return (
-        <div className='container m-4'>
+        <div className="m-4">
             <div className="d-flex">
-                <div className="categories-column border-right">
-                    <div className="categories-header m-3">Categories</div>
-                    <div className="categories-list">
-                        <CategoryCard categories={allCategories}/>
-                    </div>
+                <div>
+                    <CategoryCard categories={allCategories}/>
                 </div>
-                <div className="cards-category">
+                <div>
                     {
                         allProducts.map((product, index) => {
                             return (
