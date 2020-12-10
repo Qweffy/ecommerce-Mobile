@@ -1,3 +1,10 @@
 .product-img {
-    height: 240px;
+    max-height: 150px;
+    display: block;
+    margin: auto;
+}
+
+.product-card {
+    height: 280px;
+    width: 210px;
 }

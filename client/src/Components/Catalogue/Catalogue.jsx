@@ -24,10 +24,10 @@ const Catalogue = () => {
     return (
         <div className="m-4">
             <div className="d-flex">
-                <div>
+                <div className="categories-col m-5 border rounded">
                     <CategoryCard categories={allCategories}/>
                 </div>
-                <div className="products-grid">
+                <div className="products-grid m-5">
                     {
                         allProducts.map((product, index) => {
                             return (
