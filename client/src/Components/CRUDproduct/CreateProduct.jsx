@@ -15,10 +15,32 @@ const [products, setProducts] = useState({
   stock: '',
   img: ''
 });
+const [categories , setcategory] = useState([]);
+const [selectedcategories , setcateselect] = useState([]);
 
 const history = useHistory();
 const dispatch = useDispatch();
 
+function rendercategories(cat){
+return <div class="form-check">
+<input class="form-check-input" type="checkbox" name={cat.id} onChange={(e)=>{loadcategory(e)}} />
+<label class="form-check-label" for="gridCheck1">{cat.name}</label>
+</div>
+}
+
+function loadcategory(e) {//esta funcion agrega a un arreglo de las categorias seleccionadas
+console.log(e.target.checked); //detecta en que estado el checkbox , si esta true agregamos la categorias
+                                //si esta false quitamos la categoria
+
+if(e.target.checked === true){
+setcateselect([...selectedcategories,e.target.name]);
+}
+
+if(e.target.checked === false){
+setcateselect(selectedcategories.filter(c =>  c !== e.target.name ));
+}
+
+}
 
 function handleChange(e) {
   setProducts({
@@ -31,10 +53,22 @@ function handleChange(e) {
 function handlerSubmnit(e){
   e.preventDefault()
   axios.post('http://localhost:4000/products/', products).
-  then(function (response) {});
+  then(function (response) {
+   selectedcategories.map(cat => {
+     axios.post(`http://localhost:4000/products/${response.data.data.id}/category/${cat}`).
+       then(function (response) {window.location.reload(false)});
+   })
+  });
   history.push('/showProducts')
-  
+
 }
+
+useEffect(() => {   //trae las categorias apenas entra a la pagina
+      axios.get("http://localhost:4000/category/").then((response) => {
+        setcategory(response.data);
+
+      });
+    }, []);
 
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
@@ -117,6 +151,10 @@ function handlerSubmnit(e){
               required
             />
           </div>
+        </div>
+        <div>
+             <div class="col-sm-15"><h5>Categorias:</h5></div>
+             {categories.map(cat => rendercategories(cat) )}
         </div>
 
         <br />

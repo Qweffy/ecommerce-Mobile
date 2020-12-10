@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-    sequelize.define("Product_Category")
+    sequelize.define("product_category")
 };
