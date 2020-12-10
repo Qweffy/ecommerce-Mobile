@@ -2,6 +2,7 @@ import React, { useEffect , useState} from 'react';
 import axios from 'axios';
 import ProductCard from '../ProductCard/ProductCard.jsx';
 import CategoryCard from '../CategoryCard/CategoryCard.jsx';
+import './Catalogue.css';
 
 const Catalogue = () => {
     // Get list of products and categories from DB
@@ -26,7 +27,7 @@ const Catalogue = () => {
                 <div>
                     <CategoryCard categories={allCategories}/>
                 </div>
-                <div>
+                <div className="products-grid">
                     {
                         allProducts.map((product, index) => {
                             return (
