@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
       }
     },
     img: {
-      type: DataTypes.BLOB('long'),
+      type: DataTypes.BLOB,
       allowNull: false
     }
   });
