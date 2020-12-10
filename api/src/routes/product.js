@@ -5,7 +5,7 @@ const { Product } = require("../db.js");
 server.post('/', (req, res, next) => {
 
   const { name, description, price, stock, img } = req.body
-  
+
   return Product.create({name, description, price, stock, img})
                 .then(product =>{
                   res.json({mensaje: 'producto creado OK', data: product})
@@ -14,7 +14,7 @@ server.post('/', (req, res, next) => {
                   res.json({mensaje: 'Error al creat el producto', data: err})
                 })
   });
-  
+
 // get an all products ----> '/products'
 server.get("/", (req, res, next) => {
   Product.findAll()
@@ -24,11 +24,15 @@ server.get("/", (req, res, next) => {
     .catch(next);
 });
 
+server.post('/:idProd/category/:idCateg', (req, res, next) => {
+  Product.findByPk(req.params.idProd).then(product => product.addCategory(req.params.idCateg)).then(success => res.sendStatus(201)); // sequelize crea un metodo add para las relaciones n:n, ergo, tambien esta el metodo addProduct en la tabla Category
+}); // carga categoria a los productos
+
 //Modify an especific product ---> '/products/:id'
 server.put('/:id', (req, res)=>{
   //sacamos el id del producto que queremos modificar
   const { id } = req.params;
-  //del body sacamos los datos que queremos modificar 
+  //del body sacamos los datos que queremos modificar
   const { name, description, price, stock, img } = req.body
 
   return Product.findOne({ where: { id }})
