@@ -1,6 +1,7 @@
 import React, { useEffect , useState} from 'react';
 import axios from 'axios';
 import ProductCard from '../ProductCard/ProductCard.jsx';
+import CategoryCard from '../CategoryCard/CategoryCard.jsx';
 
 const Catalogue = () => {
     // Get list of products and categories from DB
@@ -25,13 +26,7 @@ const Catalogue = () => {
                 <div className="categories-column border-right">
                     <div className="categories-header m-3">Categories</div>
                     <div className="categories-list">
-                        {
-                            allCategories.map((category, index) => {
-                                return (
-                                    <h3 key={index}>{category.name}</h3>
-                                )
-                            })
-                        }
+                        <CategoryCard categories={allCategories}/>
                     </div>
                 </div>
                 <div className="cards-category">
