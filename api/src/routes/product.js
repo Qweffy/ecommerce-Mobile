@@ -36,6 +36,25 @@ server.get("/", (req, res, next) => {
     .catch(next);
 });
 
+//get an one product  -------> '/productos/:id'
+server.get('/:id', (req, res)=>{
+  const { id } = req.params;
+
+  return Product.findOne({ where: { id }})
+                .then( product => {
+                  res.status(200).json({
+                    mensaje: "Se encontro el producto con exito", 
+                    data: product
+                  })
+                })
+                .catch( err =>{
+                  res.status(400).json({
+                    mensaje: "No se encontro el producto", 
+                    data: err
+                  })
+                })
+})
+
 server.post("/:idProd/category/:idCateg", (req, res, next) => {
   Product.findByPk(req.params.idProd)
     .then((product) => product.addCategory(req.params.idCateg))
