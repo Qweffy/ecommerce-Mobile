@@ -15,12 +15,14 @@ const Catalogue = () => {
     useEffect(() => {
         getProduct(selectedCategories)
             .then((products) => {
-                setAllProducts(allProducts.concat(products.data));
+                setAllProducts(products.data);
             })
+    }, [selectedCategories]);
 
+    useEffect(() => {
         axios.get('http://localhost:4000/category/')
             .then((categories) => {
-                setAllCategories(allCategories.concat(categories.data));
+                setAllCategories(categories.data);
             })
     }, []);
 
@@ -45,8 +47,8 @@ const Catalogue = () => {
                             return (
                                 <Link to={`/products/:${product.id}`}>
                                     <div key={index}>
-                                        <ProductCard product={product}/>
-                                    </div>                                    
+                                        <ProductCard product={product} />
+                                    </div>
                                 </Link>
                             )
                         })
