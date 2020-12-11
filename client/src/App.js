@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import CreateCategory from "./Components/CRUDcategory/CreateCategory.jsx";
 import Productos from "./Components/Productos/Productos";
 import CreateProduct from "./Components/CRUDproduct/CreateProduct.jsx";
+import Catalogue from "./Components/Catalogue/Catalogue.jsx";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Route exact path='/showProducts' component={Productos} />
       <Route exact path="/createproduct" component={CreateProduct} />
       <Route exact path="/createcategory" component={CreateCategory} />
+      <Route exact path="/catalogue" component={Catalogue} />
     </Router>
   );
 }
