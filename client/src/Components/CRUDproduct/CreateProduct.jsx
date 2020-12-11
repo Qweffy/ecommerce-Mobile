@@ -73,7 +73,6 @@ export default function CreateProduct() {
   useEffect(() => {
     //trae las categorias apenas entra a la pagina
     axios.get("http://localhost:4000/category/").then((response) => {
-      console.log(response.data);
       setcategory(response.data);
     });
   }, []);

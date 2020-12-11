@@ -17,12 +17,10 @@ const Productos = () => {
   const [ show, setShow ] = useState(false)
   
   useEffect(()=>{
-    axios.get('http://localhost:4000/products/')
-          .then( productos => {
-            setAllProducts(
-              allProducts.concat(productos.data)
-            )
-          })
+    if(allProducts.length === 0){
+      getProducts();
+    }
+    getProducts();
   }, [])
 
   const handleClose = () => setShow(false);
@@ -39,6 +37,11 @@ const Productos = () => {
     }
     );
   };
+
+  async function getProducts(){
+    var funcGet = await axios.get('http://localhost:4000/products/')
+    setAllProducts(funcGet.data)
+  }
 
   function handlerEdit(e){
     e.preventDefault()
