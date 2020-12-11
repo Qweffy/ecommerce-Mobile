@@ -1,76 +1,88 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
-export default function CreateProduct(){
-const [products, setProducts] = useState({
-  name: '',
-  description: '',
-  price: '',
-  stock: '',
-  img: ''
-});
-const [categories , setcategory] = useState([]);
-const [selectedcategories , setcateselect] = useState([]);
+import { createProduct } from "../../store/Actions/Product_Actions";
 
-const history = useHistory();
-
-function rendercategories(cat){
-return <div class="form-check">
-<input class="form-check-input" type="checkbox" name={cat.id} onChange={(e)=>{loadcategory(e)}} />
-<label class="form-check-label" for="gridCheck1">{cat.name}</label>
-</div>
-}
-
-function loadcategory(e) {//esta funcion agrega a un arreglo de las categorias seleccionadas
-console.log(e.target.checked); //detecta en que estado el checkbox , si esta true agregamos la categorias
-                                //si esta false quitamos la categoria
-
-if(e.target.checked === true){
-setcateselect([...selectedcategories,e.target.name]);
-}
-
-if(e.target.checked === false){
-setcateselect(selectedcategories.filter(c =>  c !== e.target.name ));
-}
-
-}
-
-function handleChange(e) {
-  setProducts({
-    ...products,
-    [e.target.name]: e.target.value
-  }
-  );
-};
-
-function handlerSubmnit(e){
-  e.preventDefault()
-  axios.post('http://localhost:4000/products/', products).
-  then(function (response) {
-   selectedcategories.map(cat => {
-     axios.post(`http://localhost:4000/products/${response.data.data.id}/category/${cat}`).
-       then(function (response) {window.location.reload(false)});
-   })
+export default function CreateProduct() {
+  const [products, setProducts] = useState({
+    name: "",
+    description: "",
+    price: "",
+    stock: "",
+    img: "",
   });
-  history.push('/showProducts')
+  const [categories, setcategory] = useState([]);
+  const [selectedcategories, setcateselect] = useState([]);
 
-}
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-useEffect(() => {   //trae las categorias apenas entra a la pagina
-      axios.get("http://localhost:4000/category/").then((response) => {
-        setcategory(response.data);
+  function rendercategories(cat) {
+    return (
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name={cat.id}
+          onChange={(e) => {
+            loadcategory(e);
+          }}
+        />
+        <label class="form-check-label" for="gridCheck1">
+          {cat.name}
+        </label>
+      </div>
+    );
+  }
 
-      });
-    }, []);
+  function loadcategory(e) {
+    //esta funcion agrega a un arreglo de las categorias seleccionadas
+    console.log(e.target.checked); //detecta en que estado el checkbox , si esta true agregamos la categorias
+    //si esta false quitamos la categoria
+
+    if (e.target.checked === true) {
+      setcateselect([...selectedcategories, e.target.name]);
+    }
+
+    if (e.target.checked === false) {
+      setcateselect(selectedcategories.filter((c) => c !== e.target.name));
+    }
+  }
+
+  function handleChange(e) {
+    setProducts({
+      ...products,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  function handlerSubmnit(e) {
+    e.preventDefault();
+    products.id_category = [];
+    selectedcategories.map((cat) => {
+      products.id_category.push(cat);
+    });
+    axios.post("http://localhost:4000/products/", products).then((res) => {
+      console.log(res.data);
+    });
+    history.push("/showProducts");
+  }
+
+  useEffect(() => {
+    //trae las categorias apenas entra a la pagina
+    axios.get("http://localhost:4000/category/").then((response) => {
+      console.log(response.data);
+      setcategory(response.data);
+    });
+  }, []);
 
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
     <div>
       <h3>CREAR PRODUCTO</h3>
-      <form
-        onSubmit={handlerSubmnit}
-      >
+      <form onSubmit={handlerSubmnit}>
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">Nombre:</label>
           <div className="col-sm-10">
@@ -147,8 +159,10 @@ useEffect(() => {   //trae las categorias apenas entra a la pagina
           </div>
         </div>
         <div>
-             <div className="col-sm-15"><h5>Categorias:</h5></div>
-             {categories.map(cat => rendercategories(cat) )}
+          <div class="col-sm-15">
+            <h5>Categorias:</h5>
+          </div>
+          {categories.map((cat) => rendercategories(cat))}
         </div>
 
         <br />
