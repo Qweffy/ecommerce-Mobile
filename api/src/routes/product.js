@@ -58,7 +58,7 @@ server.put("/:id", (req, res) => {
       product.stock = stock;
       product.img = img;
       product.save();
-      res.status(200).json({ mensaje: "Se modifivo con exito", data: product });
+      res.status(200).json({ mensaje: "Se modifico con exito", data: product });
     })
     .catch((err) => {
       res
