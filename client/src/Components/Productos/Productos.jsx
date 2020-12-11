@@ -15,14 +15,12 @@ const Productos = () => {
 
   const [ allProducts, setAllProducts ] = useState([])
   const [ show, setShow ] = useState(false)
-
+  
   useEffect(()=>{
-    axios.get('http://localhost:4000/products/')
-          .then( productos => {
-            setAllProducts(
-              allProducts.concat(productos.data)
-            )
-          })
+    if(allProducts.length === 0){
+      getProducts();
+    }
+    getProducts();
   }, [])
 
   const handleClose = () => setShow(false);
@@ -39,6 +37,11 @@ const Productos = () => {
     }
     );
   };
+
+  async function getProducts(){
+    var funcGet = await axios.get('http://localhost:4000/products/')
+    setAllProducts(funcGet.data)
+  }
 
   function handlerEdit(e){
     e.preventDefault()
@@ -58,10 +61,11 @@ const Productos = () => {
           })
   }
 
-  return (
+  return ( 
     <div className=' container mt-3 '>
       <div className="row">
         <div className="col-3">
+          Div usergit
         </div>
         <div className="col-8">
           <div className=' d-flex bg-dark p-4'>
@@ -90,9 +94,9 @@ const Productos = () => {
                     const { id, name, description, price, stock } = producto
                     return <tr className='text-center' key={index}>
                             <td className=' d-flex justify-content-between' >
-                              <button
+                              <button 
                                 onClick={()=> handleShow(producto)}
-                                type="button"
+                                type="button" 
                                 className="btn btn-primary"
                               >
                                 <i className="far fa-edit"></i>
@@ -111,12 +115,12 @@ const Productos = () => {
                             <td >{price}</td>
                             <td >{stock}</td>
                           </tr>
-                })}
+                })}              
             </tbody>
           </table>
         </div>
       </div>
-
+      
 
     <Modal show={ show } onHide={ handleClose } >
       <Modal.Header >
@@ -212,7 +216,7 @@ const Productos = () => {
               />
             </div>
           </div>
-
+          
           <button onClick={handleClose} className="btn btn-secondary mb-2">
             Cerrar
           </button>
@@ -225,5 +229,5 @@ const Productos = () => {
     </div>
    );
 }
-
+ 
 export default Productos;
