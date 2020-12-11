@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {useSelector, useDispatch} from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-
-import { createProduct } from '../../store/Actions/Product_Actions'
-
-
 
 export default function CreateProduct(){
 const [products, setProducts] = useState({
@@ -19,7 +14,6 @@ const [categories , setcategory] = useState([]);
 const [selectedcategories , setcateselect] = useState([]);
 
 const history = useHistory();
-const dispatch = useDispatch();
 
 function rendercategories(cat){
 return <div class="form-check">
@@ -153,7 +147,7 @@ useEffect(() => {   //trae las categorias apenas entra a la pagina
           </div>
         </div>
         <div>
-             <div class="col-sm-15"><h5>Categorias:</h5></div>
+             <div className="col-sm-15"><h5>Categorias:</h5></div>
              {categories.map(cat => rendercategories(cat) )}
         </div>
 
