@@ -36,7 +36,7 @@ server.get("/", (req, res, next) => {
     .catch(next);
 });
 
-//get an one product  -------> '/productos/:id'
+//get an one product  -------> '/products/:id'
 server.get('/:id', (req, res)=>{
   const { id } = req.params;
 

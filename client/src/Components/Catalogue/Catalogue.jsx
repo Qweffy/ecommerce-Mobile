@@ -1,5 +1,6 @@
 import React, { useEffect , useState} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import ProductCard from '../ProductCard/ProductCard.jsx';
 import CategoryCard from '../CategoryCard/CategoryCard.jsx';
 import './Catalogue.css';
@@ -31,9 +32,11 @@ const Catalogue = () => {
                     {
                         allProducts.map((product, index) => {
                             return (
-                                <div key={index}>
-                                    <ProductCard product={product}/>
-                                </div>
+                                <Link to={`/products/:${product.id}`}>
+                                    <div key={index}>
+                                        <ProductCard product={product}/>
+                                    </div>                                    
+                                </Link>
                             )
                         })
                     }
