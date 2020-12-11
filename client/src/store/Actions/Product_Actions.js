@@ -2,21 +2,12 @@ import axios from 'axios';
 
 
 export function getProduct(categories) {
-  return (dispatch) => {
-    console.log('Actions product OK')
-    axios.get('http://localhost:4000/products/', {
-      params: {
-        categories
-      }
-    })
-      .then(res => {
-        console.log(res.data)
-        dispatch({
-          type: 'GET_PRODUCTS',
-          payload: res.data
-        })
-      })
-  }
+  return (axios.get('http://localhost:4000/products/', {
+    params: {
+      categories
+    }
+  })
+  )
 }
 
 export function createProduct(data) {

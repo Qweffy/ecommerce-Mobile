@@ -3,38 +3,33 @@ import { Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 
-const Productos = () => {
-  const [selectProduct, setSelectProduct] = useState({
+const Categorys = () => {
+  const [selectCategory, setSelectCategory] = useState({
     id:'',
-    name: '',
-    description: '',
-    price: '',
-    stock: '',
-    img: ''
+    name: ''
   });
 
-  const [ allProducts, setAllProducts ] = useState([])
+  const [ allCategories, setAllCategories ] = useState([])
   const [ show, setShow ] = useState(false)
 
   useEffect(()=>{
-    axios.get('http://localhost:4000/products/')
-          .then( productos => {
-            setAllProducts(
-              allProducts.concat(productos.data)
+    axios.get('http://localhost:4000/category/')
+          .then( categories => {
+            setAllCategories(
+              allCategories.concat(categories.data)
             )
           })
   }, [])
 
   const handleClose = () => setShow(false);
-  const handleShow = (product) => {
+  const handleShow = (category) => {
     setShow(true)
-    setSelectProduct(product)
-    console.log(selectProduct)
+    setSelectCategory(category)
   };
 
   function handleChange(e) {
-    setSelectProduct({
-      ...selectProduct,
+    setSelectCategory({
+      ...selectCategory,
       [e.target.name]: e.target.value
     }
     );
@@ -42,19 +37,19 @@ const Productos = () => {
 
   function handlerEdit(e){
     e.preventDefault()
-    axios.put(`http://localhost:4000/products/${selectProduct.id}`, selectProduct)
+    axios.put(`http://localhost:4000/category/${selectCategory.id}`, selectCategory)
           .then(res => {
-            var prod = allProducts.findIndex( product => product.id === res.data.data.id)
-            allProducts[prod] = res.data.data
+            var cat = allCategories.findIndex( cat => cat.id === res.data.data.id)
+            allCategories[cat] = res.data.data
             handleClose()
           })
   }
 
   function handlerDelete(id){
-    axios.delete(`http://localhost:4000/products/${id}`)
+    axios.delete(`http://localhost:4000/category/${id}`)
           .then( res =>{
-            var news = allProducts.filter(elemt => elemt.id !== res.data.data.id )
-            setAllProducts(news)
+            var news = allCategories.filter(elemt => elemt.id !== res.data.data.id )
+            setAllCategories(news)
           })
   }
 
@@ -65,7 +60,7 @@ const Productos = () => {
         </div>
         <div className="col-8">
           <div className=' d-flex bg-dark p-4'>
-            <Link to="/createproduct">
+            <Link to="/createcategory">
               <button type="button" className='btn btn-secondary btn-sm p-2'>
                 <i class="fas fa-plus-circle me-2"></i>
                 ADD NEW
@@ -78,20 +73,17 @@ const Productos = () => {
             <thead className='table-secondary'>
               <tr className='text-center'>
                 <th  scope="col">Action</th>
-                <th  scope="col">Product ID</th>
+                <th  scope="col">Category ID</th>
                 <th  scope="col">Name</th>
-                <th  scope="col">Description</th>
-                <th  scope="col">Price</th>
-                <th  scope="col">Stock</th>
               </tr>
             </thead>
             <tbody>
-                  { allProducts.map((producto, index) =>{
-                    const { id, name, description, price, stock } = producto
+                  { allCategories.map((categoria, index) =>{
+                    const {id , name} = categoria
                     return <tr className='text-center' key={index}>
                             <td className=' d-flex justify-content-between' >
                               <button
-                                onClick={()=> handleShow(producto)}
+                                onClick={()=> handleShow(categoria)}
                                 type="button"
                                 className="btn btn-primary"
                               >
@@ -107,9 +99,6 @@ const Productos = () => {
                             </td>
                             <td >{id}</td>
                             <td >{name}</td>
-                            <td >{description}</td>
-                            <td >{price}</td>
-                            <td >{stock}</td>
                           </tr>
                 })}
             </tbody>
@@ -120,7 +109,7 @@ const Productos = () => {
 
     <Modal show={ show } onHide={ handleClose } >
       <Modal.Header >
-          <Modal.Title>Edit product</Modal.Title>
+          <Modal.Title>Edit category</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form
@@ -131,7 +120,7 @@ const Productos = () => {
             <div className="col-sm-10">
               <input
                 className="form-control"
-                placeholder={selectProduct.id}
+                placeholder={selectCategory.id}
                 type="text"
                 readOnly
               />
@@ -142,7 +131,7 @@ const Productos = () => {
             <div className="col-sm-10">
               <input
                 className="form-control"
-                value={selectProduct.name}
+                value={selectCategory.name}
                 onChange={(e) => {
                   handleChange(e);
                 }}
@@ -152,66 +141,7 @@ const Productos = () => {
               />
             </div>
           </div>
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label">Description:</label>
-            <div className="col-sm-10">
-              <input
-                className="form-control"
-                value={selectProduct.description}
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                name="description"
-                type="text"
-                required
-              />
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label">Price:</label>
-            <div className="col-sm-10">
-              <input
-                className="form-control"
-                value={selectProduct.price}
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                name="price"
-                type="number"
-                required
-              />
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label">Stock:</label>
-            <div className="col-sm-10">
-              <input
-                className="form-control"
-                value={selectProduct.stock}
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                name="stock"
-                type="number"
-                required
-              />
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-sm-2 col-form-label">Image:</label>
-            <div className="col-sm-10">
-              <input
-                className="form-control"
-                value={selectProduct.img}
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                name="img"
-                type="text"
-                required
-              />
-            </div>
-          </div>
+
 
           <button onClick={handleClose} className="btn btn-secondary mb-2">
             Cerrar
@@ -226,4 +156,4 @@ const Productos = () => {
    );
 }
 
-export default Productos;
+export default Categorys;

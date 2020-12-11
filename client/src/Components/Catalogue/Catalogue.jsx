@@ -1,35 +1,54 @@
-import React, { useEffect } from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import ProductCard from '../ProductCard/ProductCard.jsx';
+import CategoryCard from '../CategoryCard/CategoryCard.jsx';
+import './Catalogue.css';
+import { getProduct } from '../../store/Actions/Product_Actions.js';
 
 const Catalogue = () => {
-    // Get store state
-    const state = useSelector((state) => state );
-    const { products, categories } = state;
+    // Get list of products and categories from DB
+    const [allProducts, setAllProducts] = useState([]);
+    const [allCategories, setAllCategories] = useState([]);
+    const [selectedCategories, setSelectedCategories] = useState([])
+
+    useEffect(() => {
+        getProduct(selectedCategories)
+            .then((products) => {
+                setAllProducts(allProducts.concat(products.data));
+            })
+
+        axios.get('http://localhost:4000/category/')
+            .then((categories) => {
+                setAllCategories(allCategories.concat(categories.data));
+            })
+    }, []);
+
+    const categoryHandler = (name) => {
+        if (selectedCategories.includes(name)) {
+            setSelectedCategories(selectedCategories.filter(element => element !== name))
+        } else {
+            setSelectedCategories([...selectedCategories, name]);
+        };
+    }
+
 
     return (
-        <div className='container m-4'>
+        <div className="m-4">
             <div className="d-flex">
-                <div className="categories-column border-right">
-                    <div className="categories-header m-3">Categories</div>
-                    <div className="categories-list">
-                        {
-                            categories.map((category, index) => {
-                                return <h3 key={index}>{category.name}</h3>
-                            })
-                        }
-                    </div>
+                <div className="categories-col m-5 border rounded">
+                    <CategoryCard onCategoryToggle={categoryHandler} categories={allCategories} />
                 </div>
-                <div className="cards-category">
+                <div className="products-grid m-5">
                     {
-                        products.map(product => {
+                        allProducts.map((product, index) => {
                             return (
-                                <div>
-                                    <ProductCard />
+                                <div key={index}>
+                                    <ProductCard product={product} />
                                 </div>
                             )
                         })
                     }
-                </div>                
+                </div>
             </div>
         </div>
     );
