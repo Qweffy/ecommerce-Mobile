@@ -12,3 +12,13 @@
     border-radius: 4px;
     box-shadow: 0 2px 1px 0 rgba(64,64,64,.15);
 }
+
+a {
+    text-decoration: none;
+    font-family: open sans,sans-serif;
+    color: #404040;
+}
+
+.product-price {
+    color: #f80;
+}
