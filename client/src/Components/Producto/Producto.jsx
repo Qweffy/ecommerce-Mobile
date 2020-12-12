@@ -22,15 +22,15 @@ const Producto = ({ match }) => {
     <div className="d-flex m-5 justify-content-center">
       <img src={product.img} alt="Img not found"/>
       <div className="product-description m-5 mt-0 p-4">
-        <h2 className="product-name pb-2">{product.name}</h2>
+        <h3 className="product-name pb-2">{product.name}</h3>
         <p className="pt-2">{product.description}</p>
         <div className="product-stock pt-2">
-          <h4>Unidades disponibles: {product.stock}</h4>
+          <h5>Unidades disponibles: {product.stock}</h5>
         </div>
       </div>
       <div className="product-buy px-3">
         <div className="product-price text-center border-bottom">
-          <h1><strong>$ {product.price}</strong></h1>          
+          <h2><strong>$ {product.price}</strong></h2>          
         </div>
         <button className="buy-btn p-2">Agregar al carrito</button>
       </div>
