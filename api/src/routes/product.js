@@ -29,10 +29,24 @@ server.post("/", (req, res, next) => {
 
 // get an all products ----> '/products'
 server.get("/", (req, res, next) => {
-  Product.findAll()
-    .then((products) => {
-      res.send(products);
+  let categories = req.query.categories;
+  let q;
+  if (typeof categories === 'undefined' || categories === []) {
+    q = Product.findAll();
+  } else {
+    q = Product.findAll({
+      include: {
+        model: Category,
+        required: true,
+        where: {
+          name: req.query.categories
+        }
+      }
     })
+  }
+  q.then((products) => {
+    res.send(products);
+  })
     .catch(next);
 });
 

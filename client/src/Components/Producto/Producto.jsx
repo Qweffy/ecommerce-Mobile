@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import './Producto.css';
 
 const Producto = ({ match }) => {
   // We get => id = :1
@@ -18,16 +19,20 @@ const Producto = ({ match }) => {
   }
   
   return ( 
-    <div>
-      <img src={product.img} alt="No se encontro imagen del producto"/>
-      <div>
-        <h2>{product.name}</h2>
-        <p>{product.price}</p>
-        <br/>
-        <p>{product.description}</p>
-        <br/>
-        <p>Espacio para reviews</p>
-        <button>Add to cart</button>
+    <div className="d-flex m-5 justify-content-center">
+      <img src={product.img} alt="Img not found"/>
+      <div className="product-description m-5 mt-0 p-4">
+        <h2 className="product-name pb-2">{product.name}</h2>
+        <p className="pt-2">{product.description}</p>
+        <div className="product-stock pt-2">
+          <h4>Unidades disponibles: {product.stock}</h4>
+        </div>
+      </div>
+      <div className="product-buy px-3">
+        <div className="product-price text-center border-bottom">
+          <h1><strong>$ {product.price}</strong></h1>          
+        </div>
+        <button className="buy-btn p-2">Agregar al carrito</button>
       </div>
     </div>
    );

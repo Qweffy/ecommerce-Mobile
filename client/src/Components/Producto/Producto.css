@@ -1,0 +1,38 @@
+.product-buy {
+    height: 300px;
+    border-radius: 4px;
+    border: 1px solid #D3D3D3;
+    background-color: #FFFAFA;
+}
+
+.buy-btn {
+    border-radius: 4px;
+    background-color: #f80;
+    color: white;
+    border: 1px solid #f80;
+    margin-top: 150px;
+}
+
+.buy-btn:hover {
+    background-color: #FFA500;
+    color: white;
+}
+
+.product-price {
+    margin-top: 20px;
+}
+
+.product-description {
+    border: 1px solid #D3D3D3;
+    border-radius: 4px;
+    background-color: #FFFAFA;
+}
+
+.product-name {
+    border-bottom: 1px solid #D3D3D3;
+}
+
+.product-stock {
+    margin-top: 220px;
+    border-top: 1px solid #D3D3D3;
+}
