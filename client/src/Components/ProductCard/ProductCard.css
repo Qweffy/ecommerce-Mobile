@@ -7,4 +7,8 @@
 .product-card {
     height: 280px;
     width: 210px;
+    background-color: white;
+    border: 1px solid silver;
+    border-radius: 4px;
+    box-shadow: 0 2px 1px 0 rgba(64,64,64,.15);
 }
