@@ -1,7 +1,9 @@
 const server = require("express").Router();
 const { Product, Category } = require("../db.js");
+const { Op } = require("sequelize");
 
 //Create new product ----> '/products'
+
 server.post("/", (req, res, next) => {
   const { name, description, price, stock, img, id_category } = req.body;
 
@@ -31,7 +33,7 @@ server.post("/", (req, res, next) => {
 server.get("/", (req, res, next) => {
   let categories = req.query.categories;
   let q;
-  if (typeof categories === 'undefined' || categories === []) {
+  if (typeof categories === "undefined" || categories === []) {
     q = Product.findAll();
   } else {
     q = Product.findAll({
@@ -39,35 +41,48 @@ server.get("/", (req, res, next) => {
         model: Category,
         required: true,
         where: {
-          name: req.query.categories
-        }
-      }
-    })
+          name: req.query.categories,
+        },
+      },
+    });
   }
   q.then((products) => {
     res.send(products);
-  })
-    .catch(next);
+  }).catch(next);
+});
+
+server.get("/search/:query", (req, res) => {
+  console.log(req.params.query);
+  Product.findAll({
+    where: {
+      [Op.or]: [
+        { name: { [Op.like]: `%${req.params.query}%` } },
+        { description: { [Op.like]: `%${req.params.query}%` } },
+      ],
+    },
+  }).then((data) => {
+    res.json(data);
+  });
 });
 
 //get an one product  -------> '/products/:id'
-server.get('/:id', (req, res)=>{
+server.get("/:id", (req, res) => {
   const { id } = req.params;
 
-  return Product.findOne({ where: { id }})
-                .then( product => {
-                  res.status(200).json({
-                    mensaje: "Se encontro el producto con exito", 
-                    data: product
-                  })
-                })
-                .catch( err =>{
-                  res.status(400).json({
-                    mensaje: "No se encontro el producto", 
-                    data: err
-                  })
-                })
-})
+  return Product.findOne({ where: { id } })
+    .then((product) => {
+      res.status(200).json({
+        mensaje: "Se encontro el producto con exito",
+        data: product,
+      });
+    })
+    .catch((err) => {
+      res.status(400).json({
+        mensaje: "No se encontro el producto",
+        data: err,
+      });
+    });
+});
 
 server.post("/:idProd/category/:idCateg", (req, res, next) => {
   Product.findByPk(req.params.idProd)
@@ -117,14 +132,6 @@ server.delete("/:id", (req, res) => {
         .status(400)
         .json({ mensaje: "No se pudo eliminar el producto", data: err });
     });
-});
-
-server.get("/search", (req, res) => {
-  Product.findAll({
-    where: {
-      productName: req.query.query,
-    },
-  });
 });
 
 module.exports = server;

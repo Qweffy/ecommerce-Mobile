@@ -11,8 +11,8 @@ import Searchbar from "./Components/Searchbar/Searchbar";
 function App() {
   return (
     <Router>
-      <Route exact path="/showProducts" component={Productos} />
       <Route exact path="/" component={Searchbar} />
+      <Route exact path="/showProducts" component={Productos} />
       <Route exact path="/showCategories" component={Categorys} />
       <Route exact path="/createproduct" component={CreateProduct} />
       <Route exact path="/createcategory" component={CreateCategory} />
