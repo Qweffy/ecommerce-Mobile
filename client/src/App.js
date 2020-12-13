@@ -17,9 +17,12 @@ function App() {
       <Route exact path="/createproduct" component={CreateProduct} />
       <Route exact path="/createcategory" component={CreateCategory} />
       <Route exact path="/catalogue" component={Catalogue} />
-      <Route exact path='/products/:id' component={Producto} />
+      <Route exact path="/products/:id" component={Producto} />
     </Router>
   );
 }
 
 export default App;
+
+// npm ERR! notsup Required: {"node":">=12.18.3","npm":">=6.14.6"}
+// npm ERR! notsup Actual:   {"npm":"6.14.5","node":"12.18.1"}
