@@ -34,15 +34,11 @@ const Catalogue = () => {
     }
   };
 
-<<<<<<< HEAD
   return (
     <div className="m-4">
       <div className="d-flex">
         <div className="categories-col m-5 border rounded">
-          <CategoryCard
-            onCategoryToggle={categoryHandler}
-            categories={allCategories}
-          />
+          <CategoryCard onCategoryToggle={categoryHandler} categories={allCategories} />
         </div>
         <div className="products-grid m-5">
           {allProducts.map((product, index) => {
@@ -50,27 +46,6 @@ const Catalogue = () => {
               <Link to={`/products/${product.id}`}>
                 <div key={index}>
                   <ProductCard product={product} />
-=======
-
-    return (
-        <div className="m-4">
-            <div className="d-flex">
-                <div className="m-5">
-                    <CategoryCard onCategoryToggle={categoryHandler} categories={allCategories} />
-                </div>
-                <div className="products-grid my-5">
-                    {
-                        allProducts.map((product, index) => {
-                            return (
-                                <Link to={`/products/:${product.id}`}>
-                                    <div key={index}>
-                                        <ProductCard product={product} />
-                                    </div>
-                                </Link>
-                            )
-                        })
-                    }
->>>>>>> master
                 </div>
               </Link>
             );
