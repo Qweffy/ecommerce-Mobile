@@ -1,19 +1,10 @@
-import axios from "axios";
 import React, { useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
 
-const Searchbar = function () {
+const Searchbar = function ({ onSearch }) {
   const [product, setProduct] = useState("");
   const myRef = useRef(null);
-  function onSearch(product) {
-    axios
-      .get("http://localhost:4000/products/search/" + product)
-      .then((res) => {
-        return res.data;
-      })
-      .then((data) => {
-        console.log(data);
-      });
-  }
+  const history = useHistory();
 
   return (
     <div className="container-fluid">
@@ -21,6 +12,7 @@ const Searchbar = function () {
         onSubmit={(e) => {
           e.preventDefault();
           onSearch(product);
+          history.push("/catalogue/" + product);
           myRef.current.value = "";
         }}
         className="d-flex"
