@@ -26,9 +26,7 @@ export default function CreateCategory() {
   return (
     <div>
       <h3>CREAR CATEGORIA</h3>
-      <form
-        onSubmit={postcategories}
-      >
+      <form onSubmit={postcategories}>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Nombre:</label>
           <div class="col-sm-10">

@@ -65,10 +65,8 @@ export default function CreateProduct() {
       products.id_category.push(cat);
     });
     axios.post("http://localhost:4000/products/", products).then((res) => {
-      console.log(res.data);
       history.push("/showProducts");
     });
-    
   }
 
   useEffect(() => {
