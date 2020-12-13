@@ -1,8 +1,20 @@
+import axios from "axios";
 import React, { useState, useRef } from "react";
 
-const Searchbar = function ({ onSearch }) {
+const Searchbar = function () {
   const [product, setProduct] = useState("");
   const myRef = useRef(null);
+  function onSearch(product) {
+    axios
+      .get("http://localhost:4000/products/search/" + product)
+      .then((res) => {
+        return res.data;
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
   return (
     <div className="container-fluid">
       <form
