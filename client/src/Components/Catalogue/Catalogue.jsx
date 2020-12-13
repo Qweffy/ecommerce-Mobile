@@ -40,7 +40,7 @@ const Catalogue = ({ filter }) => {
   return (
     <div className="m-4">
       <div className="d-flex">
-        <div className="categories-col m-5 border rounded">
+        <div className="m-5">
           <CategoryCard
             onCategoryToggle={categoryHandler}
             categories={allCategories}
