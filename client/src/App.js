@@ -6,10 +6,12 @@ import Producto from "./Components/Producto/Producto.jsx";
 import CreateProduct from "./Components/CRUDproduct/CreateProduct.jsx";
 import Catalogue from "./Components/Catalogue/Catalogue.jsx";
 import Categorys from "./Components/Categorys/Categorys";
+import NavBar from "./Components/Navbar/Navbar";
 
 function App() {
   return (
     <Router >
+      <Route path='/' component={NavBar} />
       <Route exact path='/showProducts' component={Productos} />
       <Route exact path='/showCategories' component={Categorys} />
       <Route exact path="/createproduct" component={CreateProduct} />
