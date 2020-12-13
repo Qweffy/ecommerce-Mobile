@@ -4,16 +4,19 @@ import './CategoryCard.css';
 const CategoryCard = ({ categories, onCategoryToggle }) => {
 
     return (
-        <div className="mx-5 px-1 py-3 justify-content-center">
-            <h4>Categories</h4>
+        <div className="categories-col mx-5 px-5 py-3 justify-content-center">
+            <h5>Filtrador por</h5>
             {
                 categories.map(category => {
                     return (
-                        <label class="checkbox-inline">
-                            <input type="checkbox" 
-                            onClick={() => onCategoryToggle(category.name)} 
-                            data-toggle="toggle" />{category.name}
-                        </label>
+                        <div className="my-3 d-flex align-items-center">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" 
+                                onClick={() => onCategoryToggle(category.name)} 
+                                data-toggle="toggle" />
+                            </label>
+                            <span className="category-name p-3">{category.name}</span>                           
+                        </div>
                     )
                 })
             }

@@ -2,7 +2,7 @@
     height: 300px;
     border-radius: 4px;
     border: 1px solid #D3D3D3;
-    background-color: #FFFAFA;
+    background-color: #f1f1f1;
 }
 
 .buy-btn {
@@ -25,7 +25,7 @@
 .product-description {
     border: 1px solid #D3D3D3;
     border-radius: 4px;
-    background-color: #FFFAFA;
+    background-color: #f1f1f1;
 }
 
 .product-name {
@@ -35,4 +35,8 @@
 .product-stock {
     margin-top: 220px;
     border-top: 1px solid #D3D3D3;
+}
+
+body {
+    background-color: white;
 }
