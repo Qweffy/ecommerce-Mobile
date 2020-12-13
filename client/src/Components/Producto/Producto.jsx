@@ -30,13 +30,9 @@ const Producto = ({ match }) => {
       </div>
       <div className="product-buy px-3">
         <div className="product-price text-center border-bottom">
-<<<<<<< HEAD
-          <h1>
-            <strong>$ {product.price}</strong>
-          </h1>
-=======
-          <h2><strong>$ {product.price}</strong></h2>          
->>>>>>> master
+          <h2>
+            <strong>${product.price}</strong>
+          </h2>
         </div>
         <button className="buy-btn p-2">Agregar al carrito</button>
       </div>
