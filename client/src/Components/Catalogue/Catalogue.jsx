@@ -5,12 +5,15 @@ import ProductCard from "../ProductCard/ProductCard.jsx";
 import CategoryCard from "../CategoryCard/CategoryCard.jsx";
 import "./Catalogue.css";
 import { getProduct } from "../../store/Actions/Product_Actions.js";
+import { useParams } from "react-router-dom";
 
-const Catalogue = () => {
+const Catalogue = ({ filter }) => {
   // Get list of products and categories from DB
   const [allProducts, setAllProducts] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  let { search } = useParams();
+  console.log(search);
 
   useEffect(() => {
     getProduct(selectedCategories).then((products) => {
@@ -37,19 +40,32 @@ const Catalogue = () => {
   return (
     <div className="m-4">
       <div className="d-flex">
-        <div className="categories-col m-5 border rounded">
-          <CategoryCard onCategoryToggle={categoryHandler} categories={allCategories} />
+        <div className="m-5">
+          <CategoryCard
+            onCategoryToggle={categoryHandler}
+            categories={allCategories}
+          />
         </div>
         <div className="products-grid m-5">
-          {allProducts.map((product, index) => {
-            return (
-              <Link to={`/products/${product.id}`}>
-                <div key={index}>
-                  <ProductCard product={product} />
-                </div>
-              </Link>
-            );
-          })}
+          {filter.length > 0
+            ? filter.map((product, index) => {
+                return (
+                  <Link to={`/products/${product.id}`}>
+                    <div key={index}>
+                      <ProductCard product={product} />
+                    </div>
+                  </Link>
+                );
+              })
+            : allProducts.map((product, index) => {
+                return (
+                  <Link to={`/products/${product.id}`}>
+                    <div key={index}>
+                      <ProductCard product={product} />
+                    </div>
+                  </Link>
+                );
+              })}
         </div>
       </div>
     </div>

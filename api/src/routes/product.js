@@ -13,7 +13,6 @@ server.post("/", (req, res, next) => {
         Category.findAll({ where: { id: id_category } }).then(function (
           categories
         ) {
-          // prod.addCategory(categories);
           categories.forEach((element) => {
             prod.addCategory(element["dataValues"]["id"]);
           });
@@ -52,7 +51,6 @@ server.get("/", (req, res, next) => {
 });
 
 server.get("/search/:query", (req, res) => {
-  console.log(req.params.query);
   Product.findAll({
     where: {
       [Op.or]: [
