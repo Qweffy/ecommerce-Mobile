@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
     type: {
         type: DataTypes.TEXT,
         validate: {
-            isValid(value) {
+            validUserType(value) {
                 if (value !== 'Administrator' || value !== 'User') {
                     throw new Error('Insert valid user');
                 }
