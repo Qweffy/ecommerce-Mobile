@@ -1,36 +1,28 @@
 import React, { useState, useRef } from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Searchbar = function ({ onSearch }) {
-  const [product, setProduct] = useState("");
-  const myRef = useRef(null);
-  const history = useHistory();
+function SearchBar() {
+  const [bar, setbar] = useState("");
+
+  function loadbar(e) {
+    setbar(e.target.value);
+  }
 
   return (
     <div className="container-fluid">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSearch(product);
-          history.push("/catalogue/" + product);
-          myRef.current.value = "";
-        }}
-        className="d-flex"
-      >
+      <form className="d-flex">
         <input
-          className="form-control me-2"
-          type="search"
+          onChange={(e) => loadbar(e)}
+          type="text"
           placeholder="Search"
-          aria-label="Search"
-          onChange={(e) => setProduct(e.target.value)}
-          ref={myRef}
+          className="mr-sm-2"
         />
-        <button className="btn btn-outline-success" type="submit">
-          Search
-        </button>
+        <Link to={"/catalogue/" + bar}>
+          <button>Buscar</button>
+        </Link>
       </form>
     </div>
   );
-};
+}
 
-export default Searchbar;
+export default SearchBar;
