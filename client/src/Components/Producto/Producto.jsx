@@ -5,7 +5,6 @@ import "./Producto.css";
 const Producto = ({ match }) => {
   // We get => id = :1
   let { id } = match.params;
-  console.log(id);
   const [product, setProduct] = useState({});
 
   useEffect(() => {

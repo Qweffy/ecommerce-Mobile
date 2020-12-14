@@ -10,7 +10,7 @@ const CategoryCard = ({ categories, onCategoryToggle }) => {
                 categories.map(category => {
                     return (
                         <div className="my-3 d-flex align-items-center">
-                            <label class="checkbox-inline">
+                            <label className="checkbox-inline">
                                 <input type="checkbox" 
                                 onClick={() => onCategoryToggle(category.name)} 
                                 data-toggle="toggle" />

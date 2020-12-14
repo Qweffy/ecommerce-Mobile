@@ -1,27 +1,22 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import {
   Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
+  Nav
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBag, faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import Searchbar from "../Searchbar/Searchbar.js";
+import "./Navbar.css";
 
 
 function BootstrapNavbar() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="/">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className='p-2 nav'>
+      <Navbar.Brand href="/" className='logo-div'>
         <img
           alt=""
           src="/logo.png"
-          width="120"
-          height="120"
-          className="d-inline-block align-top"
+          className="logo"
         />{" "}
 
       </Navbar.Brand>
@@ -31,20 +26,12 @@ function BootstrapNavbar() {
           <Nav.Link href="/catalogue">
             <FontAwesomeIcon icon={faShoppingBag} /> Catalogue
           </Nav.Link>
-            <Nav.Link href="/showProducts">
-                My Products
-            </Nav.Link>
-            <Nav.Link href="/showCategories">
-              My Categories
-            </Nav.Link>
-          {/* <NavDropdown title="Panel Admin" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="/showProducts">
-              CRUD PRODUCTO
-            </NavDropdown.Item>
-            <NavDropdown.Item href="/showCategories">
-              CRUD CATEGORIA
-            </NavDropdown.Item>
-          </NavDropdown> */}
+          <Nav.Link href="/showProducts">
+              My Products
+          </Nav.Link>
+          <Nav.Link href="/showCategories">
+            My Categories
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
       <Searchbar />
