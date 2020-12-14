@@ -9,8 +9,9 @@ const router = Router();
 // load each router on a route
 // i.e: router.use('/auth', authRouter);
 // router.use('/auth', authRouter);
+router.use("/order", orderRouter);
 router.use("/products", productRouter);
 router.use("/category", categoryRouter);
-router.use('/orders', orderRouter);
+
 
 module.exports = router;

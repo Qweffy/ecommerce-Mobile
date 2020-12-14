@@ -1,4 +1,4 @@
-const server = require('express').Router();
+const server = require("express").Router();
 const { Order } = require('../db.js');
 const { Sequelize } = require('sequelize');
 
@@ -39,3 +39,5 @@ server.post('/:orderid', (req, res, next) => {  //con el id de la orden creada y
 
 
 });
+
+module.exports = server;
