@@ -25,14 +25,14 @@ export default function CreateCategory() {
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
     <div>
-      <h3>CREAR CATEGORIA</h3>
+      {/* <h3>Add new category</h3> */}
       <form onSubmit={postcategories}>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Nombre:</label>
+          <label class="col-sm-2 col-form-label">Category name:</label>
           <div class="col-sm-10">
             <input
               class="form-control"
-              placeholder="Ingresar Nombre de la categoria"
+              placeholder="Insert category name"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -44,7 +44,7 @@ export default function CreateCategory() {
         </div>
         <br />
         <button type="submit" class="btn btn-primary mb-2">
-          CREAR CATEGORIA
+          Add category
         </button>
       </form>
     </div>

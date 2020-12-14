@@ -5,7 +5,7 @@ const CategoryCard = ({ categories, onCategoryToggle }) => {
 
     return (
         <div className="categories-col mx-5 px-5 py-3 justify-content-center">
-            <h5>Filtrador por</h5>
+            <h5>Filtered by</h5>
             {
                 categories.map(category => {
                     return (

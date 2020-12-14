@@ -25,7 +25,7 @@ const Producto = ({ match }) => {
         <h3 className="product-name pb-2">{product.name}</h3>
         <p className="pt-2">{product.description}</p>
         <div className="product-stock pt-2">
-          <h5>Unidades disponibles: {product.stock}</h5>
+          <h5>Units available: {product.stock}</h5>
         </div>
       </div>
       <div className="product-buy px-3">
@@ -34,7 +34,7 @@ const Producto = ({ match }) => {
             <strong>${product.price}</strong>
           </h2>
         </div>
-        <button className="buy-btn p-2">Agregar al carrito</button>
+        <button className="buy-btn p-2">Add to cart</button>
       </div>
     </div>
   );

@@ -22,13 +22,13 @@ function BootstrapNavbar({ onSearch }) {
           height="30"
           className="d-inline-block align-top"
         />{" "}
-        Celulares
+        SellPhones
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/catalogue">
-            <FontAwesomeIcon icon={faShoppingBag} /> Catalogo
+            <FontAwesomeIcon icon={faShoppingBag} /> Catalogue
           </Nav.Link>
           <NavDropdown title="Panel Admin" id="collasible-nav-dropdown">
             <NavDropdown.Item href="/showProducts">

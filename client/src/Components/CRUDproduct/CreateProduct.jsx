@@ -79,14 +79,14 @@ export default function CreateProduct() {
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
     <div>
-      <h3>CREAR PRODUCTO</h3>
+      {/* <h3>Add new product</h3> */}
       <form onSubmit={handlerSubmnit}>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Nombre:</label>
+          <label className="col-sm-2 col-form-label">Produc name:</label>
           <div className="col-sm-10">
             <input
               className="form-control"
-              placeholder="Ingresar Nombre del Producto"
+              placeholder="Insert product name"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -101,7 +101,7 @@ export default function CreateProduct() {
           <div className="col-sm-10">
             <input
               className="form-control"
-              placeholder="Ingresar Descripcion del Producto"
+              placeholder="Insert product description"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -116,7 +116,7 @@ export default function CreateProduct() {
           <div className="col-sm-10">
             <input
               className="form-control"
-              placeholder="Ingresar Precio del Producto"
+              placeholder="Insert product price"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -127,11 +127,11 @@ export default function CreateProduct() {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Stock:</label>
+          <label className="col-sm-2 col-form-label">Units:</label>
           <div className="col-sm-10">
             <input
               className="form-control"
-              placeholder="Ingresar Cantidad de Stock"
+              placeholder="Insert available units"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -146,7 +146,7 @@ export default function CreateProduct() {
           <div className="col-sm-10">
             <input
               className="form-control"
-              placeholder="Ingresar Nombre de la imagen"
+              placeholder="Insert image URL"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -158,7 +158,7 @@ export default function CreateProduct() {
         </div>
         <div>
           <div class="col-sm-15">
-            <h5>Categorias:</h5>
+            <h5>Select product categories:</h5>
           </div>
           {categories.map((cat) => rendercategories(cat))}
         </div>
@@ -166,7 +166,7 @@ export default function CreateProduct() {
         <br />
 
         <button type="submit" className="btn btn-primary mb-2">
-          CREAR
+          Add product
         </button>
       </form>
     </div>
