@@ -18,7 +18,7 @@ function SearchBar() {
           placeholder="Search cell phones"
           className="search-input mr-sm-2 rounded px-2"
         />
-        <Link to={"/catalogue/" + bar}>
+        <Link onClick={() => window.location.href="/catalogue/" + bar} >
           <button className="search-btn btn mx-2" type="submit">
             <i class="fas fa-search"></i>
           </button>
