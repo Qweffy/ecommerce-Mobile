@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import './CreateCategory.css'
 
 export default function CreateCategory() {
   const [category, setCategory] = useState({});
@@ -24,11 +25,11 @@ export default function CreateCategory() {
 
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
-    <div>
+    <div className="add-category-container">
       {/* <h3>Add new category</h3> */}
       <form onSubmit={postcategories}>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Category name:</label>
+          <label class="col-sm-2 col-form-label">Category name</label>
           <div class="col-sm-10">
             <input
               class="form-control"
@@ -40,12 +41,11 @@ export default function CreateCategory() {
               type="text"
               required
             />
+            <button type="submit" class="btn btn-primary my-4">
+              Add category
+            </button>            
           </div>
         </div>
-        <br />
-        <button type="submit" class="btn btn-primary mb-2">
-          Add category
-        </button>
       </form>
     </div>
   );

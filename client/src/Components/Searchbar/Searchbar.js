@@ -15,11 +15,11 @@ function SearchBar() {
         <input
           onChange={(e) => loadbar(e)}
           type="text"
-          placeholder="Search"
-          className="mr-sm-2"
+          placeholder="Search cell phones"
+          className="search-input mr-sm-2 rounded px-2"
         />
         <Link to={"/catalogue/" + bar}>
-          <button className="search-btn btn" type="submit">
+          <button className="search-btn btn mx-2" type="submit">
             <i class="fas fa-search"></i>
           </button>
         </Link>

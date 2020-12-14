@@ -8,3 +8,7 @@
     color: white;
     border-color: #FFA500;
 }
+
+.search-input {
+    border: none;
+}
