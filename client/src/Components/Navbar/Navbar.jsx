@@ -30,14 +30,20 @@ function BootstrapNavbar({ onSearch }) {
           <Nav.Link href="/catalogue">
             <FontAwesomeIcon icon={faShoppingBag} /> Catalogue
           </Nav.Link>
-          <NavDropdown title="Panel Admin" id="collasible-nav-dropdown">
+            <Nav.Link href="/showProducts">
+                My Products
+            </Nav.Link>
+            <Nav.Link href="/showCategories">
+              My Categories
+            </Nav.Link>                      
+          {/* <NavDropdown title="Panel Admin" id="collasible-nav-dropdown">
             <NavDropdown.Item href="/showProducts">
               CRUD PRODUCTO
             </NavDropdown.Item>
             <NavDropdown.Item href="/showCategories">
               CRUD CATEGORIA
             </NavDropdown.Item>
-          </NavDropdown>
+          </NavDropdown> */}
         </Nav>
       </Navbar.Collapse>
       <Searchbar onSearch={onSearch} />
