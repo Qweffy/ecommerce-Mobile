@@ -61,7 +61,7 @@ const Categorys = () => {
             <Link to="/createcategory">
               <button type="button" className="btn btn-secondary btn-sm p-2">
                 <i class="fas fa-plus-circle me-2"></i>
-                ADD NEW
+                Add new category
               </button>
             </Link>
             <div></div>
@@ -70,8 +70,8 @@ const Categorys = () => {
           <table className="table table-Light table-striped">
             <thead className="table-secondary">
               <tr className="text-center">
-                <th scope="col">Action</th>
-                <th scope="col">Category ID</th>
+                <th scope="col"></th>
+                <th scope="col">Category Id</th>
                 <th scope="col">Name</th>
               </tr>
             </thead>
@@ -113,7 +113,7 @@ const Categorys = () => {
         <Modal.Body>
           <form onSubmit={handlerEdit}>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Id:</label>
+              <label className="col-sm-2 col-form-label">Id</label>
               <div className="col-sm-10">
                 <input
                   className="form-control"
@@ -124,7 +124,7 @@ const Categorys = () => {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Nombre:</label>
+              <label className="col-sm-2 col-form-label">Name</label>
               <div className="col-sm-10">
                 <input
                   className="form-control"
@@ -140,10 +140,10 @@ const Categorys = () => {
             </div>
 
             <button onClick={handleClose} className="btn btn-secondary mb-2">
-              Cerrar
+              Cancel
             </button>
             <button type="submit" className="btn btn-primary mb-2">
-              Modificar
+              Edit category
             </button>
           </form>
         </Modal.Body>

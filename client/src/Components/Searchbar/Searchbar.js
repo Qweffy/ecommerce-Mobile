@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
+import './SearchBar.css';
 
 const Searchbar = function ({ onSearch }) {
   const [product, setProduct] = useState("");
@@ -20,13 +21,13 @@ const Searchbar = function ({ onSearch }) {
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Search"
+          placeholder="Search cellphones"
           aria-label="Search"
           onChange={(e) => setProduct(e.target.value)}
           ref={myRef}
         />
-        <button className="btn btn-outline-success" type="submit">
-          Search
+        <button className="search-btn btn" type="submit">
+          <i class="fas fa-search"></i>
         </button>
       </form>
     </div>

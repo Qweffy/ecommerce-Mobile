@@ -82,7 +82,7 @@ export default function CreateProduct() {
       {/* <h3>Add new product</h3> */}
       <form onSubmit={handlerSubmnit}>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Produc name:</label>
+          <label className="col-sm-2 col-form-label">Product name</label>
           <div className="col-sm-10">
             <input
               className="form-control"
@@ -97,7 +97,7 @@ export default function CreateProduct() {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Description:</label>
+          <label className="col-sm-2 col-form-label">Description</label>
           <div className="col-sm-10">
             <input
               className="form-control"
@@ -112,7 +112,7 @@ export default function CreateProduct() {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Price:</label>
+          <label className="col-sm-2 col-form-label">Price</label>
           <div className="col-sm-10">
             <input
               className="form-control"
@@ -127,7 +127,7 @@ export default function CreateProduct() {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Units:</label>
+          <label className="col-sm-2 col-form-label">Available units</label>
           <div className="col-sm-10">
             <input
               className="form-control"
@@ -142,7 +142,7 @@ export default function CreateProduct() {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Image:</label>
+          <label className="col-sm-2 col-form-label">Image URL</label>
           <div className="col-sm-10">
             <input
               className="form-control"
