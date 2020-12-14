@@ -7,39 +7,17 @@ import CreateProduct from "./Components/CRUDproduct/CreateProduct.jsx";
 import Catalogue from "./Components/Catalogue/Catalogue.jsx";
 import Categorys from "./Components/Categorys/Categorys";
 import NavBar from "./Components/Navbar/Navbar";
-import axios from "axios";
-import { useParams } from "react-router-dom";
 
 function App() {
-  const [productsfilters, setProductsfilters] = useState([]);
-  function onSearch(product) {
-    axios
-      .get("http://localhost:4000/products/search/" + product)
-      .then((res) => {
-        return res.data;
-      })
-      .then((productsfilters) => {
-        setProductsfilters(productsfilters);
-      });
-  }
-
   return (
     <Router>
-      <Route path="/" render={() => <NavBar onSearch={onSearch} />} />
+      <Route path="/" render={() => <NavBar />} />
       <Route exact path="/showProducts" component={Productos} />
       <Route exact path="/showCategories" component={Categorys} />
       <Route exact path="/createproduct" component={CreateProduct} />
       <Route exact path="/createcategory" component={CreateCategory} />
-      <Route
-        exact
-        path="/catalogue"
-        render={() => <Catalogue filter={productsfilters} />}
-      />
-      <Route
-        exact
-        path="/catalogue/:search"
-        render={() => <Catalogue filter={productsfilters} />}
-      />
+      <Route exact path="/catalogue" component={Catalogue} />
+      <Route exact path="/catalogue/:search" component={Catalogue} />
       <Route exact path="/products/:id" component={Producto} />
     </Router>
   );
