@@ -2,7 +2,7 @@ const server = require("express").Router();
 const { Order } = require('../db.js');
 const { Sequelize } = require('sequelize');
 
-server.post('/', (req, res, next) => {
+server.post('/cart', (req, res, next) => {
 console.log(req.body);
 Order.findAll({                         //cuando entra aca busca si ya existe una orden carrito
   where : {
@@ -23,7 +23,7 @@ else {   //sino existe crea una nueva con el state en cart y devuelve el id de l
 });
 });
 
-server.post('/:orderid', (req, res, next) => {  //con el id de la orden creada y el id del producto se hace el addProduct a la tabla intermedia
+server.post('/cart/:orderid', (req, res, next) => {  //con el id de la orden creada y el id del producto se hace el addProduct a la tabla intermedia
 
   //esta funcion se fija si existe ya un producto igual en esa orden
   Order.findByPk(req.params.orderid).then(orderr => orderr.hasProduct(req.body.idproduct)).then(exist => {
