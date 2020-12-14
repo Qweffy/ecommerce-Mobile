@@ -20,7 +20,7 @@ function SearchBar() {
         />
         <Link to={"/catalogue/" + bar}>
           <button className="search-btn btn mx-2" type="submit">
-            <i class="fas fa-search"></i>
+            <i className="fas fa-search"></i>
           </button>
         </Link>
       </form>
