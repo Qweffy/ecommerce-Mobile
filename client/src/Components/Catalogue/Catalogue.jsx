@@ -5,20 +5,27 @@ import ProductCard from "../ProductCard/ProductCard.jsx";
 import CategoryCard from "../CategoryCard/CategoryCard.jsx";
 import "./Catalogue.css";
 import { getProduct } from "../../store/Actions/Product_Actions.js";
-import { useParams } from "react-router-dom";
 
-const Catalogue = ({ filter }) => {
+const Catalogue = (props) => {
   // Get list of products and categories from DB
   const [allProducts, setAllProducts] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  let { search } = useParams();
-  console.log(search);
 
   useEffect(() => {
-    getProduct(selectedCategories).then((products) => {
-      setAllProducts(products.data);
-    });
+    if (props.match.params.search) {
+      axios
+        .get(
+          "http://localhost:4000/products/search/" + props.match.params.search
+        )
+        .then((res) => {
+          setAllProducts(res.data);
+        });
+    } else {
+      getProduct(selectedCategories).then((products) => {
+        setAllProducts(products.data);
+      });
+    }
   }, [selectedCategories]);
 
   useEffect(() => {
@@ -47,25 +54,15 @@ const Catalogue = ({ filter }) => {
           />
         </div>
         <div className="products-grid m-5">
-          {filter.length > 0
-            ? filter.map((product, index) => {
-                return (
-                  <Link to={`/products/${product.id}`}>
-                    <div key={index}>
-                      <ProductCard product={product} />
-                    </div>
-                  </Link>
-                );
-              })
-            : allProducts.map((product, index) => {
-                return (
-                  <Link to={`/products/${product.id}`}>
-                    <div key={index}>
-                      <ProductCard product={product} />
-                    </div>
-                  </Link>
-                );
-              })}
+          {allProducts.map((product, index) => {
+            return (
+              <Link to={`/products/${product.id}`}>
+                <div key={index}>
+                  <ProductCard product={product} />
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

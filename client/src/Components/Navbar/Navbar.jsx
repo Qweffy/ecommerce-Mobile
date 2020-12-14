@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import Searchbar from "../Searchbar/Searchbar.js";
 
-function BootstrapNavbar({ onSearch }) {
+function BootstrapNavbar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="#home">
@@ -40,7 +40,7 @@ function BootstrapNavbar({ onSearch }) {
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
-      <Searchbar onSearch={onSearch} />
+      <Searchbar />
     </Navbar>
   );
 }
