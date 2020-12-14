@@ -70,7 +70,7 @@ const Productos = () => {
             <Link to="/createproduct">
               <button type="button" className="btn btn-secondary btn-sm p-2">
                 <i class="fas fa-plus-circle me-2"></i>
-                ADD NEW
+                Add new product
               </button>
             </Link>
             <div></div>
@@ -79,8 +79,8 @@ const Productos = () => {
           <table className="table table-Light table-striped">
             <thead className="table-secondary">
               <tr className="text-center">
-                <th scope="col">Action</th>
-                <th scope="col">Product ID</th>
+                <th scope="col"></th>
+                <th scope="col">Product Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Price</th>
@@ -128,7 +128,7 @@ const Productos = () => {
         <Modal.Body>
           <form onSubmit={handlerEdit}>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Id:</label>
+              <label className="col-sm-2 col-form-label">Id</label>
               <div className="col-sm-10">
                 <input
                   className="form-control"
@@ -139,7 +139,7 @@ const Productos = () => {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Nombre:</label>
+              <label className="col-sm-2 col-form-label">Name</label>
               <div className="col-sm-10">
                 <input
                   className="form-control"
@@ -154,7 +154,7 @@ const Productos = () => {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Description:</label>
+              <label className="col-sm-2 col-form-label">Description</label>
               <div className="col-sm-10">
                 <input
                   className="form-control"
@@ -169,7 +169,7 @@ const Productos = () => {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Price:</label>
+              <label className="col-sm-2 col-form-label">Price</label>
               <div className="col-sm-10">
                 <input
                   className="form-control"
@@ -184,7 +184,7 @@ const Productos = () => {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Stock:</label>
+              <label className="col-sm-2 col-form-label">Stock</label>
               <div className="col-sm-10">
                 <input
                   className="form-control"
@@ -199,7 +199,7 @@ const Productos = () => {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Image:</label>
+              <label className="col-sm-2 col-form-label">Image</label>
               <div className="col-sm-10">
                 <input
                   className="form-control"
@@ -215,10 +215,10 @@ const Productos = () => {
             </div>
 
             <button onClick={handleClose} className="btn btn-secondary mb-2">
-              Cerrar
+              Cancel
             </button>
             <button type="submit" className="btn btn-primary mb-2">
-              Modificar
+              Edit
             </button>
           </form>
         </Modal.Body>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import './CreateProduct.css';
 
 import { createProduct } from "../../store/Actions/Product_Actions";
 
@@ -78,15 +79,15 @@ export default function CreateProduct() {
 
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
-    <div>
-      <h3>CREAR PRODUCTO</h3>
-      <form onSubmit={handlerSubmnit}>
+    <div className="add-product-container">
+      {/* <h3>Add new product</h3> */}
+      <form onSubmit={handlerSubmnit} className="mx-5 my-4">
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Nombre:</label>
+          <label className="col-sm-2 col-form-label">Product name</label>
           <div className="col-sm-10">
             <input
-              className="form-control"
-              placeholder="Ingresar Nombre del Producto"
+              className="form-control m-1"
+              placeholder="Insert product name"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -97,11 +98,11 @@ export default function CreateProduct() {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Description:</label>
+          <label className="col-sm-2 col-form-label">Description</label>
           <div className="col-sm-10">
             <input
-              className="form-control"
-              placeholder="Ingresar Descripcion del Producto"
+              className="form-control m-1"
+              placeholder="Insert product description"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -112,11 +113,11 @@ export default function CreateProduct() {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Price:</label>
+          <label className="col-sm-2 col-form-label">Price</label>
           <div className="col-sm-10">
             <input
-              className="form-control"
-              placeholder="Ingresar Precio del Producto"
+              className="form-control m-1"
+              placeholder="Insert product price"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -127,11 +128,11 @@ export default function CreateProduct() {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Stock:</label>
+          <label className="col-sm-2 col-form-label">Available units</label>
           <div className="col-sm-10">
             <input
-              className="form-control"
-              placeholder="Ingresar Cantidad de Stock"
+              className="form-control m-1"
+              placeholder="Insert available units"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -142,11 +143,11 @@ export default function CreateProduct() {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Image:</label>
+          <label className="col-sm-2 col-form-label">Image URL</label>
           <div className="col-sm-10">
             <input
-              className="form-control"
-              placeholder="Ingresar Nombre de la imagen"
+              className="form-control m-1"
+              placeholder="Insert image URL"
               onChange={(e) => {
                 handleChange(e);
               }}
@@ -156,17 +157,16 @@ export default function CreateProduct() {
             />
           </div>
         </div>
-        <div>
-          <div class="col-sm-15">
-            <h5>Categorias:</h5>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Product categories</label>
+          <div className="col-sm-10">
+            <div className="m-1">
+                {categories.map((cat) => rendercategories(cat))}
+            </div>
           </div>
-          {categories.map((cat) => rendercategories(cat))}
         </div>
-
-        <br />
-
-        <button type="submit" className="btn btn-primary mb-2">
-          CREAR
+        <button type="submit" className="add-product-btn btn btn-primary my-4">
+          Add product
         </button>
       </form>
     </div>
