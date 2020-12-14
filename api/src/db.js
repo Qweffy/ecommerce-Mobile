@@ -2,12 +2,13 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const { serialize } = require('v8');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,BD_PORT_API,
 } = process.env;
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/development`, {
-  logging: console.log, // set to console.log to see the raw SQL queries
+  logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
 const basename = path.basename(__filename);
@@ -32,11 +33,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Product } = sequelize.models;
 const { Category } = sequelize.models;
+const { Order } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 Category.belongsToMany(Product, { through: "product_category" });
 Product.belongsToMany(Category, { through: "product_category" });
+Order.belongsToMany(Product, { through: "order_line" });
+Product.belongsToMany(Order, { through: "order_line"});
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
