@@ -1,5 +1,5 @@
 const server = require("express").Router();
-const { Order } = require('../db.js');
+const { Order, User } = require('../db.js');
 const { Sequelize } = require('sequelize');
 
 server.post('/cart', (req, res, next) => {
@@ -47,11 +47,18 @@ server.get('/', (req, res) => {
     order = Order.findAll({
       where: {
         state
+      },
+      include: {
+        model: User
       }
     })
   }
   else {
-    order = Order.findAll();
+    order = Order.findAll({
+      include: {
+        model: User
+      }
+    });
   }
   order.then(orders => {
     res.send(orders);

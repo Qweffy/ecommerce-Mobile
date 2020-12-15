@@ -15,6 +15,8 @@ const Orders = () => {
         getOrders();
     }, []);
 
+    console.log(allOrders);
+
     return (
         <div className="container mt-3">
             <table className="table table-Light table-striped">
@@ -23,6 +25,7 @@ const Orders = () => {
                         <th>Order Id</th>
                         <th>Price</th>
                         <th>Status</th>
+                        <th>Username</th>
                     </tr>                    
                 </thead>
                 <tbody>
@@ -33,6 +36,7 @@ const Orders = () => {
                                     <td>{order.id}</td>
                                     <td>{order.price}</td>
                                     <td>{order.state}</td>
+                                    <td>{order.user.username}</td>
                                 </tr>                                
                             )
                         })
