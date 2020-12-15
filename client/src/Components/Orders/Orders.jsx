@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import Order from '../Order/Order.jsx';
 
 const Orders = () => {
     const [allOrders, setAllOrders] = useState([]);
@@ -18,13 +17,28 @@ const Orders = () => {
 
     return (
         <div>
-            {
-                allOrders.map((order, index) => {
-                    return (
-                        <Order order={order} key={index} />
-                    )
-                })
-            }
+            <table>
+                <thead>
+                    <tr className="text-center">
+                        <th>Order Id</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                    </tr>                    
+                </thead>
+                <tbody>
+                    {
+                        allOrders.map(order => {
+                            return (
+                                <tr>
+                                    <td>{order.id}</td>
+                                    <td>{order.price}</td>
+                                    <td>{order.state}</td>
+                                </tr>                                
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
         </div>
     );
 };
