@@ -6,7 +6,8 @@ server.post('/cart', (req, res, next) => {
   console.log(req.body);
   Order.findAll({                         //cuando entra aca busca si ya existe una orden carrito
     where: {
-      state: 'cart'
+      state: 'cart',
+      userId: 1
     }
   }).then(encontrados => {
     if (encontrados[0])     //si existe entonces devuelve el id de la orden
@@ -14,9 +15,9 @@ server.post('/cart', (req, res, next) => {
     else {   //sino existe crea una nueva con el state en cart y devuelve el id de la orden creada
       Order.create({
         state: 'cart',
-        price: 0
+        price: 0,
       }).then(algo => {
-        Order.findByPk(algo.dataValues.id).then(order => order.setUser(req.body.id))
+        Order.findByPk(algo.dataValues.id).then(order => order.setUser(1))
           .then(success => res.status(200).json(algo.dataValues.id))
       });
     }
