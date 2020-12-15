@@ -39,8 +39,8 @@ server.post('/cart/:orderid', (req, res, next) => {  //con el id de la orden cre
   });
 });
 
-server.get('/', (res, req) => {
-  let state = req.query.params.status;
+server.get('/', (req, res) => {
+  let state = req.query.status;
   let order;
 
   if (state) {
