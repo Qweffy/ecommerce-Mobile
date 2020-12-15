@@ -37,8 +37,25 @@ server.post('/cart/:orderid', (req, res, next) => {  //con el id de la orden cre
     }
 
   });
-
-
 });
+
+server.get('/', (res, req) => {
+  let state = req.query.params.status;
+  let order;
+
+  if (state) {
+    order = Order.findAll({
+      where: {
+        state
+      }
+    })
+  }
+  else {
+    order = Order.findAll();
+  }
+  order.then(orders => {
+    res.send(orders);
+  })
+})
 
 module.exports = server;
