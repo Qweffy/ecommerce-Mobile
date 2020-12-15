@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import { Order } from './Order/Order.jsx';
+import Order from '../Order/Order.jsx';
 
 const Orders = () => {
-    const [allOrders, setAllOrders] = userState([]);
+    const [allOrders, setAllOrders] = useState([]);
 
     // Get all orders from DB and asign it to local state
     async function getOrders() {
@@ -19,9 +19,9 @@ const Orders = () => {
     return (
         <div>
             {
-                allOrders.map(order => {
+                allOrders.map((order, index) => {
                     return (
-                        <Order order={order} />
+                        <Order order={order} key={index} />
                     )
                 })
             }
