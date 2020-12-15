@@ -16,9 +16,9 @@ const Orders = () => {
     }, []);
 
     return (
-        <div>
-            <table>
-                <thead>
+        <div className="container mt-3">
+            <table className="table table-Light table-striped">
+                <thead className="table-secondary">
                     <tr className="text-center">
                         <th>Order Id</th>
                         <th>Price</th>
@@ -29,7 +29,7 @@ const Orders = () => {
                     {
                         allOrders.map(order => {
                             return (
-                                <tr>
+                                <tr className="text-center">
                                     <td>{order.id}</td>
                                     <td>{order.price}</td>
                                     <td>{order.state}</td>
