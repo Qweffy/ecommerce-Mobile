@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import { Order } from './Order/Order.jsx';
 
 const Orders = () => {
     const [allOrders, setAllOrders] = userState([]);
@@ -14,6 +15,18 @@ const Orders = () => {
     useEffect(() => {
         getOrders();
     }, []);
+
+    return (
+        <div>
+            {
+                allOrders.map(order => {
+                    return (
+                        <Order order={order} />
+                    )
+                })
+            }
+        </div>
+    );
 };
 
 export default Orders;
