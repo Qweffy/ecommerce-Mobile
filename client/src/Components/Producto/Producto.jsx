@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Producto.css";
+import AddToCart from "../AddToCart/AddToCart.jsx";
 
 const Producto = ({ match }) => {
   // We get => id = :1
@@ -33,7 +34,7 @@ const Producto = ({ match }) => {
             <strong>${product.price}</strong>
           </h2>
         </div>
-        <button className="buy-btn p-2">Add to cart</button>
+        <AddToCart id={id}/>
       </div>
     </div>
   );
