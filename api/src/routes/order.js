@@ -43,6 +43,8 @@ server.get('/', (req, res) => {
   let state = req.query.status;
   let order;
 
+  // Find order WHERE state: state, JOIN User ON order.user_id = user.id
+  // We get array with object with a key 'user'. typeof user ==== 'object'
   if (state) {
     order = Order.findAll({
       where: {
