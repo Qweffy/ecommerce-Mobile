@@ -1,5 +1,5 @@
 const server = require("express").Router();
-const { Order } = require('../db.js');
+const { Product, Order } = require('../db.js');
 const { Sequelize } = require('sequelize');
 
 server.post('/cart', (req, res, next) => {
@@ -40,5 +40,38 @@ server.post('/cart/:orderid', (req, res, next) => {  //con el id de la orden cre
 
 
 });
+
+server.get("/:id", (req, res, next) => {
+  Order.findOne({
+    include: {
+      model: Product,
+      required: true,
+      where: {
+        id: req.params.id
+      }
+    }
+  }
+  ).then((order) => res.send(order))
+    .catch(err => {
+      res.status(400).json({ mensaje: "order not found" });
+    })
+})
+
+server.put("/:id", (req, res, next) => {
+  const { id } = req.params;
+  const { price, state } = req.body;
+
+  Order.findOne({
+    where: { id: id }
+  }).then(order => {
+    order.price = price;
+    order.state = state;
+    order.save();
+    res.json({ mensaje: "Successfully modified order", data: order })
+  })
+    .catch(err => {
+      res.status(400).json({ mensaje: "Successfully modified order" })
+    })
+})
 
 module.exports = server;
