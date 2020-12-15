@@ -15,17 +15,16 @@ const Orders = () => {
         getOrders();
     }, []);
 
-    console.log(allOrders);
-
     return (
         <div className="container mt-3">
             <table className="table table-Light table-striped">
                 <thead className="table-secondary">
                     <tr className="text-center">
                         <th>Order Id</th>
-                        <th>Price</th>
+                        <th>Total Price</th>
                         <th>Status</th>
-                        <th>Username</th>
+                        <th>Buyer</th>
+                        <th>Role</th>
                     </tr>                    
                 </thead>
                 <tbody>
@@ -34,9 +33,10 @@ const Orders = () => {
                             return (
                                 <tr className="text-center">
                                     <td>{order.id}</td>
-                                    <td>{order.price}</td>
+                                    <td>${order.price}</td>
                                     <td>{order.state}</td>
                                     <td>{order.user.username}</td>
+                                    <td>{order.user.type}</td>
                                 </tr>                                
                             )
                         })
