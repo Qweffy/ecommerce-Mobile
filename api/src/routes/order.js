@@ -2,7 +2,7 @@ const server = require("express").Router();
 const { Product, Order } = require('../db.js');
 const { Sequelize } = require('sequelize');
 
-server.get('/cart' , (req, res) =>{
+server.get('/cart' , (req, res) =>{    //ruta para encontrar la orden carrito y devolver el id de la orden
   //const { userId } = req.body;
   Order.findOne( {
     where:{ state:'cart', userId: 1 },
@@ -23,7 +23,7 @@ server.get('/cart' , (req, res) =>{
 });
 
 
-server.post('/cart', (req, res, next) => {
+server.post('/cart', (req, res, next) => {  //ruta para agregar elementos a la orden carrito y sumar con contador
   console.log(req.body);
   Order.findAll({                         //cuando entra aca busca si ya existe una orden carrito
     where: {
@@ -62,6 +62,14 @@ server.post('/cart/:orderid', (req, res, next) => {  //con el id de la orden cre
 
 
 });
+
+server.delete("/cart/:orderid/:productid",(req ,res, next) =>{  //borra un producto especifico del carrito
+Order.findByPk(req.params.orderid).then(order => order.removeProduct(req.params.productid));
+
+});
+
+
+
 
 //Obtiene una orden especifica.
 server.get("/:id", (req, res, next) => {

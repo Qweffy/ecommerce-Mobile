@@ -56,11 +56,9 @@ const Catalogue = (props) => {
         <div className="products-grid m-5">
           {allProducts.map((product, index) => {
             return (
-              <Link to={`/products/${product.id}`}>
                 <div key={index}>
                   <ProductCard product={product} />
                 </div>
-              </Link>
             );
           })}
         </div>

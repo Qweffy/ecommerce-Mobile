@@ -34,7 +34,6 @@ const Producto = ({ match }) => {
             <strong>${product.price}</strong>
           </h2>
         </div>
-        <AddToCart id={id}/>
       </div>
     </div>
   );
