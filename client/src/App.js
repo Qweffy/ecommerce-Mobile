@@ -7,7 +7,8 @@ import CreateProduct from "./Components/CRUDproduct/CreateProduct.jsx";
 import Catalogue from "./Components/Catalogue/Catalogue.jsx";
 import Categorys from "./Components/Categorys/Categorys";
 import NavBar from "./Components/Navbar/Navbar";
-import Cart from "./Components/cart/cart.jsx"
+import Cart from "./Components/cart/cart.jsx";
+import CreateUser from "./Components/CRUDuser/CreateUser.jsx";
 import Orders from "./Components/Orders/Orders.jsx";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route exact path="/showCategories" component={Categorys} />
       <Route exact path="/createproduct" component={CreateProduct} />
       <Route exact path="/createcategory" component={CreateCategory} />
+      <Route exact path="/createuser" component={CreateUser} />
       <Route exact path="/catalogue" component={Catalogue} />
       <Route exact path="/catalogue/:search" component={Catalogue} />
       <Route exact path="/products/:id" component={Producto} />

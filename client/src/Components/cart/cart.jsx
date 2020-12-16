@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux'
 import ItemCart from '../itemCart/ItemCart'
 import axios from "axios";
 
 const Cart = () => {
+  const user = useSelector(state => state.user);
+
   const [ cart, setCart ] = useState({
   id: 1,
   price: 0,
   products: []
-  })
+  });
 
   useEffect((()=>{
     getOrders();
   }), []);
 
   async function getOrders() {  //trae los productos de la orden carrito
-    let response = await axios.get(`http://localhost:4000/order/cart`);
+    let response = await axios.get(`http://localhost:4000/orders/cart/${user.id}`);
      setCart(response.data.data);
-     console.log(response.data.data);
   }
 
   const { products , id} = cart  //se trae los productos y el id de la orden
