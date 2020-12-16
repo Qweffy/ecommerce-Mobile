@@ -5,7 +5,6 @@ import axios from "axios";
 
 
 const AddToCart = (props) => {
-
   const user = useSelector(state => state.user);
 
   function addToCart(id) {
@@ -16,14 +15,14 @@ const AddToCart = (props) => {
          .then()
   }
 
-  return (
-      <button
-          onClick={() => { addToCart(props.id) }}
-          type="button"
-          className="btn btn-primary">
-          <i class="fas fa-shopping-cart"></i>
-      </button>
-  );
+    return (
+        <button
+            onClick={() => { addToCart(props.id) }}
+            type="button"
+            className="btn btn-primary" disabled={props.btnDisabled}>
+            <i class="fas fa-shopping-cart"></i>
+        </button>
+    );    
 }
 
 export default AddToCart;
