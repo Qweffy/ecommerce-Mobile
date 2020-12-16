@@ -1,8 +1,29 @@
 const server = require("express").Router();
-const { Order, User } = require('../db.js');
+const { Order, User, Product } = require('../db.js');
 const { Sequelize } = require('sequelize');
 
-server.post('/cart', (req, res, next) => {
+server.get('/cart' , (req, res) =>{    //ruta para encontrar la orden carrito y devolver el id de la orden
+  //const { userId } = req.body;
+  Order.findOne( {
+    where:{ state:'cart', userId: 1 },
+    include:[{ model: Product}]
+  })
+  .then( order => {
+    res.status(200).json({
+      mensaje: "Se encontro el carrito",
+      data: order,
+    });
+  })
+  .catch((err) => {
+    res.status(400).json({
+      mensaje: "No se encontro el carrito",
+      data: err,
+    });
+  });
+});
+
+
+server.post('/cart', (req, res, next) => {  //ruta para agregar elementos a la orden carrito y sumar con contador
   console.log(req.body);
   Order.findAll({                         //cuando entra aca busca si ya existe una orden carrito
     where: {
@@ -16,6 +37,7 @@ server.post('/cart', (req, res, next) => {
       Order.create({
         state: 'cart',
         price: 0,
+        userId: 1
       }).then(algo => {
         Order.findByPk(algo.dataValues.id).then(order => order.setUser(1))
           .then(success => res.status(200).json(algo.dataValues.id))
@@ -65,6 +87,49 @@ server.get('/', (req, res) => {
   order.then(orders => {
     res.send(orders);
   })
+})
+
+server.delete("/cart/:orderid/:productid",(req ,res, next) =>{  //borra un producto especifico del carrito
+Order.findByPk(req.params.orderid).then(order => order.removeProduct(req.params.productid));
+
+});
+
+
+
+
+//Obtiene una orden especifica.
+server.get("/:id", (req, res, next) => {
+  Order.findOne({
+    include: {
+      model: Product,
+      required: true,
+      where: {
+        id: req.params.id
+      }
+    }
+  }
+  ).then((order) => res.send(order))
+    .catch(err => {
+      res.status(400).json({ mensaje: "order not found" });
+    })
+})
+
+//Modifica una orden especifica.
+server.put("/:id", (req, res, next) => {
+  const { id } = req.params;
+  const { price, state } = req.body;
+
+  Order.findOne({
+    where: { id: id }
+  }).then(order => {
+    order.price = price;
+    order.state = state;
+    order.save();
+    res.json({ mensaje: "Successfully modified order", data: order })
+  })
+    .catch(err => {
+      res.status(400).json({ mensaje: "Successfully modified order" })
+    })
 })
 
 module.exports = server;
