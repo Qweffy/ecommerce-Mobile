@@ -10,6 +10,7 @@ import NavBar from "./Components/Navbar/Navbar";
 import Cart from "./Components/cart/cart.jsx";
 import CreateUser from "./Components/CRUDuser/CreateUser.jsx";
 import Orders from "./Components/Orders/Orders.jsx";
+import Order from "./Components/Order/Order.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route exact path="/products/:id" component={Producto} />
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/orders" component={Orders} />
+      <Route exact path="/orders/:id" component={Order} />
     </Router>
   );
 }

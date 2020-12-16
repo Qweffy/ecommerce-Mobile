@@ -15,12 +15,18 @@ server.get('/cart/:id' , (req, res) =>{    //ruta para encontrar la orden carrit
       data: order,
     });
   })
-  .catch((err) => {
-    res.status(400).json({
-      mensaje: "No se encontro el carrito",
-      data: err,
+    .then(order => {
+      res.status(200).json({
+        mensaje: "Se encontro el carrito",
+        data: order,
+      });
+    })
+    .catch((err) => {
+      res.status(400).json({
+        mensaje: "No se encontro el carrito",
+        data: err,
+      });
     });
-  });
 });
 
 
@@ -115,21 +121,16 @@ server.delete("/cart/:orderid/:productid",(req ,res, next) =>{  //borra un produ
 
 });
 
-
-
-
 //Obtiene una orden especifica.
 server.get("/:id", (req, res, next) => {
+  let id = req.params.id;
   Order.findOne({
+    where: { id },
     include: {
-      model: Product,
-      required: true,
-      where: {
-        id: req.params.id
-      }
+      model: Product
     }
   }
-  ).then((order) => res.send(order))
+  ).then((order) => res.json({ mensaje: "Successfully", data: order }))
     .catch(err => {
       res.status(400).json({ mensaje: "order not found" });
     })
