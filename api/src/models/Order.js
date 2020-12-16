@@ -4,11 +4,12 @@ module.exports = (sequelize) => {
     sequelize.define("order", {
         price: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 0
         },
         state: {
-          type: DataTypes.STRING,
-          allowNull: false
+            type: DataTypes.STRING,
+            allowNull: false
         }
     });
 };

@@ -17,15 +17,9 @@ const Order = (props) => {
     async function getOrder() {
         let response = await axios.get('http://localhost:4000/orders/' + id);
         setOrder(response.data.data);
+/*         console.log(response.data.data)
+        console.log(order) */
     }
-
-
- /*    const total = (list) => {
-        list.reduce((elem) => {
-            return elem.price * elem.count
-        }, 1)
-    }
- */
 
     return (
         <div className="row">
@@ -42,9 +36,7 @@ const Order = (props) => {
                 })}
             </div>}
             <div className="col-md-4">
-                <h4>Total: {/* {order.products.reduce((acc, elem) => {
-                    return acc = (elem.price * elem.count) + acc
-                },0)} */}</h4>
+                <h4>Total: {order.price}</h4>
             </div>
         </div>
     );
