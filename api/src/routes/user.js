@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const server = require("express").Router();
 const { User } = require("../db.js");
 // const { Op } = require("sequelize");
@@ -70,7 +69,6 @@ server.delete("/delete/:id", (req, res) => {
 });
 
 module.exports = server;
-=======
 const server = require("./order");
 
 
@@ -101,4 +99,3 @@ server.get('/:id/orders', (req, res) => {
 });
 
 module.exports = server;
->>>>>>> 72aed061e22325047a7ba47836b93bfc882cfc54

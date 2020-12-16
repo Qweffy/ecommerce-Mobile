@@ -7,13 +7,10 @@ import CreateProduct from "./Components/CRUDproduct/CreateProduct.jsx";
 import Catalogue from "./Components/Catalogue/Catalogue.jsx";
 import Categorys from "./Components/Categorys/Categorys";
 import NavBar from "./Components/Navbar/Navbar";
-<<<<<<< HEAD
 import Cart from "./Components/cart/cart.jsx";
 import CreateUser from "./Components/CRUDuser/CreateUser.jsx";
-=======
 import Cart from "./Components/cart/cart.jsx"
 import Orders from "./Components/Orders/Orders.jsx";
->>>>>>> 72aed061e22325047a7ba47836b93bfc882cfc54
 
 function App() {
   return (
