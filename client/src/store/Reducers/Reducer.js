@@ -1,7 +1,13 @@
 const initalState = {
   products: [],
   categories: [],
-  cart: []
+  cart: [],
+  user:{
+    id:1,
+    name: 'Nicolas',
+    lastname: 'Valencia',
+    mail: 'nico@nico.com'
+  }
 }
 
 const Reducer = (state = initalState, action)=>{
@@ -16,6 +22,6 @@ const Reducer = (state = initalState, action)=>{
     default:
       return state
   }
-}
+};
 
 export default Reducer;
