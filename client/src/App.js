@@ -8,6 +8,7 @@ import Catalogue from "./Components/Catalogue/Catalogue.jsx";
 import Categorys from "./Components/Categorys/Categorys";
 import NavBar from "./Components/Navbar/Navbar";
 import Cart from "./Components/cart/cart.jsx"
+import Orders from "./Components/Orders/Orders.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route exact path="/catalogue/:search" component={Catalogue} />
       <Route exact path="/products/:id" component={Producto} />
       <Route exact path="/cart" component={Cart} />
+      <Route exact path="/orders" component={Orders} />
     </Router>
   );
 }
