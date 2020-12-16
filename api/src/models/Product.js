@@ -19,11 +19,11 @@ module.exports = (sequelize) => {
         min: 1
       }
     },
-    stock: { //Has to be greater than 0
+    stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        min: 1
+        min: 0
       }
     },
     img: {

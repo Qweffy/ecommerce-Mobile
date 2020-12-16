@@ -5,7 +5,7 @@ const ItemCart = ({product , idorder}) => {
 
 
 function deleteProduct(idorder){
-axios.delete(`http://localhost:4000/order/cart/${idorder}/${product.id}`).then((res)=>{});
+axios.delete(`http://localhost:4000/orders/cart/${idorder}/${product.id}`).then((res)=>{});
 }
 
 

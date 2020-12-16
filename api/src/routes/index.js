@@ -13,6 +13,10 @@ const router = Router();
 router.use("/orders", orderRouter);
 router.use("/products", productRouter);
 router.use("/category", categoryRouter);
+<<<<<<< HEAD
 router.use("/user", userRouter);
+=======
+router.use("/users", userRouter);
+>>>>>>> 38f7766c44cadbade12b8aecefe002750de7cc9d
 
 module.exports = router;

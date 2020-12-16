@@ -9,7 +9,10 @@ import Categorys from "./Components/Categorys/Categorys";
 import NavBar from "./Components/Navbar/Navbar";
 import Cart from "./Components/cart/cart.jsx";
 import CreateUser from "./Components/CRUDuser/CreateUser.jsx";
+<<<<<<< HEAD
 import Cart from "./Components/cart/cart.jsx"
+=======
+>>>>>>> 38f7766c44cadbade12b8aecefe002750de7cc9d
 import Orders from "./Components/Orders/Orders.jsx";
 
 function App() {
