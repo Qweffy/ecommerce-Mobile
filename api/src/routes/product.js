@@ -9,10 +9,8 @@ server.post("/", (req, res, next) => {
 
   Product.create({ name, description, price, stock, img }).then((et) => {
     Product.findOne({ where: { id: et.id } })
-      .then(function (prod) {
-        Category.findAll({ where: { id: id_category } }).then(function (
-          categories
-        ) {
+      .then((prod) => {
+        Category.findAll({ where: { id: id_category } }).then((categories) => {
           categories.forEach((element) => {
             prod.addCategory(element["dataValues"]["id"]);
           });
@@ -22,7 +20,6 @@ server.post("/", (req, res, next) => {
         res.json({ mensaje: "producto creado OK", data: product });
       })
       .catch((err) => {
-        console.log(err);
         res.json({ mensaje: "Error al creat el producto", data: err });
       });
   });
