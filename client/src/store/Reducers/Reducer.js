@@ -1,10 +1,12 @@
 const initalState = {
   products: [],
-  categories: []
+  categories: [],
+  cart: []
 }
 
 const Reducer = (state = initalState, action)=>{
   switch( action.type ){
+    
     case 'GET_PRODUCTS':
       return { ...state, products: action.payload }
     
