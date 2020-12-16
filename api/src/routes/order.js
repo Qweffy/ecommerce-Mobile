@@ -24,7 +24,6 @@ server.get('/cart' , (req, res) =>{
 
 
 server.post('/cart', (req, res, next) => {
-<<<<<<< Updated upstream
   console.log(req.body);
   Order.findAll({                         //cuando entra aca busca si ya existe una orden carrito
     where: {
