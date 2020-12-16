@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'; 
+import React, { useEffect, useState } from 'react';
 import ItemCart from '../itemCart/ItemCart'
 import axios from "axios";
 
@@ -13,23 +13,24 @@ const Cart = () => {
     getOrders();
   }), []);
 
-  async function getOrders() {
+  async function getOrders() {  //trae los productos de la orden carrito
     let response = await axios.get(`http://localhost:4000/order/cart`);
-     setCart(response.data.data); 
+     setCart(response.data.data);
+     console.log(response.data.data);
   }
 
-  const { products } = cart
+  const { products , id} = cart  //se trae los productos y el id de la orden
 
-  return ( 
+  return (
     <div className='d-flex'>
-      <div> 
+      <div>
         <h3>Shopping Cart</h3>
         <hr/>
         <div>
           {
             products.map((product, index) =>{
               return(
-                <ItemCart key={index} product={product}/>
+                <ItemCart key={index} product={product} idorder={id}/>
                )
             })
           }
@@ -50,5 +51,5 @@ const Cart = () => {
     </div>
    );
 }
- 
+
 export default Cart;
