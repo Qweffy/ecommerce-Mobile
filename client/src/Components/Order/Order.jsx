@@ -8,21 +8,22 @@ const Order = (props) => {
 
     async function getOrder() {
         let response = await axios.get('http://localhost:4000/orders/' + id);
-        console.log(response.data)
-        setOrder(response.data);
-        setProduct(order.product)
-        console.log(product)
+
+        setOrder(response);
+
+        setProduct(order.products)
+        /*       console.log(order.products[0].name) */
     }
     useEffect(() => {
         getOrder();
-        console.log()
-        console.log(product)
+        /*  console.log(product) */
     }, [])
+    console.log(order.data.product[0].name)
 
     return (
         <div className="row">
-            <div className="col-md-8">
-                {/*   {order.products.map(elem => {
+            {/* <div className="col-md-8">
+                  {order.products.map(elem => {
                     return (
                         <ul className="list-group">
                             <div className="row list-group-item-action">
@@ -31,8 +32,8 @@ const Order = (props) => {
                             </div>
                         </ul>
                     )
-                })} */}
-            </div>
+                })}
+            </div> */}
             <div className="col-md-4">
                 <h4>Total</h4>
             </div>
