@@ -130,7 +130,7 @@ server.get("/:id", (req, res, next) => {
       model: Product
     }
   }
-  ).then((order) => res.send(order))
+  ).then((order) => res.json({ mensaje: "Successfully", data: order }))
     .catch(err => {
       res.status(400).json({ mensaje: "order not found" });
     })

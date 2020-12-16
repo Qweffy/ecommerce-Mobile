@@ -3,27 +3,34 @@ import axios from "axios";
 
 const Order = (props) => {
     const { id } = props.match.params;
-    const [order, setOrder] = useState({});
-    const [product, setProduct] = useState([]);
+    const [order, setOrder] = useState({
+        price: null,
+        products: []
+    });
+
+    useEffect(() => {
+        getOrder();
+    }, [])
+
+
 
     async function getOrder() {
         let response = await axios.get('http://localhost:4000/orders/' + id);
-
-        setOrder(response);
-
-        setProduct(order.products)
-        /*       console.log(order.products[0].name) */
+        setOrder(response.data.data);
     }
-    useEffect(() => {
-        getOrder();
-        /*  console.log(product) */
-    }, [])
-    console.log(order.data.product[0].name)
+
+
+ /*    const total = (list) => {
+        list.reduce((elem) => {
+            return elem.price * elem.count
+        }, 1)
+    }
+ */
 
     return (
         <div className="row">
-            {/* <div className="col-md-8">
-                  {order.products.map(elem => {
+            { <div className="col-md-8">
+                {order.products.map(elem => {
                     return (
                         <ul className="list-group">
                             <div className="row list-group-item-action">
@@ -33,9 +40,11 @@ const Order = (props) => {
                         </ul>
                     )
                 })}
-            </div> */}
+            </div>}
             <div className="col-md-4">
-                <h4>Total</h4>
+                <h4>Total: {/* {order.products.reduce((acc, elem) => {
+                    return acc = (elem.price * elem.count) + acc
+                },0)} */}</h4>
             </div>
         </div>
     );
