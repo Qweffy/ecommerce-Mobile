@@ -2,24 +2,24 @@ const server = require("express").Router();
 const { Order, User, Product } = require('../db.js');
 const { Sequelize } = require('sequelize');
 
-server.get('/cart' , (req, res) =>{    //ruta para encontrar la orden carrito y devolver el id de la orden
+server.get('/cart', (req, res) => {    //ruta para encontrar la orden carrito y devolver el id de la orden
   //const { userId } = req.body;
-  Order.findOne( {
-    where:{ state:'cart', userId: 1 },
-    include:[{ model: Product}]
+  Order.findOne({
+    where: { state: 'cart', userId: 1 },
+    include: [{ model: Product }]
   })
-  .then( order => {
-    res.status(200).json({
-      mensaje: "Se encontro el carrito",
-      data: order,
+    .then(order => {
+      res.status(200).json({
+        mensaje: "Se encontro el carrito",
+        data: order,
+      });
+    })
+    .catch((err) => {
+      res.status(400).json({
+        mensaje: "No se encontro el carrito",
+        data: err,
+      });
     });
-  })
-  .catch((err) => {
-    res.status(400).json({
-      mensaje: "No se encontro el carrito",
-      data: err,
-    });
-  });
 });
 
 
@@ -89,23 +89,18 @@ server.get('/', (req, res) => {
   })
 })
 
-server.delete("/cart/:orderid/:productid",(req ,res, next) =>{  //borra un producto especifico del carrito
-Order.findByPk(req.params.orderid).then(order => order.removeProduct(req.params.productid));
+server.delete("/cart/:orderid/:productid", (req, res, next) => {  //borra un producto especifico del carrito
+  Order.findByPk(req.params.orderid).then(order => order.removeProduct(req.params.productid));
 
 });
 
-
-
-
 //Obtiene una orden especifica.
 server.get("/:id", (req, res, next) => {
+  let id = req.params.id;
   Order.findOne({
+    where: { id },
     include: {
-      model: Product,
-      required: true,
-      where: {
-        id: req.params.id
-      }
+      model: Product
     }
   }
   ).then((order) => res.send(order))
