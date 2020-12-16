@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const server = require("express").Router();
 const { User } = require("../db.js");
 // const { Op } = require("sequelize");
@@ -69,3 +70,35 @@ server.delete("/delete/:id", (req, res) => {
 });
 
 module.exports = server;
+=======
+const server = require("./order");
+
+
+const { Order, User } = require('../db.js');
+
+server.get('/:id/orders', (req, res) => {
+    let { id } = req.params;
+
+    // Find user WHERE id: id, JOIN Order ON user.id = order.user_id
+    User.findOne({
+        where: { id },
+        include: {
+            model: Order
+        }
+    })
+    .then(userOrders => {
+        res.json({
+            message: "Peticion exitosa",
+            data: userOrders
+        });
+    })
+    .catch(err => {
+        res.json({
+            messaje: "Error",
+            data: err
+        })
+    })   
+});
+
+module.exports = server;
+>>>>>>> 72aed061e22325047a7ba47836b93bfc882cfc54

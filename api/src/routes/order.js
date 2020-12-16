@@ -1,5 +1,5 @@
 const server = require("express").Router();
-const { Product, Order } = require('../db.js');
+const { Order, User, Product } = require('../db.js');
 const { Sequelize } = require('sequelize');
 
 server.get('/cart' , (req, res) =>{    //ruta para encontrar la orden carrito y devolver el id de la orden
@@ -59,9 +59,35 @@ server.post('/cart/:orderid', (req, res, next) => {  //con el id de la orden cre
     }
 
   });
-
-
 });
+
+server.get('/', (req, res) => {
+  let state = req.query.status;
+  let order;
+
+  // Find order WHERE state: state, JOIN User ON order.user_id = user.id
+  // We get array with object with a key 'user'. typeof user ==== 'object'
+  if (state) {
+    order = Order.findAll({
+      where: {
+        state
+      },
+      include: {
+        model: User
+      }
+    })
+  }
+  else {
+    order = Order.findAll({
+      include: {
+        model: User
+      }
+    });
+  }
+  order.then(orders => {
+    res.send(orders);
+  })
+})
 
 server.delete("/cart/:orderid/:productid",(req ,res, next) =>{  //borra un producto especifico del carrito
 Order.findByPk(req.params.orderid).then(order => order.removeProduct(req.params.productid));
