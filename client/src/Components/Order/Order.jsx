@@ -1,15 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import axios from "axios";
 
-export default Order = () => {
+const Order = () => {
+
+
     return (
-        <div>
-            <div>
-                <p>Productos comprados:</p> 
-                <p>Precio unidad :</p>
+        <div className="row">
+            <div className="col-md-4">
+                <h3>Usuario</h3>
+                <h4>Total</h4>
             </div>
-            <div>
-                <p>Total:</p>
+            <div className="col-md-8">
+                <ul className="list-group">
+                    <div className="row list-group-item-action">
+                        <li className="col-md-6 list-group-item ">Producto</li>
+                        <li className="col-md-6 list-group-item ">Precio unitario</li>
+                    </div>
+                    <div className="row list-group-item-action">
+                        <li className="col-md-6 list-group-item ">Producto</li>
+                        <li className="col-md-6 list-group-item ">Precio unitario</li>
+                    </div>
+                    <div className="row list-group-item-action">
+                        <li className="col-md-6 list-group-item ">Producto</li>
+                        <li className="col-md-6 list-group-item ">Precio unitario</li>
+                    </div>
+                </ul>
             </div>
         </div>
-    )
-}
+
+
+    );
+};
+
+
+export default Order;

@@ -41,6 +41,7 @@ server.post('/cart/:orderid', (req, res, next) => {  //con el id de la orden cre
 
 });
 
+//Obtiene una orden especifica.
 server.get("/:id", (req, res, next) => {
   Order.findOne({
     include: {
@@ -57,6 +58,7 @@ server.get("/:id", (req, res, next) => {
     })
 })
 
+//Modifica una orden especifica.
 server.put("/:id", (req, res, next) => {
   const { id } = req.params;
   const { price, state } = req.body;
