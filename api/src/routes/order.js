@@ -2,6 +2,27 @@ const server = require("express").Router();
 const { Product, Order } = require('../db.js');
 const { Sequelize } = require('sequelize');
 
+server.get('/cart' , (req, res) =>{
+  //const { userId } = req.body;
+  Order.findOne( {
+    where:{ state:'cart', userId: 1 },
+    include:[{ model: Product}]
+  })
+  .then( order => {
+    res.status(200).json({
+      mensaje: "Se encontro el carrito",
+      data: order,
+    });
+  })
+  .catch((err) => {
+    res.status(400).json({
+      mensaje: "No se encontro el carrito",
+      data: err,
+    });
+  });
+});
+
+
 server.post('/cart', (req, res, next) => {
   console.log(req.body);
   Order.findAll({                         //cuando entra aca busca si ya existe una orden carrito
@@ -16,6 +37,7 @@ server.post('/cart', (req, res, next) => {
       Order.create({
         state: 'cart',
         price: 0,
+        userId: 1
       }).then(algo => {
         Order.findByPk(algo.dataValues.id).then(order => order.setUser(1))
           .then(success => res.status(200).json(algo.dataValues.id))

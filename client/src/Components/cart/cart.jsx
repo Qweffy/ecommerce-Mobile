@@ -1,13 +1,40 @@
-import React from 'react'; 
+import React, { useEffect, useState } from 'react'; 
+import ItemCart from '../itemCart/ItemCart'
+import axios from "axios";
 
 const Cart = () => {
+  const [ cart, setCart ] = useState({
+  id: 1,
+  price: 0,
+  products: []
+  })
+
+  useEffect((()=>{
+    getOrders();
+  }), []);
+
+  async function getOrders() {
+    let response = await axios.get(`http://localhost:4000/order/cart`);
+     setCart(response.data.data); 
+  }
+
+  const { products } = cart
+
   return ( 
-    <div>
+    <div className='d-flex'>
       <div> 
         <h3>Shopping Cart</h3>
+        <hr/>
         <div>
-          {/* Cada podructo para comprar */}
+          {
+            products.map((product, index) =>{
+              return(
+                <ItemCart key={index} product={product}/>
+               )
+            })
+          }
         </div>
+        <hr/>
         <div>
           <button> Next </button>
           <button> Cancel </button>
