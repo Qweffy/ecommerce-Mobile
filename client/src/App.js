@@ -12,6 +12,7 @@ import Orders from "./Components/Orders/Orders.jsx";
 import Order from "./Components/Order/Order.jsx";
 import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
+import Sugestions from "./Components/Sugestions/Sugestions.jsx";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/orders" component={Orders} />
       <Route exact path="/orders/:id" component={Order} />
+      <Route exact path="/sugestions" component={Sugestions} />
     </Router>
   );
 }
