@@ -4,7 +4,7 @@ import './Form.css';
 
 const Form = () => {
     return (
-        <div className="form">
+        <div className="form-background">
             <div className="d-flex">
                 <select class="form-select m-2" aria-label="Default select example">
                     <option selected>Open this select menu</option>
@@ -25,7 +25,7 @@ const Form = () => {
                     <option value="3">Three</option>
                 </select>                
             </div>
-            <div className="d-flex">
+            {/* <div className="d-flex">
                 <select class="form-select m-2" aria-label="Default select example">
                     <option selected>Open this select menu</option>
                     <option value="1">One</option>
@@ -44,7 +44,8 @@ const Form = () => {
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </select>                 
-            </div>
+            </div> */}
+            <button className="form-btn mt-2">Search</button>
         </div>
     )
 };
