@@ -6,16 +6,16 @@ import Producto from "./Components/Producto/Producto.jsx";
 import CreateProduct from "./Components/CRUDproduct/CreateProduct.jsx";
 import Catalogue from "./Components/Catalogue/Catalogue.jsx";
 import Categorys from "./Components/Categorys/Categorys";
-import NavBar from "./Components/Navbar/Navbar";
 import Cart from "./Components/cart/cart.jsx";
 import CreateUser from "./Components/CRUDuser/CreateUser.jsx";
 import Orders from "./Components/Orders/Orders.jsx";
 import Order from "./Components/Order/Order.jsx";
+import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 
 function App() {
   return (
     <Router>
-      <Route path="/" render={() => <NavBar />} />
+      <Route path="/" render={() => <LandingPage />} />
       <Route exact path="/showProducts" component={Productos} />
       <Route exact path="/showCategories" component={Categorys} />
       <Route exact path="/createproduct" component={CreateProduct} />
