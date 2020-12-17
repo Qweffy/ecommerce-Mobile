@@ -11,11 +11,13 @@ import CreateUser from "./Components/CRUDuser/CreateUser.jsx";
 import Orders from "./Components/Orders/Orders.jsx";
 import Order from "./Components/Order/Order.jsx";
 import LandingPage from "./Components/LandingPage/LandingPage.jsx";
+import Navbar from "./Components/Navbar/Navbar.jsx";
 
 function App() {
   return (
     <Router>
-      <Route path="/" render={() => <LandingPage />} />
+      <Route path="/" component={Navbar} />
+      <Route exact path="/" component={LandingPage} />
       <Route exact path="/showProducts" component={Productos} />
       <Route exact path="/showCategories" component={Categorys} />
       <Route exact path="/createproduct" component={CreateProduct} />

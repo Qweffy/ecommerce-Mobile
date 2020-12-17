@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProductCard from "../ProductCard/ProductCard.jsx";
-import Navbar from '../Navbar/Navbar.jsx';
 import Banner from './Banner/Banner.jsx';
 
 const LandingPage = () => {
@@ -18,7 +17,6 @@ const LandingPage = () => {
 
     return (
         <div>
-            <Navbar />
             <Banner />
             <div className="products-grid m-5">
                 {
