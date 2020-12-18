@@ -4,23 +4,26 @@ import axios from "axios";
 
 import './ItemCart.css';
 
-const ItemCart = ({ product , idorder}) => {
+const ItemCart = ({ product , idorder, setCart, setAllTotal}) => {
   const { id, order_line, stock  }=product
   const [ acum, setAcum ]=useState(order_line.count);
   const [ totalItem, setTotalItem ]= useState(order_line.price)
   const user = useSelector(state => state.user);
+
   useEffect(()=>{
     if(!isNaN(acum)){
       axios.put(`http://localhost:4000/users/${user.id}/cart`, { id: id, acum: acum })
-      .then(orden => {
-        //console.log(orden)
+      .then(res => {
+        setAllTotal(res.data.order.price)
       });
     }
   },[acum])
 
 function deleteProduct(idorder){
   axios.delete(`http://localhost:4000/orders/cart/${idorder}/${id}`)
-        .then((res)=>{});
+        .then((res)=>{
+          setCart(res.data.order);
+        });
 }
 
 function minAcum(){
@@ -49,10 +52,14 @@ function maxAcum(){
 
 function onChange(e){
   var change = parseInt(e.target.value)
-  if( change > product.stock){
+  if( change > product.stock || change < 1){
     console.log('no hay unidades disponibles ');
   }
-  else{setAcum( change )};
+  else{
+    var total = product.price * change;
+    setAcum(change);
+    setTotalItem(total );
+  };
 } 
 
   return (
@@ -70,7 +77,7 @@ function onChange(e){
         <button className="more-cart" onClick={maxAcum}>+</button>
       </td>
       <td className="text-gen">{stock}</td>
-      <td className="text-gen">$ {totalItem}</td>
+      <td className="text-gen">$ { isNaN(totalItem)? 0 :totalItem}</td>
       <td>
         <button
           onClick={() => deleteProduct(idorder)}

@@ -32,9 +32,9 @@ server.post('/cart', (req, res, next) => {  //ruta para agregar elementos a la o
       state: 'cart',
       userId: id
     }
-  }).then(encontrados => {
-    if (encontrados[0])     //si existe entonces devuelve el id de la orden
-    { res.status(200).json(encontrados[0].dataValues.id) }
+  }).then(order => {
+    if (order[0])     //si existe entonces devuelve el id de la orden
+    { res.status(200).json(order[0].dataValues.id) }
     else {   //sino existe crea una nueva con el state en cart y devuelve el id de la orden creada
       Order.create({
         state: 'cart',
@@ -56,32 +56,36 @@ server.post('/cart', (req, res, next) => {  //ruta para agregar elementos a la o
 
 server.post('/cart/:orderid', (req, res, next) => {  
   //con el id de la orden creada y el id del producto se hace el addProduct a la tabla intermedia
-  
-  //esta funcion se fija si existe ya un producto igual en esa orden
-  Order.findByPk(req.params.orderid)
-      .then(orderr => orderr.hasProduct(req.body.idproduct))
-      .then(exist => {
-        if (exist) { //si existe suma el contador en 1
-          // con sequelize literal puedo hacer la suma del contador
-          Order.findByPk(req.params.orderid)
-              .then(order => order.addProduct(req.body.idproduct, { through: { count: Sequelize.literal('count + 1') } }))
-              .then(success => res.sendStatus(201))
-              .catch(err=>{
-                console.log(err)
-              });
-        }
-        else {  //si no existe agrega el producto
-          Order.findByPk(req.params.orderid)
-              .then(order => order.addProduct(req.body.idproduct))
-              .then(success => res.sendStatus(201))
-              .catch(err=>{
-                console.log(err)
-              });
-        }
-       })
-       .catch(err=>{
-         console.log(err)
-       });
+  var orderPromisse = Order.findByPk(req.params.orderid);
+  var productInit = Product.findByPk(req.body.idproduct);
+  var produtOrder = Product.findOne({ where: {id: req.body.idproduct}, include:{ where: {id: req.params.orderid}, model: Order}});
+
+  //esta funcion se fija si existe ya un producto igual en esa orden   
+  Promise.all([orderPromisse, productInit, produtOrder ])
+          .then(data =>{
+            data[0].hasProduct(req.body.idproduct)
+                .then(exist => {
+                  if (exist) { //si existe suma el contador en 1
+                    // con sequelize literal puedo hacer la suma del contador
+                    var newCount = data[2].orders[0].order_line.count + 1;
+                    var newPrice = data[2].price * newCount;
+                    data[0].addProduct(req.body.idproduct, {through: {price:newPrice, count: newCount}})
+                          .then(resp =>{
+                            res.send(resp);
+                          })                        
+                  }
+                  else {  //si no existe agrega el producto
+                    data[0].addProduct(req.body.idproduct, { through: { price: data[1].price}})
+                        .then(success => res.sendStatus(201))
+                        .catch(err=>{
+                          console.log(err)
+                        });
+                  }
+                })               
+          })
+          .catch(err=>{
+            console.log(err)
+          });
 });
 
 server.get('/', (req, res) => {
@@ -113,8 +117,22 @@ server.get('/', (req, res) => {
 })
 
 server.delete("/cart/:orderid/:productid",(req ,res, next) =>{  //borra un producto especifico del carrito
-  Order.findByPk(req.params.orderid).then(order => order.removeProduct(req.params.productid));
-
+  Order.findByPk(req.params.orderid)
+        .then(order => {
+          order.removeProduct(req.params.productid)
+                .then(()=>{
+                  Order.findOne({
+                    where: {id: req.params.orderid},
+                    include: {model: Product}
+                  })
+                    .then(order=>{
+                      res.status(200).json({
+                        message: 'Se borro el producto del carrito',
+                        order
+                      })
+                    })
+                })
+        });
 });
 
 //Obtiene una orden especifica.

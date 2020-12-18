@@ -13,6 +13,8 @@ const Cart = () => {
   price: 0,
   products: []
   });
+  const [ allTotal, setAllTotal ] = useState(cart.price)
+  const { products , id} = cart  //se trae los productos y el id de la orden
 
   useEffect((()=>{
     getOrders();
@@ -22,8 +24,8 @@ const Cart = () => {
     let response = await axios.get(`http://localhost:4000/orders/cart/${user.id}`);
     setCart(response.data.data);
   }
-  console.log(cart)
-  const { products , id} = cart  //se trae los productos y el id de la orden
+
+  
 
   return (
     <div className=' container d-flex'>
@@ -45,8 +47,9 @@ const Cart = () => {
             <tbody>
               {
                 products.map((product, index) =>{
+                  
                   return(
-                    <ItemCart key={index} product={product} idorder={id}/>
+                    <ItemCart key={index} setCart={setCart} allTotal={allTotal} setAllTotal={setAllTotal} product={product} idorder={id}/>
                     )
                 })
               }
@@ -55,9 +58,9 @@ const Cart = () => {
         </div>
         <div className="col-4">
           <div>
-            <p>Subtotal: {cart.price}</p>
+            <p>Subtotal: {allTotal}</p>
           </div>
-          <h3> Total: {cart.price} </h3>
+          <h3> Total:  </h3>
           <div>
             <button> Next </button>
             <button> Cancel </button>
