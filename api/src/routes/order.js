@@ -2,7 +2,8 @@ const server = require("express").Router();
 const { Order, User, Product } = require('../db.js');
 const { Sequelize } = require('sequelize');
 
-server.get('/cart/:id' , (req, res) =>{    //ruta para encontrar la orden carrito y devolver el id de la orden
+server.get('/cart/:id' , (req, res) =>{    
+  //ruta para encontrar la orden carrito y devolver el id de la orden
   
   const { id } = req.params;
   Order.findOne( {
@@ -15,13 +16,7 @@ server.get('/cart/:id' , (req, res) =>{    //ruta para encontrar la orden carrit
       data: order,
     });
   })
-    .then(order => {
-      res.status(200).json({
-        mensaje: "Se encontro el carrito",
-        data: order,
-      });
-    })
-    .catch((err) => {
+  .catch((err) => {
       res.status(400).json({
         mensaje: "No se encontro el carrito",
         data: err,
@@ -59,7 +54,8 @@ server.post('/cart', (req, res, next) => {  //ruta para agregar elementos a la o
   });
 });
 
-server.post('/cart/:orderid', (req, res, next) => {  //con el id de la orden creada y el id del producto se hace el addProduct a la tabla intermedia
+server.post('/cart/:orderid', (req, res, next) => {  
+  //con el id de la orden creada y el id del producto se hace el addProduct a la tabla intermedia
   
   //esta funcion se fija si existe ya un producto igual en esa orden
   Order.findByPk(req.params.orderid)

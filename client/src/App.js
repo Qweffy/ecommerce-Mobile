@@ -7,7 +7,7 @@ import CreateProduct from "./Components/CRUDproduct/CreateProduct.jsx";
 import Catalogue from "./Components/Catalogue/Catalogue.jsx";
 import Categorys from "./Components/Categorys/Categorys";
 import NavBar from "./Components/Navbar/Navbar";
-import Cart from "./Components/cart/cart.jsx";
+import Cart from "./Components/cart/Cart.jsx";
 import CreateUser from "./Components/CRUDuser/CreateUser.jsx";
 import Orders from "./Components/Orders/Orders.jsx";
 import Order from "./Components/Order/Order.jsx";
