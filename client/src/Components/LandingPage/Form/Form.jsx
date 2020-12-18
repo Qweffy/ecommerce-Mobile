@@ -88,7 +88,7 @@ const Form = () => {
                     <option value={sugestions[4].id}>{sugestions[4].name}</option>
                 </select>
                 <div className="form-group row">
-                    <label className="col-sm-2 col-form-label">Product categories</label>
+                    {/* <label className="col-sm-2 col-form-label">Product categories</label> */}
                     <div className="col-sm-10">
                         <div className="m-1">
                             {
