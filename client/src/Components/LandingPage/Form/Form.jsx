@@ -1,51 +1,46 @@
-import React from "react";
+import Axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import './Form.css';
 
 
 const Form = () => {
+    // Get sugestion options
+    const [sugestions, setSugestions] = useState([]);
+
+    async function getSugestions() {
+        let response = await axios.get('http://localhost:4000/sugestions/');
+        setSugestions(response);
+    }
+
+    useEffect(() => {
+        getSugestions();
+    }, []);
+
     return (
         <div className="form-background">
             <div className="d-flex">
                 <select class="form-select m-2" aria-label="Default select example">
-                    <option selected>Brand</option>
-                    <option value="1">Apple</option>
-                    <option value="2">Samsung</option>
-                    <option value="3">Motorola</option>
+                    {/* Price ranges */}
+                    <option selected>Price</option>
+                    <option value="1">{sugestions[0]}</option>
+                    <option value="1">{sugestions[1]}</option>
+                    <option value="1">{sugestions[2]}</option>
+                    <option value="1">{sugestions[3]}</option>
+                    <option value="1">{sugestions[4]}</option>
                 </select>
                 <select class="form-select m-2" aria-label="Default select example">
-                    <option selected>Color</option>
-                    <option value="1">Black</option>
-                    <option value="2">White</option>
-                    <option value="3">Grey</option>
-                </select>
-                <select class="form-select m-2" aria-label="Default select example">
-                    <option selected>Memory</option>
-                    <option value="1">4 GB</option>
-                    <option value="2">8 GB</option>
-                    <option value="3">16 GB</option>
-                </select>                
+                    {/* Categories: Gaming, etc */}
+                    <option selected>Category</option>
+                    <option value="1">{sugestions[5]}</option>
+                    <option value="1">{sugestions[6]}</option>
+                    <option value="1">{sugestions[7]}</option>
+                    <option value="1">{sugestions[8]}</option>
+                    <option value="1">{sugestions[9]}</option>
+                    <option value="1">{sugestions[10]}</option>
+                </select>              
             </div>
-            {/* <div className="d-flex">
-                <select class="form-select m-2" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                <select class="form-select m-2" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                <select class="form-select m-2" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>                 
-            </div> */}
             <Link to={'/sugestions'}>
                 <button className="form-btn mt-2">Search</button>
             </Link>
