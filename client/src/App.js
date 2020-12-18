@@ -6,16 +6,19 @@ import Producto from "./Components/Producto/Producto.jsx";
 import CreateProduct from "./Components/CRUDproduct/CreateProduct.jsx";
 import Catalogue from "./Components/Catalogue/Catalogue.jsx";
 import Categorys from "./Components/Categorys/Categorys";
-import NavBar from "./Components/Navbar/Navbar";
 import Cart from "./Components/cart/cart.jsx";
 import CreateUser from "./Components/CRUDuser/CreateUser.jsx";
 import Orders from "./Components/Orders/Orders.jsx";
 import Order from "./Components/Order/Order.jsx";
+import LandingPage from "./Components/LandingPage/LandingPage.jsx";
+import Navbar from "./Components/Navbar/Navbar.jsx";
+import Sugestions from "./Components/Sugestions/Sugestions.jsx";
 
 function App() {
   return (
     <Router>
-      <Route path="/" render={() => <NavBar />} />
+      <Route path="/" component={Navbar} />
+      <Route exact path="/" component={LandingPage} />
       <Route exact path="/showProducts" component={Productos} />
       <Route exact path="/showCategories" component={Categorys} />
       <Route exact path="/createproduct" component={CreateProduct} />
@@ -27,6 +30,7 @@ function App() {
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/orders" component={Orders} />
       <Route exact path="/orders/:id" component={Order} />
+      <Route exact path="/sugestions" component={Sugestions} />
     </Router>
   );
 }
