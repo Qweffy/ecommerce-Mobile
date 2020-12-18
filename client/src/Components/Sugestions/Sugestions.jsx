@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 const Sugestions = () => {
-    <div></div>
+  return(<div></div>)
+    
 };
 
 export default Sugestions;
