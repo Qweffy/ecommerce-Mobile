@@ -10,6 +10,7 @@ import Cart from "./Components/cart/cart.jsx";
 import CreateUser from "./Components/CRUDuser/CreateUser.jsx";
 import Orders from "./Components/Orders/Orders.jsx";
 import Order from "./Components/Order/Order.jsx";
+import CreateSugestion from "./Components/CRUDsugestion/CreateSugestion.jsx";
 import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import Sugestions from "./Components/Sugestions/Sugestions.jsx";
@@ -30,6 +31,7 @@ function App() {
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/orders" component={Orders} />
       <Route exact path="/orders/:id" component={Order} />
+      <Route exact path="/createsugestion" component={CreateSugestion} />
       <Route exact path="/sugestions" component={Sugestions} />
     </Router>
   );
