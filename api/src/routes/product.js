@@ -4,25 +4,26 @@ const { Op } = require("sequelize");
 
 //Create new product ----> '/products'
 
-server.post("/", (req, res, next) => {
-  const { name, description, price, stock, img, id_category } = req.body;
+server.post('/', (req, res, next) => {
+	Product.create({
+      name: req.body.name,
+      description: req.body.description,
+			price: req.body.price,
+			stock: req.body.stock,
+			img: req.body.img
+    }).then(algo => {
 
-  Product.create({ name, description, price, stock, img }).then((et) => {
-    Product.findOne({ where: { id: et.id } })
-      .then((prod) => {
-        Category.findAll({ where: { id: id_category } }).then((categories) => {
-          categories.forEach((element) => {
-            prod.addCategory(element["dataValues"]["id"]);
-          });
-        });
-      })
-      .then((product) => {
-        res.json({ mensaje: "producto creado OK", data: product });
-      })
-      .catch((err) => {
-        res.json({ mensaje: "Error al creat el producto", data: err });
-      });
-  });
+     	res.send(algo);
+		})
+		.catch(next);
+});
+
+server.post('/:idProd/category/:idCateg', (req, res, next) => { // agrega categoria al producto
+  Product.findByPk(req.params.idProd).then(product => product.addCategory(req.params.idCateg)).then(success => res.sendStatus(201)); // sequelize crea un metodo add para las relaciones n:n, ergo, tambien esta el metodo addProduct en la tabla Category
+});
+
+server.post('/:idProd/sugestion/:idCateg', (req, res, next) => { // agrega sugestion al producto
+  Product.findByPk(req.params.idProd).then(product => product.addSugestion(req.params.idCateg)).then(success => res.sendStatus(201)); // sequelize crea un metodo add para las relaciones n:n, ergo, tambien esta el metodo addProduct en la tabla Category
 });
 
 // get an all products ----> '/products'
@@ -79,11 +80,6 @@ server.get("/:id", (req, res) => {
     });
 });
 
-server.post("/:idProd/category/:idCateg", (req, res, next) => {
-  Product.findByPk(req.params.idProd)
-    .then((product) => product.addCategory(req.params.idCateg))
-    .then((success) => res.sendStatus(201)); // sequelize crea un metodo add para las relaciones n:n, ergo, tambien esta el metodo addProduct en la tabla Category
-}); // carga categoria a los productos
 
 //Modify an especific product ---> '/products/:id'
 server.put("/:id", (req, res) => {
