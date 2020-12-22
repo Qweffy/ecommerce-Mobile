@@ -26,3 +26,11 @@ export function createProduct(data) {
       })
   }
 }
+
+export function postsugestions(sugestions) {
+  return(dispatch) => {
+  dispatch({
+    type: 'POST_SUGESTIONS',
+    payload: sugestions
+  })}
+}
