@@ -36,9 +36,9 @@ const Cart = () => {
           <table className="table table-borderless" >
             <thead className="table-secondary">
               <tr className="text-center">
-                <th scope="col">Producto</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Cantidad</th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Total</th>
                 <th scope="col"> Delete </th>

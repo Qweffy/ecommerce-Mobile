@@ -23,8 +23,6 @@ const Orders = () => {
                         <th>Order Id</th>
                         <th>Total Price</th>
                         <th>Status</th>
-                        <th>Buyer</th>
-                        <th>Role</th>
                     </tr>                    
                 </thead>
                 <tbody>
@@ -35,8 +33,6 @@ const Orders = () => {
                                     <td>{order.id}</td>
                                     <td>${order.price}</td>
                                     <td>{order.state}</td>
-                                    <td>{order.user.username}</td>
-                                    <td>{order.user.type}</td>
                                 </tr>                                
                             )
                         })
