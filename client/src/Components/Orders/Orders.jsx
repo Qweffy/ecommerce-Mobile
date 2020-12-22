@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 const Orders = () => {
@@ -23,8 +24,6 @@ const Orders = () => {
                         <th>Order Id</th>
                         <th>Total Price</th>
                         <th>Status</th>
-                        <th>Buyer</th>
-                        <th>Role</th>
                     </tr>                    
                 </thead>
                 <tbody>
@@ -32,11 +31,11 @@ const Orders = () => {
                         allOrders.map(order => {
                             return (
                                 <tr className="text-center">
-                                    <td>{order.id}</td>
+                                    <td>
+                                        <Link to={`/orders/${order.id}`}>{order.id}</Link>
+                                    </td>                                   
                                     <td>${order.price}</td>
                                     <td>{order.state}</td>
-                                    <td>{order.user.username}</td>
-                                    <td>{order.user.type}</td>
                                 </tr>                                
                             )
                         })

@@ -1,8 +1,9 @@
 .form-background {
-    background-color: black;
+    background-color: rgba(0,0,0,.6);
     padding: 20px;
-    border-radius: 4px;
+    border-radius: 8px;
     opacity: 0.8;
+    width: 320px;
 }
 
 .form-btn {
@@ -18,4 +19,8 @@
 .form-btn:hover {
     color: white;
     background-color: #FFA500;
+}
+
+.sugestion-options {
+    color: white;
 }

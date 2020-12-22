@@ -91,18 +91,18 @@ async function search(){
 
     return (
         <div className="form-background">
-            <div className="d-flex">
-                <select onChange={(e) => setPrice(e.target.value)} class="form-select m-2" aria-label="Default select example">
+            <div>
+                <select onChange={(e) => setPrice(e.target.value)} class="form-select m-1 mb-3" aria-label="Default select example">
                     {/* Price ranges */}
-                    <option value = {0} >Price</option>
+                    <option value = {0} >Price range</option>
                     {
                         sugestions.map((sugestion, index) => renderPrice(sugestion, index))
                     }
 
                 </select>
-                <div className="form-group row">
+                <div className="form-group sugestion-options">
                     {/* <label className="col-sm-2 col-form-label">Product categories</label> */}
-                    <div className="col-sm-10">
+                    <div className="col-sm-10 mb-3">
                         <div className="m-1">
                             {
                                 sugestions.map((sugestion, index) => renderSugestions(sugestion, index))
@@ -111,7 +111,7 @@ async function search(){
                     </div>
                 </div>
             </div>
-                <button onClick = {search} className="form-btn mt-2">Search</button>
+            <button onClick = {search} className="form-btn mt-2">Search</button>
 
         </div>
     )
