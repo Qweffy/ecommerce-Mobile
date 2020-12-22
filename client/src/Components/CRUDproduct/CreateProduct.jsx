@@ -15,7 +15,10 @@ export default function CreateProduct() {
     img: "",
   });
   const [categories, setcategory] = useState([]);
+  const [sugestions, setSugestions] = useState([]);
   const [selectedcategories, setcateselect] = useState([]);
+  const [selectedsugestions, setsugeselect] = useState([]);
+
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -38,17 +41,50 @@ export default function CreateProduct() {
     );
   }
 
+  function rendersugestions(cat) {
+    return (
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name={cat.id}
+          onChange={(e) => {
+            loadsugestion(e);
+          }}
+        />
+        <label class="form-check-label" for="gridCheck1">
+          {cat.name}
+        </label>
+      </div>
+    );
+  }
+
+
   function loadcategory(e) {
     //esta funcion agrega a un arreglo de las categorias seleccionadas
     console.log(e.target.checked); //detecta en que estado el checkbox , si esta true agregamos la categorias
     //si esta false quitamos la categoria
 
     if (e.target.checked === true) {
-      setcateselect([...selectedcategories, e.target.name]);
+      setcateselect([...selectedsugestions, e.target.name]);
     }
 
     if (e.target.checked === false) {
       setcateselect(selectedcategories.filter((c) => c !== e.target.name));
+    }
+  }
+
+  function loadsugestion(e) {
+    //esta funcion agrega a un arreglo de las categorias seleccionadas
+    console.log(e.target.checked); //detecta en que estado el checkbox , si esta true agregamos la categorias
+    //si esta false quitamos la categoria
+
+    if (e.target.checked === true) {
+      setsugeselect([...selectedcategories, e.target.name]);
+    }
+
+    if (e.target.checked === false) {
+      setsugeselect(selectedcategories.filter((c) => c !== e.target.name));
     }
   }
 
@@ -59,21 +95,33 @@ export default function CreateProduct() {
     });
   }
 
-  function handlerSubmnit(e) {
+
+  function handlerSubmnit(e){
     e.preventDefault();
-    products.id_category = [];
-    selectedcategories.map((cat) => {
-      products.id_category.push(cat);
-    });
-    axios.post("http://localhost:4000/products/", products).then((res) => {
-      history.push("/showProducts");
-    });
+    axios.post('http://localhost:4000/products/', products).
+    then(function (response) {
+      selectedcategories.map(cat => {  // response trae la respuesta de la peticion, q devuelve la respuesta del back
+        // entonces pudimos traer el id del producto que acabamos de crear y asi cargarle las categorias
+        axios.post(`http://localhost:4000/products/${response.data.id}/category/${cat}`).
+        then(function (response) {});  //esto se asegura que se postee todo antes de recargar la pagina
+      }
+    );
+    selectedsugestions.map(sug => {  //por cada sugestion cargado lo asocia al producto
+      axios.post(`http://localhost:4000/products/${response.data.id}/sugestion/${sug}`).
+      then(function (response) {});  //esto se asegura que se postee todo antes de recargar la pagina
+    }
+
+  );
+    history.push("/showProducts");})
   }
 
   useEffect(() => {
     //trae las categorias apenas entra a la pagina
     axios.get("http://localhost:4000/category/").then((response) => {
       setcategory(response.data);
+    });
+    axios.get("http://localhost:4000/sugestions/").then((response) => {
+      setSugestions(response.data);
     });
   }, []);
 
@@ -158,10 +206,18 @@ export default function CreateProduct() {
           </div>
         </div>
         <div className="form-group row">
+        <hr />
           <label className="col-sm-2 col-form-label">Product categories</label>
           <div className="col-sm-10">
             <div className="m-1">
                 {categories.map((cat) => rendercategories(cat))}
+            </div>
+          </div>
+          <hr />
+          <label className="col-sm-2 col-form-label">Sugestions Categories</label>
+          <div className="col-sm-10">
+            <div className="m-1">
+                {sugestions.map((cat) => rendersugestions(cat))}
             </div>
           </div>
         </div>
