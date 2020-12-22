@@ -32,6 +32,12 @@ function BootstrapNavbar() {
           <Nav.Link href="/showCategories">
             My Categories
           </Nav.Link>
+          <Nav.Link href="/cart">
+            My Cart
+          </Nav.Link>
+          <Nav.Link href="/orders">
+            All Orders
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
       <Searchbar />
