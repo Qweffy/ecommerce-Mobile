@@ -13,7 +13,7 @@ import Order from "./Components/Order/Order.jsx";
 import CreateSugestion from "./Components/CRUDsugestion/CreateSugestion.jsx";
 import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
-import Sugestions from "./Components/Sugestions/Sugestions.jsx";
+import Sugestions from "./Components/LandingPage/Sugestions.jsx";
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
       <Route exact path="/orders" component={Orders} />
       <Route exact path="/orders/:id" component={Order} />
       <Route exact path="/createsugestion" component={CreateSugestion} />
-      <Route exact path="/sugestions" component={Sugestions} />
+      <Route exact path="/prueba" component={Sugestions} />
     </Router>
   );
 }

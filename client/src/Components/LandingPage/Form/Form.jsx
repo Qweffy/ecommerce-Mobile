@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import './Form.css';
-
+import { postsugestions } from "../../../store/Actions/Product_Actions.js";
+import { useSelector , useDispatch} from 'react-redux';
+import { useHistory } from "react-router-dom";
 
 const Form = () => {
     // Define selectedSugestions to be passed as props to Sugestions component
@@ -10,6 +12,11 @@ const Form = () => {
 
     // Get sugestion options to be displayed in form
     const [sugestions, setSugestions] = useState([]);
+
+    const [price, setPrice] = useState('');
+
+    const history = useHistory();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         axios.get('http://localhost:4000/sugestions/')
@@ -45,6 +52,10 @@ const Form = () => {
     }
 
 
+    useEffect(() => {
+   dispatch(postsugestions(selectedSugestions));
+    }, [selectedSugestions]);
+
     function renderSugestions(sugestion, index) {
         if (index > 4) {
             return (
@@ -66,12 +77,24 @@ const Form = () => {
         return;
     }
 
+
+async function search(){
+  await setSelectedSugestions([
+        price,
+        ...selectedSugestions,
+
+    ]);
+     history.push("/prueba");
+
+}
+
+
     return (
         <div className="form-background">
             <div className="d-flex">
-                <select class="form-select m-2" aria-label="Default select example">
+                <select onChange={(e) => setPrice(e.target.value)} class="form-select m-2" aria-label="Default select example">
                     {/* Price ranges */}
-                    <option>Price</option>
+                    <option value = {0} >Price</option>
                     {
                         sugestions.map((sugestion, index) => renderPrice(sugestion, index))
                     }
@@ -88,9 +111,8 @@ const Form = () => {
                     </div>
                 </div>
             </div>
-            <Link to={'/sugestions'}>
-                <button className="form-btn mt-2">Search</button>
-            </Link>
+                <button onClick = {search} className="form-btn mt-2">Search</button>
+
         </div>
     )
 };
