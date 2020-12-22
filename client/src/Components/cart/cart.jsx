@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import ItemCart from '../itemCart/ItemCart'
 import axios from "axios";
 
+import './cart.css';
+
 const Cart = () => {
   const user = useSelector(state => state.user);
 
@@ -11,6 +13,8 @@ const Cart = () => {
   price: 0,
   products: []
   });
+  const [ allTotal, setAllTotal ] = useState(cart.price)
+  const { products , id} = cart  //se trae los productos y el id de la orden
 
   useEffect((()=>{
     getOrders();
@@ -18,37 +22,50 @@ const Cart = () => {
 
   async function getOrders() {  //trae los productos de la orden carrito
     let response = await axios.get(`http://localhost:4000/orders/cart/${user.id}`);
-     setCart(response.data.data);
+    setCart(response.data.data);
   }
 
-  const { products , id} = cart  //se trae los productos y el id de la orden
+  
 
   return (
-    <div className='d-flex'>
-      <div>
-        <h3>Shopping Cart</h3>
-        <hr/>
-        <div>
-          {
-            products.map((product, index) =>{
-              return(
-                <ItemCart key={index} product={product} idorder={id}/>
-               )
-            })
-          }
+    <div className=' container d-flex'>
+      <div className="row justify-content-end">
+        <div className="col-12">
+          <h3>Shopping Cart</h3>
+          <hr/>
+          <table className="table table-borderless" >
+            <thead className="table-secondary">
+              <tr className="text-center">
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Total</th>
+                <th scope="col"> Delete </th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                products.map((product, index) =>{
+                  
+                  return(
+                    <ItemCart key={index} setCart={setCart} allTotal={allTotal} setAllTotal={setAllTotal} product={product} idorder={id}/>
+                    )
+                })
+              }
+            </tbody>
+          </table>
         </div>
-        <hr/>
-        <div>
-          <button> Next </button>
-          <button> Cancel </button>
+        <div className="col-4">
+          <div>
+            <p>Subtotal: {allTotal}</p>
+          </div>
+          <h3> Total:  </h3>
+          <div>
+            <button> Next </button>
+            <button> Cancel </button>
+          </div>
         </div>
-      </div>
-      <div>
-        <h3>Summary</h3>
-        <div>
-          {/* Descripcion de cada producto comprado */}
-        </div>
-        <h3> Total: </h3>
       </div>
     </div>
    );
