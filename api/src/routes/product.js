@@ -48,6 +48,28 @@ server.get("/", (req, res, next) => {
   }).catch(next);
 });
 
+server.post("/sugestions", (req, res) => {//esta ruta filtra los productos por las sugestions
+	const { sugestion } = req.body;
+
+Product.findAll().then(
+(products) =>{
+	let productosfiltrados = [];
+   products.map((product,index) =>{
+		product.hasSugestions(sugestion).then( //pergunta si tiene por lo menos esas categorias(sugestions)
+			exist =>{
+				if(exist)  //si las tiene , agrega el producto al arreglo
+				productosfiltrados.push(product);
+				if(index == products.length - 1)  
+				res.send(productosfiltrados);
+			}
+		)
+	})
+}
+)
+});
+
+
+
 server.get("/search/:query", (req, res) => {
   Product.findAll({
     where: {
@@ -124,5 +146,8 @@ server.delete("/:id", (req, res) => {
         .json({ mensaje: "No se pudo eliminar el producto", data: err });
     });
 });
+
+
+
 
 module.exports = server;
