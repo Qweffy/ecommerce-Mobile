@@ -15,6 +15,7 @@ import CreateSugestion from "./Components/CRUDsugestion/CreateSugestion.jsx";
 import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import Sugestions from "./Components/LandingPage/Sugestions.jsx";
+import cartInvite from "./Components/cart/cartInvite.jsx";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Route exact path="/catalogue/:search" component={Catalogue} />
       <Route exact path="/products/:id" component={Producto} />
       <Route exact path="/cart" component={Cart} />
+      <Route exact path="/cartinvite" component={cartInvite} />
       <Route exact path="/orders" component={Orders} />
       <Route exact path="/orders/:id" component={Order} />
       <Route exact path="/createsugestion" component={CreateSugestion} />
