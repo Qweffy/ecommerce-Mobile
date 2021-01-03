@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ItemCart from "../itemCart/ItemCart";
 import { connect, useSelector, useDispatch } from "react-redux";
 import "./cart.css";
+import ItemCartInvite from "../itemCart/ItemCartInvite";
 
 const CartInvite = (props) => {
   const [cart, setCart] = useState(props["cart"]["cartItems"]);
@@ -39,7 +40,7 @@ const CartInvite = (props) => {
             <tbody>
               {cartState.cartItems.map((product, index) => {
                 return (
-                  <ItemCart
+                  <ItemCartInvite
                     key={index}
                     setCart={setCart}
                     allTotal={allTotal}

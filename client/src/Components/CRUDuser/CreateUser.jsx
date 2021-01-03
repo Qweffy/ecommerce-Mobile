@@ -23,7 +23,7 @@ export default function CreateUser() {
   function handlerSubmit(e) {
     e.preventDefault();
     axios.post("http://localhost:4000/user/create", user).then((res) => {
-      history.push("/showProducts");
+      history.push("/userlist");
       // modificar despues, llevar al login
     });
   }
