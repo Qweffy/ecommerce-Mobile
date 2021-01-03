@@ -26,6 +26,7 @@ function App() {
       <Route exact path="/createcategory" component={CreateCategory} />
       <Route exact path="/createuser" component={CreateUser} />
       <Route exact path="/catalogue" component={Catalogue} />
+      <Route exact path="/userlist" component={userLIST} />
       <Route exact path="/catalogue/:search" component={Catalogue} />
       <Route exact path="/products/:id" component={Producto} />
       <Route exact path="/cart" component={Cart} />
