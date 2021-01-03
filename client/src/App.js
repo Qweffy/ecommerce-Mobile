@@ -12,6 +12,7 @@ import Orders from "./Components/Orders/Orders.jsx";
 import Order from "./Components/Order/Order.jsx";
 import CreateSugestion from "./Components/CRUDsugestion/CreateSugestion.jsx";
 import LandingPage from "./Components/LandingPage/LandingPage.jsx";
+import userLIST from "./Components/USERlist/userLIST";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import Sugestions from "./Components/LandingPage/Sugestions.jsx";
 
