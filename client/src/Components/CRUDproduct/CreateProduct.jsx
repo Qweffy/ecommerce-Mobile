@@ -66,7 +66,7 @@ export default function CreateProduct() {
     //si esta false quitamos la categoria
 
     if (e.target.checked === true) {
-      setcateselect([...selectedsugestions, e.target.name]);
+      setcateselect([...selectedcategories, e.target.name]);
     }
 
     if (e.target.checked === false) {
@@ -80,11 +80,11 @@ export default function CreateProduct() {
     //si esta false quitamos la categoria
 
     if (e.target.checked === true) {
-      setsugeselect([...selectedcategories, e.target.name]);
+      setsugeselect([...selectedsugestions, e.target.name]);
     }
 
     if (e.target.checked === false) {
-      setsugeselect(selectedcategories.filter((c) => c !== e.target.name));
+      setsugeselect(selectedsugestions.filter((c) => c !== e.target.name));
     }
   }
 
