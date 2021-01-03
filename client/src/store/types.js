@@ -1,0 +1,4 @@
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const FETCH_LOCAL_CART = "FETCH_LOCAL_CART";
+export const UPDATE_COUNT = "UPDATE_COUNT";

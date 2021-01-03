@@ -150,7 +150,7 @@ const UserLIST = () => {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Description</label>
+              <label className="col-sm-2 col-form-label">Lastname</label>
               <div className="col-sm-10">
                 <input
                   className="form-control"
@@ -165,7 +165,7 @@ const UserLIST = () => {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Price</label>
+              <label className="col-sm-2 col-form-label">Mail</label>
               <div className="col-sm-10">
                 <input
                   className="form-control"
