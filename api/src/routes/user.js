@@ -4,7 +4,6 @@ const { User } = require("../db.js");
 
 server.post("/create", (req, res) => {
   const { name, lastname, mail, password } = req.body;
-  console.log(name, lastname, mail, password);
   User.create({ name, lastname, mail, password })
     .then((data) => {
       res.status(201).json({
@@ -23,8 +22,8 @@ server.post("/create", (req, res) => {
 
 server.get("/all", (req, res) => {
   User.findAll()
-    .then((user) => {
-      res.send(user);
+    .then((users) => {
+      res.send(users);
     })
     .catch((err) => {
       res.status(400).json({

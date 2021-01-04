@@ -71,7 +71,7 @@ const UserLIST = () => {
                 Add new user
               </button>
             </Link>
-            <div></div>
+            <div>{console.log(allProducts)}</div>
             <div></div>
           </div>
           <table className="table table-Light table-striped">
@@ -119,7 +119,7 @@ const UserLIST = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
-          <Modal.Title>Edit product</Modal.Title>
+          <Modal.Title>Edit user</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handlerEdit}>
@@ -150,11 +150,7 @@ const UserLIST = () => {
               </div>
             </div>
             <div className="form-group row">
-<<<<<<< HEAD
-              <label className="col-sm-2 col-form-label">Description</label>
-=======
               <label className="col-sm-2 col-form-label">Lastname</label>
->>>>>>> 345f226668053514e91da74394d82345a0c16cf5
               <div className="col-sm-10">
                 <input
                   className="form-control"
@@ -169,11 +165,7 @@ const UserLIST = () => {
               </div>
             </div>
             <div className="form-group row">
-<<<<<<< HEAD
-              <label className="col-sm-2 col-form-label">Price</label>
-=======
               <label className="col-sm-2 col-form-label">Mail</label>
->>>>>>> 345f226668053514e91da74394d82345a0c16cf5
               <div className="col-sm-10">
                 <input
                   className="form-control"
