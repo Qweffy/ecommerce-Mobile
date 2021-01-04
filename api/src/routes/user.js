@@ -4,7 +4,6 @@ const { User } = require("../db.js");
 
 server.post("/create", (req, res) => {
   const { name, lastname, mail, password } = req.body;
-  console.log(name, lastname, mail, password);
   User.create({ name, lastname, mail, password })
     .then((data) => {
       res.status(201).json({
@@ -23,8 +22,8 @@ server.post("/create", (req, res) => {
 
 server.get("/all", (req, res) => {
   User.findAll()
-    .then((user) => {
-      res.send(user);
+    .then((users) => {
+      res.send(users);
     })
     .catch((err) => {
       res.status(400).json({
@@ -36,21 +35,22 @@ server.get("/all", (req, res) => {
 
 server.put("/modify/:id", (req, res) => {
   const { id } = req.params;
-  User.update(req.body, {
-    //depende lo que le pasen desde el front modifica un valor o todos
-    where: { id },
-  })
-    .then((data) => {
-      res.status(201).json({
-        mensaje: "USER MODIFY OK",
-        data: data,
-      });
+  //del body sacamos los datos que queremos modificar
+  const { name, lastname, mail } = req.body;
+
+  return User.findOne({ where: { id } })
+    .then((product) => {
+      //pisamos las propiedades del producto que encontramos
+      product.name = name;
+      product.lastname = lastname;
+      product.mail = mail;
+      product.save();
+      res.status(200).json({ mensaje: "Se modifico con exito", data: product });
     })
     .catch((err) => {
-      res.status(400).json({
-        mensaje: "MODIFY NOT OK",
-        data: err,
-      });
+      res
+        .status(400)
+        .json({ mensaje: "Los campos enviados no son correctos", data: err });
     });
 });
 
