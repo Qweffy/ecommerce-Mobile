@@ -1,32 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import ItemCart from "../itemCart/ItemCart";
-import axios from "axios";
-
+import { connect, useSelector, useDispatch } from "react-redux";
 import "./cart.css";
+import ItemCartInvite from "../itemCart/ItemCartInvite";
 
-const Cart = () => {
-  const user = useSelector((state) => state.Reducer.user);
-
-  const [cart, setCart] = useState({
-    id: 1,
-    price: 0,
-    products: [],
-  });
+const CartInvite = (props) => {
+  const [cart, setCart] = useState(props["cart"]["cartItems"]);
   const [allTotal, setAllTotal] = useState(cart.price);
-  const { products, id } = cart; //se trae los productos y el id de la orden
+  const { id } = cart; //se trae los productos y el id de la orden
+  const cartState = useSelector((state) => state.cart);
 
-  useEffect(() => {
-    getOrders();
-  }, []);
+  // const user = useSelector(state => state.user);
 
-  async function getOrders() {
-    //trae los productos de la orden carrito
-    let response = await axios.get(
-      `http://localhost:4000/orders/cart/${user.id}`
-    );
-    setCart(response.data.data);
-  }
+  // const [cart, setCart] = useState({
+  //   id: 1,
+  //   price: 0,
+  //   products: [],
+  // });
+  // const [allTotal, setAllTotal] = useState(cart.price);
+  // const { products, id } = cart; //se trae los productos y el id de la orden
 
   return (
     <div className=" container d-flex">
@@ -46,9 +38,9 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product, index) => {
+              {cartState.cartItems.map((product, index) => {
                 return (
-                  <ItemCart
+                  <ItemCartInvite
                     key={index}
                     setCart={setCart}
                     allTotal={allTotal}
@@ -76,4 +68,6 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default connect((state) => {
+  return { cart: state.cart };
+})(CartInvite);

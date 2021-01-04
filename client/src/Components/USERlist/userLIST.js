@@ -150,7 +150,11 @@ const UserLIST = () => {
               </div>
             </div>
             <div className="form-group row">
+<<<<<<< HEAD
               <label className="col-sm-2 col-form-label">Description</label>
+=======
+              <label className="col-sm-2 col-form-label">Lastname</label>
+>>>>>>> 345f226668053514e91da74394d82345a0c16cf5
               <div className="col-sm-10">
                 <input
                   className="form-control"
@@ -165,7 +169,11 @@ const UserLIST = () => {
               </div>
             </div>
             <div className="form-group row">
+<<<<<<< HEAD
               <label className="col-sm-2 col-form-label">Price</label>
+=======
+              <label className="col-sm-2 col-form-label">Mail</label>
+>>>>>>> 345f226668053514e91da74394d82345a0c16cf5
               <div className="col-sm-10">
                 <input
                   className="form-control"

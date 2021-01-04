@@ -1,55 +1,45 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { editCount, removeFromCart } from "../../store/Actions/cartActions";
+import "./ItemCartInvite.css";
+import { UPDATE_COUNT } from "../../store/types";
 
-import "./ItemCart.css";
+const ItemCartInvite = ({ product, idorder, setCart, setAllTotal }) => {
+  const { id, stock, count, price } = product;
+  const [acum, setAcum] = useState(count);
+  const [totalItem, setTotalItem] = useState(price * acum);
+  const dispatch = useDispatch();
 
-const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
-  const { id, order_line, stock } = product;
-  const [acum, setAcum] = useState(order_line.count);
-  const [totalItem, setTotalItem] = useState(order_line.price);
-  const user = useSelector((state) => state.Reducer.user);
-
-  useEffect(() => {
-    if (!isNaN(acum)) {
-      axios
-        .put(`http://localhost:4000/users/${user.id}/cart`, {
-          id: id,
-          acum: acum,
-        })
-        .then((res) => {
-          setAllTotal(res.data.order.price);
-        });
-    }
-  }, [acum]);
-
-  function deleteProduct(idorder) {
-    axios
-      .delete(`http://localhost:4000/orders/cart/${idorder}/${id}`)
-      .then((res) => {
-        setCart(res.data.order);
-      });
-  }
-
-  function minAcum() {
+  async function minAcum() {
     var change = parseInt(acum) - 1;
     if (change <= 0) {
       console.log("Valor erroneo");
     } else {
       var total = product.price * change;
-      setAcum(change);
+      await setAcum(change);
       setTotalItem(total);
+      acumRedux(product, acum);
     }
   }
 
-  function maxAcum() {
+  function acumRedux(product) {
+    dispatch(editCount(product, acum));
+  }
+
+  function removeCart(product) {
+    dispatch(removeFromCart(product));
+  }
+
+  async function maxAcum() {
     var change = parseInt(acum) + 1;
-    if (change > product.stock) {
+    if (change > stock) {
       console.log("no hay unidades disponibles ");
     } else {
       var total = product.price * change;
-      setAcum(change);
+      await setAcum(change);
       setTotalItem(total);
+      acumRedux(product, acum);
     }
   }
 
@@ -90,10 +80,10 @@ const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
         </button>
       </td>
       <td className="text-gen">{stock}</td>
-      <td className="text-gen">$ {isNaN(totalItem) ? 0 : totalItem}</td>
+      <td className="text-gen"> ${isNaN(totalItem) ? 0 : totalItem}</td>
       <td>
         <button
-          onClick={() => deleteProduct(idorder)}
+          onClick={() => removeCart(product)}
           type="button"
           className="btn btn-danger"
         >
@@ -104,4 +94,4 @@ const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
   );
 };
 
-export default ItemCart;
+export default ItemCartInvite;
