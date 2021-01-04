@@ -1,0 +1,26 @@
+.form-background {
+    background-color: rgba(0,0,0,.6);
+    padding: 20px;
+    border-radius: 8px;
+    opacity: 0.8;
+    width: 320px;
+}
+
+.form-btn {
+    align-items: center;
+    margin: 0 auto;
+    display: block;
+    border-radius: 4px;
+    background-color: #f80;
+    color: white;
+    border: 1px solid #f80;
+}
+
+.form-btn:hover {
+    color: white;
+    background-color: #FFA500;
+}
+
+.sugestion-options {
+    color: white;
+}

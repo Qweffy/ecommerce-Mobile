@@ -1,14 +1,18 @@
 .search-btn {
-    border-color: #f80;
-    color: #f80;
 }
 
 .search-btn:hover {
-    background-color: #FFA500;
-    color: white;
-    border-color: #FFA500;
+  background-color: #684aa3;
+  color: white;
+  border-color: #2b2b54;
 }
 
 .search-input {
-    border: none;
+  border: none;
+  background-color: black;
+  color: #f2f2f2;
+}
+
+.search-input::placeholder {
+  color: #f2f2f2;
 }

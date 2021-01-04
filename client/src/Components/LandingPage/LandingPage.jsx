@@ -1,36 +1,51 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ProductCard from "../ProductCard/ProductCard.jsx";
-import Banner from './Banner/Banner.jsx';
+import Background from "./Twirl__2.mp4";
+import Iphone from "./iPhone.png";
+import { Container, Row, Col } from "react-bootstrap";
 
 const LandingPage = () => {
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
-    async function getProducts() {
-        let response = await axios.get("http://localhost:4000/products/");
-        setProducts(response.data);
-    }
+  async function getProducts() {
+    let response = await axios.get("http://localhost:4000/products/");
+    setProducts(response.data);
+  }
 
-    useEffect(() => {
-        getProducts();
-    }, []);
+  useEffect(() => {
+    getProducts();
+  }, []);
 
-    return (
-        <div>
-            <Banner />
-            <div className="products-grid m-5">
-                {
-                    products.map((product, index) => {
-                        return (
-                            <div key={index}>
-                            <ProductCard product={product} />
-                            </div>
-                        );
-                    })
-                }
-            </div>            
-        </div>
-    )
+  return (
+    <div>
+      <video
+        autoPlay
+        muted
+        loop
+        style={{
+          position: "absolute",
+          width: "100%",
+          left: "50%",
+          top: "50%",
+          height: "100%",
+          objectFit: "cover",
+          transform: "translate(-50%, -50%)",
+          zIndex: "-1",
+        }}
+      >
+        <source src={Background} type="video/mp4" />
+      </video>
+      <image src={Iphone} type="image/png" />
+      <Container>
+        <Row>
+          <Col xs={6}></Col>
+          <Col xs={6}>
+            <image src={Iphone} type="image/png" />
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
 };
 
 export default LandingPage;
