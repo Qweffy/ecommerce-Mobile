@@ -4,7 +4,7 @@ import axios from "axios";
 import ProductCard from "../ProductCard/ProductCard.jsx";
 
 const Sugestions = () => {
-const sugestions = useSelector(state => state.sugestions);
+const sugestions = useSelector(state => state.Reducer.sugestions);
 const [products, setProducts] = useState([]);
 
 useEffect(() => {
