@@ -26,6 +26,7 @@ const Order = (props) => {
                     <tr className="text-center">
                         <th>Product</th>
                         <th>Price</th>
+                        <th>Quantity</th>
                     </tr>                    
                 </thead>
                 <tbody>
@@ -35,6 +36,7 @@ const Order = (props) => {
                                 <tr className="text-center">
                                     <td>{product.name}</td>
                                     <td>${product.price}</td>
+                                    <td>{product.order_line.count}</td>
                                 </tr>                                
                             )
                         })
