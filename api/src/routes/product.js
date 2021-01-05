@@ -147,8 +147,9 @@ server.delete("/:id", (req, res) => {
     });
 });
 
-server.post("/:id/review", (req, res, next) => {
-  let { productId } = req.params;
+// Add review
+server.post("/:id/reviews", (req, res, next) => {
+  let productId = req.params.id;
   let {rating, description, userId} = req.body;
 
   Review.create({
@@ -159,6 +160,25 @@ server.post("/:id/review", (req, res, next) => {
   })
   .then(review => {
     res.json({message: "Review created", data: review});
+  })
+  .catch(next);
+})
+
+//Modify review
+server.put("/:id/reviews/:idReview", (req, res, next) => {
+  let reviewId = req.params.id;
+  let { rating, description } = req.body;
+
+  Review.findOne({
+    where: {
+      id: reviewId
+    }
+  })
+  .then(review => {
+    review.rating = rating;
+    review.description = description;
+    review.save();
+    res.status(200).json({ message: "Review modified", data: review });
   })
   .catch(next);
 })
