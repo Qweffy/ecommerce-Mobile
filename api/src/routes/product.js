@@ -1,5 +1,5 @@
 const server = require("express").Router();
-const { Product, Category } = require("../db.js");
+const { Product, Category, Review } = require("../db.js");
 const { Op } = require("sequelize");
 
 //Create new product ----> '/products'
@@ -146,6 +146,22 @@ server.delete("/:id", (req, res) => {
         .json({ mensaje: "No se pudo eliminar el producto", data: err });
     });
 });
+
+server.post("/:id/review", (req, res, next) => {
+  let { productId } = req.params;
+  let {rating, description, userId} = req.body;
+
+  Review.create({
+    productId,
+    userId,
+    rating,
+    description
+  })
+  .then(review => {
+    res.json({message: "Review created", data: review});
+  })
+  .catch(next);
+})
 
 
 
