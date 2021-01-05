@@ -148,7 +148,7 @@ server.delete("/:id", (req, res) => {
 });
 
 // Add review
-server.post("/:id/reviews", (req, res, next) => {
+server.post("/:id/reviews", (req, res) => {
   let productId = req.params.id;
   let {rating, description, userId} = req.body;
 
@@ -161,12 +161,14 @@ server.post("/:id/reviews", (req, res, next) => {
   .then(review => {
     res.json({message: "Review created", data: review});
   })
-  .catch(next);
+  .catch(err => {
+    res.status(400).json({ message: "Couldn't create review", data: err });
+  });
 })
 
 //Modify review
-server.put("/:id/reviews/:idReview", (req, res, next) => {
-  let reviewId = req.params.id;
+server.put("/:id/reviews/:idReview", (req, res) => {
+  let reviewId = req.params.idReview;
   let { rating, description } = req.body;
 
   Review.findOne({
@@ -180,10 +182,40 @@ server.put("/:id/reviews/:idReview", (req, res, next) => {
     review.save();
     res.status(200).json({ message: "Review modified", data: review });
   })
-  .catch(next);
+  .catch(err => {
+    res.status(400).json({ message: "Couldn't modify review", data: err });
+  });
 })
 
+//Delete review
+server.delete("/:id/reviews/:idReview", (req, res, next) => {
+  const reviewId = req.params.idReview;
 
+  Review.findOne({
+    where: {id: reviewId}
+  })
+  .then(review => {
+    review.destroy();
+    res.status(200).json({ message: "Review deleted", data: review })
+  })
+  .catch(err => {
+    res.status(400).json({ message: "Couldn't delete review", data: err });
+  });
+})
 
+// Get all product reviews
+server.get("/:id/reviews", (req, res, next) => {
+  let productId = req.params.id;
+
+  Review.findAll({
+    where: { productId }
+  })
+  .then(reviews => {
+    res.json({ message: "All reviews obtained", data: reviews });
+  })
+  .catch(err => {
+    res.status(400).json({ message: "Couldn't get reviews", data: err });
+  });
+})
 
 module.exports = server;
