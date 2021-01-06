@@ -16,6 +16,7 @@ import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import Sugestions from "./Components/LandingPage/Sugestions.jsx";
 import cartInvite from "./Components/cart/cartInvite.jsx";
+import CreateReview from "./Components/CRUDreview/CreateReview.jsx";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
       <Route exact path="/orders/:id" component={Order} />
       <Route exact path="/createsugestion" component={CreateSugestion} />
       <Route exact path="/prueba" component={Sugestions} />
+      <Route exact path="/createreview" component={CreateReview} />
     </Router>
   );
 }
