@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./CreateProduct.css";
@@ -22,29 +21,29 @@ export default function CreateProduct() {
     price: "",
     stock: "",
     img: "",
-    colors: [],
+    colors: []
   });
 
   const [categories, setcategory] = useState([]);
   const [sugestions, setSugestions] = useState([]);
   const [selectedcategories, setcateselect] = useState([]);
   const [selectedsugestions, setsugeselect] = useState([]);
+  const [acum, setAcum] = useState(0);
 
   const history = useHistory();
-  const dispatch = useDispatch();
 
   function rendercategories(cat) {
     return (
-      <div class="form-check">
+      <div className="form-check">
         <input
-          class="form-check-input"
+          className="form-check-input"
           type="checkbox"
           name={cat.id}
           onChange={(e) => {
             loadcategory(e);
           }}
         />
-        <label class="form-check-label" for="gridCheck1">
+        <label className="form-check-label" htmlFor="gridCheck1">
           {cat.name}
         </label>
       </div>
@@ -53,33 +52,20 @@ export default function CreateProduct() {
 
   function rendersugestions(cat) {
     return (
-      <div class="form-check">
+      <div className="form-check">
         <input
-          class="form-check-input"
+          className="form-check-input"
           type="checkbox"
           name={cat.id}
           onChange={(e) => {
             loadsugestion(e);
           }}
         />
-        <label class="form-check-label" for="gridCheck1">
+        <label className="form-check-label" htmlFor="gridCheck1">
           {cat.name}
         </label>
       </div>
     );
-  }
-
-  function inputColor(e) {
-    let nuevavariable = products.colors.map((n, i) => {
-      var rObj = {};
-      rObj[n.text] = "hola";
-      return rObj;
-    });
-    console.log(nuevavariable);
-    // setProducts({
-    //   ...products,
-    //   colors: nuevavariable,
-    // });
   }
 
   function loadcategory(e) {
@@ -109,13 +95,24 @@ export default function CreateProduct() {
       setsugeselect(selectedsugestions.filter((c) => c !== e.target.name));
     }
   }
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
 
-  function handleChange(e) {
-    if (e.target.name !== "colors") {
-      console.log("estoy en el if de no colors");
+  function handleChange(e, i) {
+    if(e.target.name === `color${i}`){
+      console.log('estoy en if 1')
+      var newArr = [...products.colors]
+      for(var i = 0; i < newArr.length; i++){
+        if(newArr[i].color === e.target.name){
+          newArr[i].text = e.target.value;
+        }
+      }
+      setProducts({
+        ...products,
+        colors: newArr,
+      });
+      console.log(newArr);
+
+    } 
+    else {
       setProducts({
         ...products,
         [e.target.name]: e.target.value,
@@ -125,6 +122,7 @@ export default function CreateProduct() {
 
   function handlerSubmnit(e) {
     e.preventDefault();
+    console.log(products.colors)
     axios
       .post("http://localhost:4000/products/", products)
       .then(function (response) {
@@ -378,21 +376,24 @@ export default function CreateProduct() {
           {products.colors.map((n, i) => (
             <input
               key={i}
-              name={"colors"}
-              value={n.text}
+              name={`color${i+1}`}
+              
+              id={i+1}
               onChange={(e) => {
-                console.log(e);
-                inputColor(e);
+                handleChange(e, i+1)
               }}
             />
           ))}
         </div>
         <button
           onClick={() => {
+            var num = acum + 1
+            setAcum(num)
             setProducts({
               ...products,
-              colors: products.colors.concat([{ text: "" }]),
+              colors: products.colors.concat({ color: `color${num}`, text: "h" }),
             });
+            
           }}
         >
           Add empty input
