@@ -1,3 +1,33 @@
-.imagee {
-  background-image: url("https://imagenes.20minutos.es/files/article_amp/uploads/2019/07/11/1004550.jpg");
+.container {
+  max-width: 2000px !important;
+  padding: 50px;
+}
+
+.iphone img {
+  width: 55%;
+  position: absolute;
+  left: 789px;
+  top: -5px;
+  z-index: 2;
+}
+.Landing {
+  padding-top: 250px;
+  height: 700px;
+  width: 900px;
+}
+.Landing h1 {
+  font-family: "Lato";
+  font-size: 85px;
+}
+.Landing .btn {
+  width: 415px;
+  height: 60px;
+  background-color: #6c66bf;
+  font-size: 26px;
+  font-family: "Roboto";
+  border-radius: 360px;
+}
+
+.Landing .btn:hover {
+  background-color: #398ab2;
 }

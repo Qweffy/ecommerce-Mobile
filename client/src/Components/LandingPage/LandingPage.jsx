@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Background from "./Twirl__2.mp4";
 import Iphone from "./iPhone.png";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import "./LandingPage.css";
 
 const LandingPage = () => {
   const [products, setProducts] = useState([]);
@@ -35,12 +36,14 @@ const LandingPage = () => {
       >
         <source src={Background} type="video/mp4" />
       </video>
-      <image src={Iphone} type="image/png" />
-      <Container>
+      <Container className="container">
         <Row>
-          <Col xs={6}></Col>
-          <Col xs={6}>
-            <image src={Iphone} type="image/png" />
+          <Col xs={6} className="Landing">
+            <h1>ACÁ VA UN TITULO BIEN LLAMATIVO</h1>
+            <Button>INGRESAR</Button>
+          </Col>
+          <Col xs={6} className="iphone">
+            <img src={Iphone} type="image/png" />
           </Col>
         </Row>
       </Container>

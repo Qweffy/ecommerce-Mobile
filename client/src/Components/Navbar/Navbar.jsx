@@ -21,7 +21,7 @@ function BootstrapNavbar() {
           </Col>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
+            <Nav className="mr-auto infonav">
               <Col xs={2} className="text-center">
                 <Nav.Link href="/catalogue">
                   <FontAwesomeIcon icon={faShoppingBag} /> Catalogue
