@@ -1,16 +1,13 @@
-.nav{
+.nav {
   max-width: 100%;
   height: 80px !important;
+  z-index: 3;
 }
 
-
-.nav .logo-div{
+.nav .logo-div {
   width: 300px !important;
-  height: 100%;
 }
 
-.logo-div img{
-  width: 100%;
-  height: 100%;
+.infonav a {
+  font-family: "Roboto" !important;
 }
-

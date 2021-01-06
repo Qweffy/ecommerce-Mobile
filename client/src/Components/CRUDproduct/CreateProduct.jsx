@@ -1,40 +1,49 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import './CreateProduct.css';
+import "./CreateProduct.css";
 
 import { createProduct } from "../../store/Actions/Product_Actions";
+import { removeFromCart } from "../../store/Actions/cartActions";
 
 export default function CreateProduct() {
   const [products, setProducts] = useState({
     name: "",
     description: "",
+    processor: "",
+    screen: "",
+    ram: "",
+    camara: "",
+    frontcamara: "",
+    battery: "",
+    dimensions: "",
+    others: "",
     price: "",
     stock: "",
     img: "",
+    colors: []
   });
+
   const [categories, setcategory] = useState([]);
   const [sugestions, setSugestions] = useState([]);
   const [selectedcategories, setcateselect] = useState([]);
   const [selectedsugestions, setsugeselect] = useState([]);
-
+  const [acum, setAcum] = useState(0);
 
   const history = useHistory();
-  const dispatch = useDispatch();
 
   function rendercategories(cat) {
     return (
-      <div class="form-check">
+      <div className="form-check">
         <input
-          class="form-check-input"
+          className="form-check-input"
           type="checkbox"
           name={cat.id}
           onChange={(e) => {
             loadcategory(e);
           }}
         />
-        <label class="form-check-label" for="gridCheck1">
+        <label className="form-check-label" htmlFor="gridCheck1">
           {cat.name}
         </label>
       </div>
@@ -43,22 +52,21 @@ export default function CreateProduct() {
 
   function rendersugestions(cat) {
     return (
-      <div class="form-check">
+      <div className="form-check">
         <input
-          class="form-check-input"
+          className="form-check-input"
           type="checkbox"
           name={cat.id}
           onChange={(e) => {
             loadsugestion(e);
           }}
         />
-        <label class="form-check-label" for="gridCheck1">
+        <label className="form-check-label" htmlFor="gridCheck1">
           {cat.name}
         </label>
       </div>
     );
   }
-
 
   function loadcategory(e) {
     //esta funcion agrega a un arreglo de las categorias seleccionadas
@@ -88,31 +96,55 @@ export default function CreateProduct() {
     }
   }
 
-  function handleChange(e) {
-    setProducts({
-      ...products,
-      [e.target.name]: e.target.value,
-    });
+  function handleChange(e, i) {
+    if(e.target.name === `color${i}`){
+      console.log('estoy en if 1')
+      var newArr = [...products.colors]
+      for(var i = 0; i < newArr.length; i++){
+        if(newArr[i].color === e.target.name){
+          newArr[i].text = e.target.value;
+        }
+      }
+      setProducts({
+        ...products,
+        colors: newArr,
+      });
+      console.log(newArr);
+
+    } 
+    else {
+      setProducts({
+        ...products,
+        [e.target.name]: e.target.value,
+      });
+    }
   }
 
-
-  function handlerSubmnit(e){
+  function handlerSubmnit(e) {
     e.preventDefault();
-    axios.post('http://localhost:4000/products/', products).
-    then(function (response) {
-      selectedcategories.map(cat => {  // response trae la respuesta de la peticion, q devuelve la respuesta del back
-        // entonces pudimos traer el id del producto que acabamos de crear y asi cargarle las categorias
-        axios.post(`http://localhost:4000/products/${response.data.id}/category/${cat}`).
-        then(function (response) {});  //esto se asegura que se postee todo antes de recargar la pagina
-      }
-    );
-    selectedsugestions.map(sug => {  //por cada sugestion cargado lo asocia al producto
-      axios.post(`http://localhost:4000/products/${response.data.id}/sugestion/${sug}`).
-      then(function (response) {});  //esto se asegura que se postee todo antes de recargar la pagina
-    }
-
-  );
-    history.push("/showProducts");})
+    console.log(products.colors)
+    axios
+      .post("http://localhost:4000/products/", products)
+      .then(function (response) {
+        selectedcategories.map((cat) => {
+          // response trae la respuesta de la peticion, q devuelve la respuesta del back
+          // entonces pudimos traer el id del producto que acabamos de crear y asi cargarle las categorias
+          axios
+            .post(
+              `http://localhost:4000/products/${response.data.id}/category/${cat}`
+            )
+            .then(function (response) {}); //esto se asegura que se postee todo antes de recargar la pagina
+        });
+        selectedsugestions.map((sug) => {
+          //por cada sugestion cargado lo asocia al producto
+          axios
+            .post(
+              `http://localhost:4000/products/${response.data.id}/sugestion/${sug}`
+            )
+            .then(function (response) {}); //esto se asegura que se postee todo antes de recargar la pagina
+        });
+        history.push("/showProducts");
+      });
   }
 
   useEffect(() => {
@@ -140,6 +172,141 @@ export default function CreateProduct() {
                 handleChange(e);
               }}
               name="name"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Screen</label>
+          <div className="col-sm-10">
+            <input
+              className="form-control m-1"
+              placeholder="Insert product description"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="screen"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Processor</label>
+          <div className="col-sm-10">
+            <input
+              className="form-control m-1"
+              placeholder="Insert product description"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="processor"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Ram</label>
+          <div className="col-sm-10">
+            <input
+              className="form-control m-1"
+              placeholder="Insert product description"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="ram"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Storage</label>
+          <div className="col-sm-10">
+            <input
+              className="form-control m-1"
+              placeholder="Insert product description"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="storage"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Camara</label>
+          <div className="col-sm-10">
+            <input
+              className="form-control m-1"
+              placeholder="Insert product description"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="camara"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Front Camara</label>
+          <div className="col-sm-10">
+            <input
+              className="form-control m-1"
+              placeholder="Insert product description"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="frontcamara"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Battery</label>
+          <div className="col-sm-10">
+            <input
+              className="form-control m-1"
+              placeholder="Insert product description"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="battery"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Dimensions</label>
+          <div className="col-sm-10">
+            <input
+              className="form-control m-1"
+              placeholder="Insert product description"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="dimensions"
+              type="text"
+              required
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label className="col-sm-2 col-form-label">Others</label>
+          <div className="col-sm-10">
+            <input
+              className="form-control m-1"
+              placeholder="Insert product description"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="others"
               type="text"
               required
             />
@@ -206,18 +373,49 @@ export default function CreateProduct() {
           </div>
         </div>
         <div className="form-group row">
-        <hr />
+          {products.colors.map((n, i) => (
+            <input
+              key={i}
+              name={`color${i+1}`}
+              
+              id={i+1}
+              onChange={(e) => {
+                handleChange(e, i+1)
+              }}
+            />
+          ))}
+        </div>
+        <button
+          onClick={() => {
+            var num = acum + 1
+            setAcum(num)
+            setProducts({
+              ...products,
+              colors: products.colors.concat({ color: `color${num}`, text: "h" }),
+            });
+            
+          }}
+        >
+          Add empty input
+        </button>
+        <p>
+          <small>current state is shown in console</small>
+        </p>
+        <div className="form-group row">
+          <hr />
           <label className="col-sm-2 col-form-label">Product categories</label>
           <div className="col-sm-10">
             <div className="m-1">
-                {categories.map((cat) => rendercategories(cat))}
+              {categories.map((cat) => rendercategories(cat))}
             </div>
           </div>
           <hr />
-          <label className="col-sm-2 col-form-label">Sugestions Categories</label>
+          <label className="col-sm-2 col-form-label">
+            Sugestions Categories
+          </label>
           <div className="col-sm-10">
             <div className="m-1">
-                {sugestions.map((cat) => rendersugestions(cat))}
+              {sugestions.map((cat) => rendersugestions(cat))}
             </div>
           </div>
         </div>

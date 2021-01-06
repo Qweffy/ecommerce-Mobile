@@ -16,6 +16,7 @@ import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import Sugestions from "./Components/LandingPage/Sugestions.jsx";
 import cartInvite from "./Components/cart/cartInvite.jsx";
+import ProductDetails from "./Components/ProductDetails/ProductDetails.js";
 
 function App() {
   return (
