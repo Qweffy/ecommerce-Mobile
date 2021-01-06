@@ -11,6 +11,7 @@ export default function CreateProduct() {
     name: "",
     description: "",
     processor: "",
+    storage: "",
     screen: "",
     ram: "",
     camara: "",
