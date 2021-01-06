@@ -1,8 +1,13 @@
 .nav {
   max-width: 100%;
   height: 80px !important;
+  z-index: 3;
 }
 
 .nav .logo-div {
   width: 300px !important;
+}
+
+.infonav a {
+  font-family: "Roboto" !important;
 }

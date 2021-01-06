@@ -1,6 +1,33 @@
-.img {
-  background-image: url("../../img/iPhone.png");
-  width: 100px;
-  height: 100px;
-  background-color: red;
+.container {
+  max-width: 2000px !important;
+  padding: 50px;
+}
+
+.iphone img {
+  width: 55%;
+  position: absolute;
+  left: 789px;
+  top: -5px;
+  z-index: 2;
+}
+.Landing {
+  padding-top: 250px;
+  height: 700px;
+  width: 900px;
+}
+.Landing h1 {
+  font-family: "Lato";
+  font-size: 85px;
+}
+.Landing .btn {
+  width: 415px;
+  height: 60px;
+  background-color: #6c66bf;
+  font-size: 26px;
+  font-family: "Roboto";
+  border-radius: 360px;
+}
+
+.Landing .btn:hover {
+  background-color: #398ab2;
 }
