@@ -1,3 +1,6 @@
-.imagee {
-  background-image: url("https://imagenes.20minutos.es/files/article_amp/uploads/2019/07/11/1004550.jpg");
+.img {
+  background-image: url("../../img/iPhone.png");
+  width: 100px;
+  height: 100px;
+  background-color: red;
 }
