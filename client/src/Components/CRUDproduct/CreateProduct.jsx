@@ -22,7 +22,7 @@ export default function CreateProduct() {
     price: "",
     stock: "",
     img: "",
-    colors: []
+    colors: [],
   });
 
   const [categories, setcategory] = useState([]);
@@ -98,11 +98,11 @@ export default function CreateProduct() {
   }
 
   function handleChange(e, i) {
-    if(e.target.name === `color${i}`){
-      console.log('estoy en if 1')
-      var newArr = [...products.colors]
-      for(var i = 0; i < newArr.length; i++){
-        if(newArr[i].color === e.target.name){
+    if (e.target.name === `color${i}`) {
+      console.log("estoy en if 1");
+      var newArr = [...products.colors];
+      for (var i = 0; i < newArr.length; i++) {
+        if (newArr[i].color === e.target.name) {
           newArr[i].text = e.target.value;
         }
       }
@@ -111,9 +111,7 @@ export default function CreateProduct() {
         colors: newArr,
       });
       console.log(newArr);
-
-    } 
-    else {
+    } else {
       setProducts({
         ...products,
         [e.target.name]: e.target.value,
@@ -123,7 +121,7 @@ export default function CreateProduct() {
 
   function handlerSubmnit(e) {
     e.preventDefault();
-    console.log(products.colors)
+    console.log(products.colors);
     axios
       .post("http://localhost:4000/products/", products)
       .then(function (response) {
@@ -162,239 +160,260 @@ export default function CreateProduct() {
   return (
     <div className="add-product-container">
       {/* <h3>Add new product</h3> */}
-      <form onSubmit={handlerSubmnit} className="mx-5 my-4">
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Product name</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product name"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="name"
-              type="text"
-              required
-            />
+      <form onSubmit={handlerSubmnit} className='cont-prin'>
+        <h2>Create Product</h2>
+        <div className="row100">
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="name"
+                type="text"
+                required
+              />
+              <span className="text">Product name</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Screen</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product description"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="screen"
-              type="text"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="screen"
+                type="text"
+                required
+              />
+              <span className="text">Product screen</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Processor</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product description"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="processor"
-              type="text"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="processor"
+                type="text"
+                required
+              />
+              <span className="text">Product processor</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Ram</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product description"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="ram"
-              type="text"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="ram"
+                type="text"
+                required
+              />
+              <span className="text">Product ram</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Storage</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product description"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="storage"
-              type="text"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="storage"
+                type="text"
+                required
+              />
+              <span className="text">Product storage</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Camara</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product description"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="camara"
-              type="text"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="camara"
+                type="text"
+                required
+              />
+              <span className="text">Product camara</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Front Camara</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product description"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="frontcamara"
-              type="text"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="frontcamara"
+                type="text"
+                required
+              />
+              <span className="text">Product frontcamara</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Battery</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product description"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="battery"
-              type="text"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="battery"
+                type="text"
+                required
+              />
+              <span className="text">Product battery</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Dimensions</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product description"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="dimensions"
-              type="text"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="dimensions"
+                type="text"
+                required
+              />
+              <span className="text">Product dimensions</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Others</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product description"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="others"
-              type="text"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="others"
+                type="text"
+                required
+              />
+              <span className="text">others</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Description</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product description"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="description"
-              type="text"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="description"
+                type="text"
+                required
+              />
+              <span className="text">Product description</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Price</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert product price"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="price"
-              type="number"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="price"
+                type="number"
+                required
+              />
+              <span className="text">Product price</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Available units</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert available units"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="stock"
-              type="number"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="stock"
+                type="number"
+                required
+              />
+              <span className="text">Product stock</span>
+              <span className="line"></span>
+            </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Image URL</label>
-          <div className="col-sm-10">
-            <input
-              className="form-control m-1"
-              placeholder="Insert image URL"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="img"
-              type="text"
-              required
-            />
+          <div className="column">
+            <div className="inputBox">
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="img"
+                type="text"
+                required
+              />
+              <span className="text">Product img</span>
+              <span className="line"></span>
+            </div>
           </div>
+<<<<<<< HEAD
         </div>
         <div className="form-group row">
           {products.colors.map((n, i) => (
             <input
               key={i}
-              name={`color${i+1}`}
-              
-              id={i+1}
+              name={`color${i + 1}`}
+              id={i + 1}
               onChange={(e) => {
-                handleChange(e, i+1)
+                handleChange(e, i + 1);
+=======
+          <div className="column">
+              {products.colors.map((n, i) => (
+                <div className="inputBox spa">
+                  <input
+                    key={i}
+                    name={`color${i+1}`}
+                    
+                    id={i+1}
+                    onChange={(e) => {
+                      handleChange(e, i+1)
+                    }}
+                  />
+                  <span className="text">{`imagen ${i+1}`}</span>
+                  <span className="line"></span>
+                </div>
+              ))}
+            <div className="column btn"
+              onClick={() => {
+                var num = acum + 1
+                setAcum(num)
+                setProducts({
+                  ...products,
+                  colors: products.colors.concat({ color: `color${num}`, text: "h" }),
+                });
+                
+>>>>>>> cff4a475f1ac3037690ad802fcb5b1bc7a7b9328
               }}
-            />
-          ))}
+            >
+              Add empty input
+            </div>
+          </div>
         </div>
+<<<<<<< HEAD
         <button
           onClick={() => {
-            var num = acum + 1
-            setAcum(num)
+            var num = acum + 1;
+            setAcum(num);
             setProducts({
               ...products,
-              colors: products.colors.concat({ color: `color${num}`, text: "h" }),
+              colors: products.colors.concat({
+                color: `color${num}`,
+                text: "h",
+              }),
             });
-            
           }}
         >
           Add empty input
@@ -402,6 +421,8 @@ export default function CreateProduct() {
         <p>
           <small>current state is shown in console</small>
         </p>
+=======
+>>>>>>> cff4a475f1ac3037690ad802fcb5b1bc7a7b9328
         <div className="form-group row">
           <hr />
           <label className="col-sm-2 col-form-label">Product categories</label>
@@ -420,9 +441,11 @@ export default function CreateProduct() {
             </div>
           </div>
         </div>
-        <button type="submit" className="add-product-btn btn btn-primary my-4">
-          Add product
-        </button>
+        <div className="row100">
+          <div className="column">
+            <input type="submit" value='Add product' className="" />
+          </div>
+        </div>
       </form>
     </div>
   );
