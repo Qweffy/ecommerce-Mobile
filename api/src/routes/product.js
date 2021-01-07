@@ -160,9 +160,10 @@ server.delete("/:id", (req, res) => {
 });
 
 // Add review
-server.post("/:id/reviews", (req, res) => {
+server.post("/:id/reviews/:userid", (req, res) => {
   let productId = req.params.id;
-  let {rating, description, userId} = req.body;
+  let userId = req.params.userid;
+  let { rating, description } = req.body;
 
   Review.create({
     productId,
