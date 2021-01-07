@@ -375,13 +375,15 @@ export default function CreateProduct() {
               ))}
             <div className="column btn"
               onClick={() => {
-                var num = acum + 1
-                setAcum(num)
+                var num = acum + 1;
+                setAcum(num);
                 setProducts({
                   ...products,
-                  colors: products.colors.concat({ color: `color${num}`, text: "h" }),
+                  colors: products.colors.concat({
+                    color: `color${num}`,
+                    text: "h",
+                  }),
                 });
-                
               }}
             >
               Add empty input
@@ -408,7 +410,7 @@ export default function CreateProduct() {
         </div>
         <div className="row100">
           <div className="column">
-            <input type="submit" value='Add product' className="" />
+            <input type="submit" value="Add product" className="" />
           </div>
         </div>
       </form>
