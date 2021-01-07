@@ -1,17 +1,30 @@
-.card {
-    margin       : 17px;
-    height       : 17rem;
-    width        : 22rem;
-    border-radius: 10px;
-    font-size: 15px;
+.product-img {
+    max-height: 150px;
+    display: block;
+    margin: auto;
 }
 
-.img>img {
-    width : 40%;
-    height: 40%;
-
+.product-info {
+    max-height: 150px;
+    display: block;
+    margin: auto;
 }
 
-.flex{
-    display: flex;
+.product-card {
+    height: 280px;
+    width: 350px;
+    background-color: rgb(255, 255, 255, 0.15);
+    /* border: 1px solid silver; */
+    border-radius: 8px;
+    box-shadow: 0 2px 1px 0 rgba(64,64,64,.15);
+}
+
+a {
+    text-decoration: none;
+    font-family: open sans,sans-serif;
+    color: #404040;
+}
+
+.product-price {
+    color: #f80;
 }
