@@ -5,7 +5,7 @@ import axios from "axios";
 
 const AddToCart = (props) => {
   const { user } = useSelector((state) => state.auth);
-  console.log(user.id);
+
   function addToCart(id) {
     axios
       .post(`http://localhost:4000/orders/cart`, { id: user.id })

@@ -6,13 +6,7 @@ const actions = {
   },
 };
 
-const initialuser = {
-  user: {
-    id:""
-  }
-}
-
-export const auth = (state = initialuser, { type, payload }) => {
+export const auth = (state = { user: undefined }, { type, payload }) => {
   switch (type) {
     case actions.names.SET_AUTH_USER:
       return { ...state, user: payload };

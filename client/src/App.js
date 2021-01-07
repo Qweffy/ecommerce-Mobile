@@ -22,7 +22,6 @@ import jwt from "jsonwebtoken";
 import SignUp from "./Components/Login/SignUp.js";
 import SignIn from "./Components/Login/SignIn.js";
 import Me from "./Components/Login/App.js";
-
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {

@@ -43,7 +43,7 @@ function SignIn() {
             const user = jwt.decode(token);
             dispatch(actions.setUser(user));
             setLoading(false);
-            replace("/me");
+            replace("/");
           }}
         >
           <FormGroup>

@@ -23,15 +23,16 @@ console.log(user);
   useEffect(() => {
 
     getOrders();
-  }, []);
+  }, [user]);
 
   async function getOrders() {
     //trae los productos de la orden carrito
+    if(user){
     let response = await axios.get(
       `http://localhost:4000/orders/cart/${user.id}`
     );
     setCart(response.data.data);
-
+}
   }
 
   return (
