@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Background from "../LandingPage/Twirl__2.mp4";
 import ProductCard from "../ProductCard/ProductCard.jsx";
 import CategoryCard from "../CategoryCard/CategoryCard.jsx";
 import "./Catalogue.css";
 import { getProduct } from "../../store/Actions/Product_Actions.js";
-import Banner from "./Banner/Banner";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import Background from "../LandingPage/Twirl__2.mp4";
 
 const Catalogue = (props) => {
   // Get list of products and categories from DB
@@ -48,37 +46,44 @@ const Catalogue = (props) => {
   };
 
   return (
-    <div>
-      <Container className="container">
-        <Row>
-          <Col className="filter" xs={3}>
-            <div className="">
-              <div className="">
-                <div className="">
-                  <CategoryCard
-                    onCategoryToggle={categoryHandler}
-                    categories={allCategories}
-                  />
+    <div className="m-4">
+      <video
+        autoPlay
+        muted
+        loop
+        style={{
+          position: "absolute",
+          width: "100%",
+          left: "50%",
+          top: "50%",
+          height: "100%",
+          objectFit: "cover",
+          transform: "translate(-50%, -50%)",
+          zIndex: "-1",
+        }}
+      >
+        <source src={Background} type="video/mp4" />
+      </video>
+      <div className="d-flex">
+        <div className="m-5">
+          <CategoryCard
+            onCategoryToggle={categoryHandler}
+            categories={allCategories}
+          />
+        </div>
+        <div className="products-grid m-5">
+          {allProducts.map((product, index) => {
+            return (
+                <div key={index}>
+                  <ProductCard product={product} />
                 </div>
-              </div>
-            </div>
-          </Col>
-          <Col className="catalogo">
-            <Row className="products-grid m-5">
-              {allProducts.map((product, index) => {
-                return (
-                  <Col sm={"4"} key={index}>
-                    <ProductCard product={product} />
-                  </Col>
-                );
-              })}
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-
-    </div >
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default Catalogue;
+
