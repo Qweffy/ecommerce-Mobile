@@ -28,7 +28,7 @@
   text-align: end;
 }
 
-.product-info {
+.product-info-stat {
   width: 65%;
   font-family: "Roboto";
   margin: 60px 10px 140px 10px;
@@ -37,7 +37,7 @@
   align-self: flex-end;
 }
 
-.product-info .product-description h3 {
+.product-info-stat .product-description h3 {
   font-weight: 700;
   font-size: 24px;
   margin-bottom: 30px;
@@ -51,7 +51,7 @@
   height: 230px;
 }
 
-.product-info .product-description .product-specific-ind {
+.product-info-stat .product-description .product-specific-ind {
   width: 200px;
   height: 70px;
   margin-right: 10px;

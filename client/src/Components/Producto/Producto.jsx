@@ -53,7 +53,7 @@ const Producto = ({ match }) => {
         <div className="info-top">
           <img src={product.img} alt="Img not found" />
         </div>
-        <div className="product-info">
+        <div className="product-info-stat">
           <div className="product-description">
             <h3 className="product-name pb-2">{product.name}</h3>
             <div className="product-specific">
