@@ -14,9 +14,41 @@ import "./Navbar.css";
 
 function BootstrapNavbar() {
   const { user } = useSelector((state) => state.auth)
-  console.log(user.isAdmin);  
+  //console.log(user.isAdmin);  
   /* const isAdmin = true; */
 
+
+if(user === undefined){
+  return (
+    <Container fluid>
+      <Row >
+        <Navbar collapseOnSelect expand="lg" className="p-2 nav">
+          <Col xs={5}>
+            <Navbar.Brand href="/" className="logo-div"></Navbar.Brand>
+          </Col>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto infonav align">
+              <Col xs={2} className="text-center">
+                <Nav.Link href="/catalogue">
+                  <FontAwesomeIcon icon={faShoppingBag} /> Catalogue
+                  </Nav.Link>
+              </Col>
+              <Col xs={2} className="text-center">
+                <Nav.Link href="/cart">
+                  <FontAwesomeIcon icon={faShoppingCart} /> My Cart
+                  </Nav.Link>
+              </Col>
+              <Col xs={2}>
+                <Searchbar />
+              </Col>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </Row>
+    </Container>
+  );
+}else {
   if (user.isAdmin) {
     return (
       <Container fluid>
@@ -58,7 +90,6 @@ function BootstrapNavbar() {
       </Container>
     );
   } else {
-    if (user !== undefined) {
       return (
         <Container fluid>
           <Row >
@@ -98,37 +129,9 @@ function BootstrapNavbar() {
           </Row>
         </Container>
       );
-    }
-    return (
-      <Container fluid>
-        <Row >
-          <Navbar collapseOnSelect expand="lg" className="p-2 nav">
-            <Col xs={5}>
-              <Navbar.Brand href="/" className="logo-div"></Navbar.Brand>
-            </Col>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="mr-auto infonav align">
-                <Col xs={2} className="text-center">
-                  <Nav.Link href="/catalogue">
-                    <FontAwesomeIcon icon={faShoppingBag} /> Catalogue
-                    </Nav.Link>
-                </Col>
-                <Col xs={2} className="text-center">
-                  <Nav.Link href="/cart">
-                    <FontAwesomeIcon icon={faShoppingCart} /> My Cart
-                    </Nav.Link>
-                </Col>
-                <Col xs={2}>
-                  <Searchbar />
-                </Col>
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
-        </Row>
-      </Container>
-    );
   }
+}
+
 }
 
 export default BootstrapNavbar;
