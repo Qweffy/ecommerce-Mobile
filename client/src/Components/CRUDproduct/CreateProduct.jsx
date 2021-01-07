@@ -132,7 +132,7 @@ export default function CreateProduct() {
             .post(
               `http://localhost:4000/products/${response.data.id}/category/${cat}`
             )
-            .then(function (response) {}); //esto se asegura que se postee todo antes de recargar la pagina
+            .then(function (response) { }); //esto se asegura que se postee todo antes de recargar la pagina
         });
         selectedsugestions.map((sug) => {
           //por cada sugestion cargado lo asocia al producto
@@ -140,7 +140,7 @@ export default function CreateProduct() {
             .post(
               `http://localhost:4000/products/${response.data.id}/sugestion/${sug}`
             )
-            .then(function (response) {}); //esto se asegura que se postee todo antes de recargar la pagina
+            .then(function (response) { }); //esto se asegura que se postee todo antes de recargar la pagina
         });
         history.push("/showProducts");
       });
@@ -358,34 +358,22 @@ export default function CreateProduct() {
               <span className="text">Product img</span>
               <span className="line"></span>
             </div>
-          </div>
-<<<<<<< HEAD
-        </div>
-        <div className="form-group row">
-          {products.colors.map((n, i) => (
-            <input
-              key={i}
-              name={`color${i + 1}`}
-              id={i + 1}
-              onChange={(e) => {
-                handleChange(e, i + 1);
-=======
-          <div className="column">
-              {products.colors.map((n, i) => (
-                <div className="inputBox spa">
-                  <input
-                    key={i}
-                    name={`color${i+1}`}
-                    
-                    id={i+1}
-                    onChange={(e) => {
-                      handleChange(e, i+1)
-                    }}
-                  />
-                  <span className="text">{`imagen ${i+1}`}</span>
-                  <span className="line"></span>
-                </div>
-              ))}
+          </div><div className="column">
+            {products.colors.map((n, i) => (
+              <div className="inputBox spa">
+                <input
+                  key={i}
+                  name={`color${i + 1}`}
+
+                  id={i + 1}
+                  onChange={(e) => {
+                    handleChange(e, i + 1)
+                  }}
+                />
+                <span className="text">{`imagen ${i + 1}`}</span>
+                <span className="line"></span>
+              </div>
+            ))}
             <div className="column btn"
               onClick={() => {
                 var num = acum + 1
@@ -394,35 +382,13 @@ export default function CreateProduct() {
                   ...products,
                   colors: products.colors.concat({ color: `color${num}`, text: "h" }),
                 });
-                
->>>>>>> cff4a475f1ac3037690ad802fcb5b1bc7a7b9328
+
               }}
             >
               Add empty input
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-        <button
-          onClick={() => {
-            var num = acum + 1;
-            setAcum(num);
-            setProducts({
-              ...products,
-              colors: products.colors.concat({
-                color: `color${num}`,
-                text: "h",
-              }),
-            });
-          }}
-        >
-          Add empty input
-        </button>
-        <p>
-          <small>current state is shown in console</small>
-        </p>
-=======
->>>>>>> cff4a475f1ac3037690ad802fcb5b1bc7a7b9328
         <div className="form-group row">
           <hr />
           <label className="col-sm-2 col-form-label">Product categories</label>

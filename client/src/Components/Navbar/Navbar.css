@@ -1,7 +1,7 @@
 .nav {
   max-width: 100%;
-  height: 80px !important;
-  z-index: 3;
+  height   : 80px !important;
+  z-index  : 3;
 }
 
 .nav .logo-div {
@@ -14,4 +14,78 @@
 
 .align {
   justify-content: right;
+}
+
+/* -------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing        : border-box;
+  -webkit-box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin     : 0;
+  padding    : 0;
+  background : #f2f2f2;
+}
+
+.dropdown {
+  margin          : 0;
+  padding         : 0;
+  display         : -webkit-box;
+  display         : -ms-flexbox;
+  display         : flex;
+  -ms-flex-wrap   : wrap;
+  flex-wrap       : wrap;
+  list-style      : none;
+  height          : 50px;
+  background-color: none;
+}
+
+.dropdown li {
+  position: relative;
+}
+
+.dropdown li a {
+  display        : block;
+  padding        : 0 10px;
+  height         : 50px;
+  line-height    : 50px;
+  color          : #ffffff;
+  cursor         : pointer;
+  text-decoration: none;
+}
+
+.dropdown li ul {
+  display             : none;
+  position            : absolute;
+  margin              : 0;
+  padding             : 0;
+  list-style          : none;
+  /*  background-color: #444444; */
+  width               : 200px;
+  left                : 0;
+}
+
+.dropdown li ul li a {
+  height     : 35px;
+  line-height: 35px;
+  color      : rgb(255, 255, 255);
+}
+
+.dropdown li ul li a:hover {
+  /*  background-color: rgba(23, 23, 23, 0.9); */
+  color: #000000;
+}
+
+.dropdown li:hover>ul {
+  display: block;
+}
+
+.dropdown li:hover>a {
+  background-color: #684aa3;
+  color           : #222222;
 }
