@@ -5,6 +5,7 @@ import ProductCard from "../ProductCard/ProductCard.jsx";
 import CategoryCard from "../CategoryCard/CategoryCard.jsx";
 import "./Catalogue.css";
 import { getProduct } from "../../store/Actions/Product_Actions.js";
+import Banner from "./Banner/Banner";
 
 const Catalogue = (props) => {
   // Get list of products and categories from DB
@@ -56,13 +57,14 @@ const Catalogue = (props) => {
         <div className="products-grid m-5">
           {allProducts.map((product, index) => {
             return (
-                <div key={index}>
-                  <ProductCard product={product} />
-                </div>
+              <div key={index}>
+                <ProductCard product={product} />
+              </div>
             );
           })}
         </div>
       </div>
+      <Banner />
     </div>
   );
 };

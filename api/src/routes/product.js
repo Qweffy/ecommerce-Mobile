@@ -4,26 +4,41 @@ const { Op } = require("sequelize");
 
 //Create new product ----> '/products'
 
-server.post('/', (req, res, next) => {
-	Product.create({
-      name: req.body.name,
-      description: req.body.description,
-			price: req.body.price,
-			stock: req.body.stock,
-			img: req.body.img
-    }).then(algo => {
-
-     	res.send(algo);
-		})
-		.catch(next);
+server.post("/", (req, res, next) => {
+  Product.create({
+    name: req.body.name,
+    processor: req.body.processor,
+    screen: req.body.screen,
+    ram: req.body.ram,
+    storage: req.body.storage,
+    camara: req.body.description,
+    frontcamara: req.body.frontcamara,
+    battery: req.body.battery,
+    dimensions: req.body.dimensions,
+    others: req.body.others,
+    price: req.body.price,
+    stock: req.body.stock,
+    img: req.body.img,
+    colors: req.body.colors,
+  })
+    .then((algo) => {
+      res.send(algo);
+    })
+    .catch(next);
 });
 
-server.post('/:idProd/category/:idCateg', (req, res, next) => { // agrega categoria al producto
-  Product.findByPk(req.params.idProd).then(product => product.addCategory(req.params.idCateg)).then(success => res.sendStatus(201)); // sequelize crea un metodo add para las relaciones n:n, ergo, tambien esta el metodo addProduct en la tabla Category
+server.post("/:idProd/category/:idCateg", (req, res, next) => {
+  // agrega categoria al producto
+  Product.findByPk(req.params.idProd)
+    .then((product) => product.addCategory(req.params.idCateg))
+    .then((success) => res.sendStatus(201)); // sequelize crea un metodo add para las relaciones n:n, ergo, tambien esta el metodo addProduct en la tabla Category
 });
 
-server.post('/:idProd/sugestion/:idCateg', (req, res, next) => { // agrega sugestion al producto
-  Product.findByPk(req.params.idProd).then(product => product.addSugestion(req.params.idCateg)).then(success => res.sendStatus(201)); // sequelize crea un metodo add para las relaciones n:n, ergo, tambien esta el metodo addProduct en la tabla Category
+server.post("/:idProd/sugestion/:idCateg", (req, res, next) => {
+  // agrega sugestion al producto
+  Product.findByPk(req.params.idProd)
+    .then((product) => product.addSugestion(req.params.idCateg))
+    .then((success) => res.sendStatus(201)); // sequelize crea un metodo add para las relaciones n:n, ergo, tambien esta el metodo addProduct en la tabla Category
 });
 
 // get an all products ----> '/products'
@@ -48,27 +63,25 @@ server.get("/", (req, res, next) => {
   }).catch(next);
 });
 
-server.post("/sugestions", (req, res) => {//esta ruta filtra los productos por las sugestions
-	const { sugestion } = req.body;
+server.post("/sugestions", (req, res) => {
+  //esta ruta filtra los productos por las sugestions
+  const { sugestion } = req.body;
 
-Product.findAll().then(
-(products) =>{
-	let productosfiltrados = [];
-   products.map((product,index) =>{
-		product.hasSugestions(sugestion).then( //pergunta si tiene por lo menos esas categorias(sugestions)
-			exist =>{
-				if(exist)  //si las tiene , agrega el producto al arreglo
-				productosfiltrados.push(product);
-				if(index == products.length - 1)  
-				res.send(productosfiltrados);
-			}
-		)
-	})
-}
-)
+  Product.findAll().then((products) => {
+    let productosfiltrados = [];
+    products.map((product, index) => {
+      product.hasSugestions(sugestion).then(
+        //pergunta si tiene por lo menos esas categorias(sugestions)
+        (exist) => {
+          if (exist)
+            //si las tiene , agrega el producto al arreglo
+            productosfiltrados.push(product);
+          if (index == products.length - 1) res.send(productosfiltrados);
+        }
+      );
+    });
+  });
 });
-
-
 
 server.get("/search/:query", (req, res) => {
   Product.findAll({
@@ -101,7 +114,6 @@ server.get("/:id", (req, res) => {
       });
     });
 });
-
 
 //Modify an especific product ---> '/products/:id'
 server.put("/:id", (req, res) => {
