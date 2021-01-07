@@ -16,7 +16,7 @@ import { st } from './store/index'
   appId: "1:898178569880:web:a82a594a657784f3d8a2ed",
   measurementId: "G-X24BS7KT37"
 }) */
-
+  
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={st}>

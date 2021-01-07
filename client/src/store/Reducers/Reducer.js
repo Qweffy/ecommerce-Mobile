@@ -8,7 +8,8 @@ const initalState = {
     name: 'Nicolas',
     lastname: 'Valencia',
     mail: 'nico@nico.com'
-  }
+  },
+  reviews: []
 }
 
 const Reducer = (state = initalState, action)=>{
@@ -22,6 +23,9 @@ const Reducer = (state = initalState, action)=>{
 
       case 'POST_SUGESTIONS':
         return { ...state, sugestions: action.payload}
+
+    case 'POST_REVIEWS':
+      return { ...state, reviews: state.reviews.concat(action.payload)}    
 
     default:
       return state
