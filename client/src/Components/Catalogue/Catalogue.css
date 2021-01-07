@@ -1,6 +1,7 @@
 .products-grid {
+    background-image:url(https://grupobmt.com/wp-content/uploads/2014/06/background-pared-1-1024x532.jpg);
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 25px;
     /* grid-auto-rows: minmax(100px, auto); */
     margin-right: 20px;
