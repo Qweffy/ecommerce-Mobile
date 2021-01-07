@@ -10,6 +10,7 @@ server.post("/", (req, res, next) => {
     processor: req.body.processor,
     screen: req.body.screen,
     ram: req.body.ram,
+    storage: req.body.storage,
     camara: req.body.description,
     frontcamara: req.body.frontcamara,
     battery: req.body.battery,

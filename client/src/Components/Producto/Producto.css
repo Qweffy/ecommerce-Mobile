@@ -18,9 +18,14 @@
   margin-top: 240px;
 }
 
-.product-content img{
-  width: 30%;
-  height: 90%;
+.info-top > img{
+  width: 65%;
+  height: 80%;
+}
+.info-top{
+  width: 35%;
+  padding: 0 20px;
+  text-align: end;
 }
 
 .product-info{
@@ -29,6 +34,7 @@
   margin: 60px 10px 140px 10px;
   color: #f2f2f2;
   margin-left: 50px;
+  align-self: flex-end;
 }
 
 .product-info .product-description h3{
@@ -37,14 +43,20 @@
   margin-bottom: 30px;
 }
 
-.product-info .product-description .product-specific-ind{
-  width: 25%;
-  margin-bottom: 20px;
-  align-items: center;
+.product-specific{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  width: 70%;
+  height: 230px;
 }
 
-.product-specific{
-  margin-bottom: 50px;
+.product-info .product-description .product-specific-ind{
+  width: 200px;
+  height: 70px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  align-items: center;
 }
 
 .product-specific-ind .svg-inline--fa{
@@ -54,6 +66,7 @@
 .product-specific-ind div{
   margin-left: 30px;
   font-weight: 500;
+  font-size: 15px;
 }
 .product-info-bot{
   width: 100%;
@@ -81,20 +94,6 @@
   height: 83%;
   margin-bottom: 10px;
   border-radius: 15px;
-  border: 1px solid rgb(131, 131, 131);
-  background-color: rgb(26, 26, 24);
-}
-
-.color .d1:hover{
-  box-shadow: 0px 0px 15px silver;
-}
-
-.color .d2:hover{
-  box-shadow: 0px 0px 15px gold;
-}
-
-.color .d3:hover{
-  box-shadow: 0px 0px 15px pink;
 }
 
 .product-price{
