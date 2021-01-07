@@ -1,6 +1,6 @@
-.producto{
+.producto {
   height: 86vh;
-  background-image: url('../../img/back.gif');
+  background-image: url("../../img/back.gif");
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
@@ -13,37 +13,37 @@
   z-index: -1;
 }
 
-.product-content{
+.product-content {
   width: 90%;
   margin-top: 240px;
 }
 
-.info-top > img{
+.info-top > img {
   width: 65%;
   height: 80%;
 }
-.info-top{
+.info-top {
   width: 35%;
   padding: 0 20px;
   text-align: end;
 }
 
-.product-info{
+.product-info {
   width: 65%;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   margin: 60px 10px 140px 10px;
   color: #f2f2f2;
   margin-left: 50px;
   align-self: flex-end;
 }
 
-.product-info .product-description h3{
+.product-info .product-description h3 {
   font-weight: 700;
   font-size: 24px;
   margin-bottom: 30px;
 }
 
-.product-specific{
+.product-specific {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 50px;
@@ -51,7 +51,7 @@
   height: 230px;
 }
 
-.product-info .product-description .product-specific-ind{
+.product-info .product-description .product-specific-ind {
   width: 200px;
   height: 70px;
   margin-right: 10px;
@@ -59,44 +59,44 @@
   align-items: center;
 }
 
-.product-specific-ind .svg-inline--fa{
+.product-specific-ind .svg-inline--fa {
   font-size: 25px;
 }
 
-.product-specific-ind div{
+.product-specific-ind div {
   margin-left: 30px;
   font-weight: 500;
   font-size: 15px;
 }
-.product-info-bot{
+.product-info-bot {
   width: 100%;
   height: 44%;
 }
 
-.cont{
+.cont {
   width: 40%;
 }
 
-.product-info-bot .product-colors{
+.product-info-bot .product-colors {
   width: 100%;
   height: 86%;
   display: flex;
   justify-content: space-around;
 }
 
-.product-colors .color{
+.product-colors .color {
   width: 110px;
   text-align: center;
 }
 
-.color div{
+.color div {
   width: 100%;
   height: 83%;
   margin-bottom: 10px;
   border-radius: 15px;
 }
 
-.product-price{
+.product-price {
   width: 60%;
   padding: 0px 50px;
 
@@ -104,15 +104,15 @@
   align-items: flex-start;
   justify-content: center;
 }
-.product-price .price{
+.product-price .price {
   margin-bottom: 20px;
 }
 
-.product-price p{
+.product-price p {
   color: #f2f2f2 !important;
 }
 
-.product-price button{
+.product-price button {
   width: 50%;
   background-color: blueviolet;
   border-radius: 520px;
