@@ -158,6 +158,7 @@ export default function CreateProduct() {
 
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
+   return (
     <div className="add-product-container">
       {/* <h3>Add new product</h3> */}
       <form onSubmit={handlerSubmnit} className='cont-prin'>
