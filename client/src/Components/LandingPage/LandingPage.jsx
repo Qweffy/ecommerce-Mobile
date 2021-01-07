@@ -19,7 +19,7 @@ const LandingPage = () => {
 
   return (
     <div>
-      <video
+      {/* <video
         autoPlay
         muted
         loop
@@ -35,7 +35,7 @@ const LandingPage = () => {
         }}
       >
         <source src={Background} type="video/mp4" />
-      </video>
+      </video> */}
       <Container className="container">
         <Row>
           <Col xs={6} className="Landing">

@@ -132,7 +132,7 @@ export default function CreateProduct() {
             .post(
               `http://localhost:4000/products/${response.data.id}/category/${cat}`
             )
-            .then(function (response) {}); //esto se asegura que se postee todo antes de recargar la pagina
+            .then(function (response) { }); //esto se asegura que se postee todo antes de recargar la pagina
         });
         selectedsugestions.map((sug) => {
           //por cada sugestion cargado lo asocia al producto
@@ -140,7 +140,7 @@ export default function CreateProduct() {
             .post(
               `http://localhost:4000/products/${response.data.id}/sugestion/${sug}`
             )
-            .then(function (response) {}); //esto se asegura que se postee todo antes de recargar la pagina
+            .then(function (response) { }); //esto se asegura que se postee todo antes de recargar la pagina
         });
         history.push("/showProducts");
       });
@@ -158,7 +158,9 @@ export default function CreateProduct() {
 
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
+   return (
     <div className="add-product-container">
+      {/* <h3>Add new product</h3> */}
       <form onSubmit={handlerSubmnit} className='cont-prin'>
         <h2>Create Product</h2>
         <div className="row100">
@@ -358,32 +360,30 @@ export default function CreateProduct() {
               <span className="line"></span>
             </div>
           </div><div className="column">
-              {products.colors.map((n, i) => (
-                <div className="inputBox spa">
-                  <input
-                    key={i}
-                    name={`color${i+1}`}
-                    
-                    id={i+1}
-                    onChange={(e) => {
-                      handleChange(e, i+1)
-                    }}
-                  />
-                  <span className="text">{`imagen ${i+1}`}</span>
-                  <span className="line"></span>
-                </div>
-              ))}
+            {products.colors.map((n, i) => (
+              <div className="inputBox spa">
+                <input
+                  key={i}
+                  name={`color${i + 1}`}
+
+                  id={i + 1}
+                  onChange={(e) => {
+                    handleChange(e, i + 1)
+                  }}
+                />
+                <span className="text">{`imagen ${i + 1}`}</span>
+                <span className="line"></span>
+              </div>
+            ))}
             <div className="column btn"
               onClick={() => {
-                var num = acum + 1;
-                setAcum(num);
+                var num = acum + 1
+                setAcum(num)
                 setProducts({
                   ...products,
-                  colors: products.colors.concat({
-                    color: `color${num}`,
-                    text: "h",
-                  }),
+                  colors: products.colors.concat({ color: `color${num}`, text: "h" }),
                 });
+
               }}
             >
               Add empty input
@@ -410,7 +410,7 @@ export default function CreateProduct() {
         </div>
         <div className="row100">
           <div className="column">
-            <input type="submit" value="Add product" className="" />
+            <input type="submit" value='Add product' className="" />
           </div>
         </div>
       </form>

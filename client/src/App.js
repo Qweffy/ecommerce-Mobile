@@ -1,4 +1,4 @@
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import CreateCategory from "./Components/CRUDcategory/CreateCategory.jsx";
 import Productos from "./Components/Productos/Productos";
@@ -25,15 +25,15 @@ import Me from "./Components/Login/App.js";
 import CreateReview from "./Components/CRUDreview/CreateReview.jsx";
 import ProductDetails from "./Components/ProductDetails/ProductDetails.js";
 function App() {
-  
+
   const dispatch = useDispatch()
-  useEffect(() => {
-    const token = window.localStorage.getItem("token")
-    if (token) {
-      const user = jwt.decode(token)
-      dispatch(actions.setUser(user))
-    }
-  },[])
+
+  const token = window.localStorage.getItem("token")
+  if (token) {
+    const user = jwt.decode(token)
+    dispatch(actions.setUser(user))
+  }
+
   return (
     <Router>
       <Route path="/" component={Navbar} />

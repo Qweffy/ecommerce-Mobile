@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
     },
     isAdmin: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true,
+      defaultValue: false,
     },
   });
   User.prototype.compare = function (pass) {
