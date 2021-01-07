@@ -1,11 +1,17 @@
 .add-product-container {
-    margin-right: 80px;
-    margin-left: 80px;
-    margin-top: 40px;
+  margin-right: 80px;
+  margin-left: 80px;
+  margin-top: 40px;
 }
 
 .add-product-btn {
-    width: 500px;
-    margin: 0 auto;
-    display: block;
+  width: 500px;
+  margin: 0 auto;
+  display: block;
+}
+input {
+  color: black;
+}
+label {
+  color: black !important;
 }

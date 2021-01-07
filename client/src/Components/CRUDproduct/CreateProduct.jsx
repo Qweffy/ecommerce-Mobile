@@ -21,7 +21,7 @@ export default function CreateProduct() {
     price: "",
     stock: "",
     img: "",
-    colors: []
+    colors: [],
   });
 
   const [categories, setcategory] = useState([]);
@@ -97,11 +97,11 @@ export default function CreateProduct() {
   }
 
   function handleChange(e, i) {
-    if(e.target.name === `color${i}`){
-      console.log('estoy en if 1')
-      var newArr = [...products.colors]
-      for(var i = 0; i < newArr.length; i++){
-        if(newArr[i].color === e.target.name){
+    if (e.target.name === `color${i}`) {
+      console.log("estoy en if 1");
+      var newArr = [...products.colors];
+      for (var i = 0; i < newArr.length; i++) {
+        if (newArr[i].color === e.target.name) {
           newArr[i].text = e.target.value;
         }
       }
@@ -110,9 +110,7 @@ export default function CreateProduct() {
         colors: newArr,
       });
       console.log(newArr);
-
-    } 
-    else {
+    } else {
       setProducts({
         ...products,
         [e.target.name]: e.target.value,
@@ -122,7 +120,7 @@ export default function CreateProduct() {
 
   function handlerSubmnit(e) {
     e.preventDefault();
-    console.log(products.colors)
+    console.log(products.colors);
     axios
       .post("http://localhost:4000/products/", products)
       .then(function (response) {
@@ -376,24 +374,25 @@ export default function CreateProduct() {
           {products.colors.map((n, i) => (
             <input
               key={i}
-              name={`color${i+1}`}
-              
-              id={i+1}
+              name={`color${i + 1}`}
+              id={i + 1}
               onChange={(e) => {
-                handleChange(e, i+1)
+                handleChange(e, i + 1);
               }}
             />
           ))}
         </div>
         <button
           onClick={() => {
-            var num = acum + 1
-            setAcum(num)
+            var num = acum + 1;
+            setAcum(num);
             setProducts({
               ...products,
-              colors: products.colors.concat({ color: `color${num}`, text: "h" }),
+              colors: products.colors.concat({
+                color: `color${num}`,
+                text: "h",
+              }),
             });
-            
           }}
         >
           Add empty input
