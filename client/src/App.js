@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import CreateCategory from "./Components/CRUDcategory/CreateCategory.jsx";
 import Productos from "./Components/Productos/Productos";
@@ -16,11 +16,28 @@ import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import Sugestions from "./Components/LandingPage/Sugestions.jsx";
 import cartInvite from "./Components/cart/cartInvite.jsx";
+import actions from "./store/Actions/authactions";
+import { Provider, useDispatch } from "react-redux";
+import jwt from "jsonwebtoken";
+import SignUp from "./Components/Login/SignUp.js";
+import SignIn from "./Components/Login/SignIn.js";
+import Me from "./Components/Login/App.js";
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const token = window.localStorage.getItem("token")
+    if (token) {
+      const user = jwt.decode(token)
+      dispatch(actions.setUser(user))
+    }
+  },[])
   return (
     <Router>
       <Route path="/" component={Navbar} />
+      <Route path="/login" component={SignIn} />
+      <Route path="/register" component={SignUp} />
+      <Route path="/me" component={Me} />
       <Route exact path="/" component={LandingPage} />
       <Route exact path="/showProducts" component={Productos} />
       <Route exact path="/showCategories" component={Categorys} />
