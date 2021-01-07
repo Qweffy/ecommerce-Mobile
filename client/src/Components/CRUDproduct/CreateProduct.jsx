@@ -159,8 +159,7 @@ export default function CreateProduct() {
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
     <div className="add-product-container">
-      {/* <h3>Add new product</h3> */}
-      <form onSubmit={handlerSubmnit} className="cont-prin">
+      <form onSubmit={handlerSubmnit} className='cont-prin'>
         <h2>Create Product</h2>
         <div className="row100">
           <div className="column">
@@ -358,24 +357,23 @@ export default function CreateProduct() {
               <span className="text">Product img</span>
               <span className="line"></span>
             </div>
-          </div>
-          <div className="column">
-            {products.colors.map((n, i) => (
-              <div className="inputBox spa">
-                <input
-                  key={i}
-                  name={`color${i + 1}`}
-                  id={i + 1}
-                  onChange={(e) => {
-                    handleChange(e, i + 1);
-                  }}
-                />
-                <span className="text">{`imagen ${i + 1}`}</span>
-                <span className="line"></span>
-              </div>
-            ))}
-            <div
-              className="column btn"
+          </div><div className="column">
+              {products.colors.map((n, i) => (
+                <div className="inputBox spa">
+                  <input
+                    key={i}
+                    name={`color${i+1}`}
+                    
+                    id={i+1}
+                    onChange={(e) => {
+                      handleChange(e, i+1)
+                    }}
+                  />
+                  <span className="text">{`imagen ${i+1}`}</span>
+                  <span className="line"></span>
+                </div>
+              ))}
+            <div className="column btn"
               onClick={() => {
                 var num = acum + 1;
                 setAcum(num);
