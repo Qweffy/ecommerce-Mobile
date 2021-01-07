@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 /* import firebase from 'firebase'; */
 import { Provider } from 'react-redux'
-
+import "rsuite/dist/styles/rsuite-default.css";
 
 import App from './App';
 import { st } from './store/index'
@@ -16,7 +16,7 @@ import { st } from './store/index'
   appId: "1:898178569880:web:a82a594a657784f3d8a2ed",
   measurementId: "G-X24BS7KT37"
 }) */
-
+  
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={st}>
