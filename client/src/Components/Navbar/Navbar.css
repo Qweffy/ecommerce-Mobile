@@ -11,3 +11,7 @@
 .infonav a {
   font-family: "Roboto" !important;
 }
+
+.align {
+  justify-content: right;
+}
