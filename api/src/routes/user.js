@@ -1,49 +1,48 @@
 const server = require("express").Router();
 const { User } = require("../db.js");
-// const { Op } = require("sequelize");
 
-server.post("/create", (req, res) => {
-  const { name, lastname, mail, password } = req.body;
-  User.create({ name, lastname, mail, password })
-    .then((data) => {
-      res.status(201).json({
-        mensaje: "USER OK",
-        data: data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json({
-        mensaje: "USER NOT OK",
-        data: err,
-      });
-    });
+server.get("/", async (req, res, next) => {
+  try {
+
+    //if (req.user?.isAdmin) {
+      const result = await User.findAll();
+      res.json(result);
+    //else {
+      //res.sendStatus(401);;
+    //}
+  } catch (error) {
+    next(error);
+  }
+});
+server.get("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await User.findByPk(id);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+});
+server.post("/", async (req, res, next) => {
+  try {
+    const result = await User.create(req.body);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
 });
 
-server.get("/all", (req, res) => {
-  User.findAll()
-    .then((users) => {
-      res.send(users);
-    })
-    .catch((err) => {
-      res.status(400).json({
-        mensaje: "No hay usuarios",
-        data: err,
-      });
-    });
-});
-
-server.put("/modify/:id", (req, res) => {
+server.put("/:id", (req, res) => {
   const { id } = req.params;
   //del body sacamos los datos que queremos modificar
-  const { name, lastname, mail } = req.body;
+  const { givenName, familyName, email } = req.body;
 
   return User.findOne({ where: { id } })
     .then((product) => {
       //pisamos las propiedades del producto que encontramos
-      product.name = name;
-      product.lastname = lastname;
-      product.mail = mail;
+      product.givenName = givenName;
+      product.familyName = familyName;
+      product.email = email;
       product.save();
       res.status(200).json({ mensaje: "Se modifico con exito", data: product });
     })
@@ -54,7 +53,7 @@ server.put("/modify/:id", (req, res) => {
     });
 });
 
-server.delete("/delete/:id", (req, res) => {
+server.delete("/:id", (req, res) => {
   const { id } = req.params;
 
   return User.findOne({ where: { id } })
@@ -67,30 +66,6 @@ server.delete("/delete/:id", (req, res) => {
     })
     .catch((err) => {
       res.status(400).json({ mensaje: "IMPOSIBLE DELETE USER", data: err });
-    });
-});
-
-server.get("/:id/orders", (req, res) => {
-  let { id } = req.params;
-
-  // Find user WHERE id: id, JOIN Order ON user.id = order.user_id
-  User.findOne({
-    where: { id },
-    include: {
-      model: Order,
-    },
-  })
-    .then((userOrders) => {
-      res.json({
-        message: "Peticion exitosa",
-        data: userOrders,
-      });
-    })
-    .catch((err) => {
-      res.json({
-        messaje: "Error",
-        data: err,
-      });
     });
 });
 

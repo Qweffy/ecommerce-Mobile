@@ -5,10 +5,12 @@ import "./CreateUser.css";
 
 export default function CreateUser() {
   const [user, setUser] = useState({
-    name: "",
-    lastname: "",
-    mail: "",
+    givenName: "",
+    familyName: "",
+    email: "",
     password: "",
+    googleId:"",
+    photoURL:"",
   });
 
   const history = useHistory();
@@ -22,8 +24,8 @@ export default function CreateUser() {
 
   function handlerSubmit(e) {
     e.preventDefault();
-    axios.post("http://localhost:4000/user/create", user).then((res) => {
-      history.push("/userlist");
+    axios.post("http://localhost:4000/user", user).then((res) => {
+      history.push("/");
       // modificar despues, llevar al login
     });
   }
@@ -41,8 +43,8 @@ export default function CreateUser() {
               onChange={(e) => {
                 handleChange(e);
               }}
-              name="name"
-              value={user.name}
+              name="givenName"
+              value={user.givenName}
               type="text"
               required
             />
@@ -57,7 +59,7 @@ export default function CreateUser() {
               onChange={(e) => {
                 handleChange(e);
               }}
-              name="lastname"
+              name="familyName"
               type="text"
               required
             />
@@ -72,8 +74,8 @@ export default function CreateUser() {
               onChange={(e) => {
                 handleChange(e);
               }}
-              name="mail"
-              value={user.mail}
+              name="email"
+              value={user.email}
               type="text"
               required
             />

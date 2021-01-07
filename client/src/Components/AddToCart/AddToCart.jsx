@@ -4,7 +4,7 @@ import "./AddToCart.css";
 import axios from "axios";
 
 const AddToCart = (props) => {
-  const user = useSelector((state) => state.Reducer.user);
+  const { user } = useSelector((state) => state.auth);
 
   function addToCart(id) {
     axios
