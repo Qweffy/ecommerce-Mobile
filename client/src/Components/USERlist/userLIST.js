@@ -6,9 +6,9 @@ import axios from "axios";
 const UserLIST = () => {
   const [selectUser, setSelectUser] = useState({
     id: "",
-    name: "",
-    lastname: "",
-    mail: "",
+    givenNamename: "",
+    familyNamename: "",
+    email: "",
   });
 
   const [allProducts, setAllProducts] = useState([]);
@@ -35,14 +35,14 @@ const UserLIST = () => {
   }
 
   async function getProducts() {
-    var funcGet = await axios.get("http://localhost:4000/user/all");
+    var funcGet = await axios.get("http://localhost:4000/user/");
     setAllProducts(funcGet.data);
   }
 
   function handlerEdit(e) {
     e.preventDefault();
     axios
-      .put(`http://localhost:4000/user/modify/${selectUser.id}`, selectUser)
+      .put(`http://localhost:4000/user/${selectUser.id}`, selectUser)
       .then((res) => {
         var prod = allProducts.findIndex(
           (product) => product.id === res.data.data.id
@@ -53,7 +53,7 @@ const UserLIST = () => {
   }
 
   function handlerDelete(id) {
-    axios.delete(`http://localhost:4000/user/delete/${id}`).then((res) => {
+    axios.delete(`http://localhost:4000/user/${id}`).then((res) => {
       var news = allProducts.filter((elemt) => elemt.id !== res.data.data.id);
       setAllProducts(news);
     });
@@ -86,7 +86,7 @@ const UserLIST = () => {
             </thead>
             <tbody>
               {allProducts.map((producto, index) => {
-                const { id, name, lastname, mail } = producto;
+                const { id, givenName, familyName, email } = producto;
                 return (
                   <tr className="text-center" key={index}>
                     <td className=" d-flex justify-content-between">
@@ -106,9 +106,9 @@ const UserLIST = () => {
                       </button>
                     </td>
                     <td>{id}</td>
-                    <td>{name}</td>
-                    <td>{lastname}</td>
-                    <td>{mail}</td>
+                    <td>{givenName}</td>
+                    <td>{familyName}</td>
+                    <td>{email}</td>
                   </tr>
                 );
               })}
@@ -139,11 +139,11 @@ const UserLIST = () => {
               <div className="col-sm-10">
                 <input
                   className="form-control"
-                  value={selectUser.name}
+                  value={selectUser.givenName}
                   onChange={(e) => {
                     handleChange(e);
                   }}
-                  name="name"
+                  name="givenName"
                   type="text"
                   required
                 />
@@ -154,11 +154,11 @@ const UserLIST = () => {
               <div className="col-sm-10">
                 <input
                   className="form-control"
-                  value={selectUser.lastname}
+                  value={selectUser.familyName}
                   onChange={(e) => {
                     handleChange(e);
                   }}
-                  name="lastname"
+                  name="familyName"
                   type="text"
                   required
                 />
@@ -169,11 +169,11 @@ const UserLIST = () => {
               <div className="col-sm-10">
                 <input
                   className="form-control"
-                  value={selectUser.mail}
+                  value={selectUser.email}
                   onChange={(e) => {
                     handleChange(e);
                   }}
-                  name="mail"
+                  name="email"
                   type="mail"
                   required
                 />
