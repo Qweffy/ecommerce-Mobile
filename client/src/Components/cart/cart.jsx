@@ -16,14 +16,21 @@ console.log(user);
 
 //  const [usercart , setusercart] = useState({});
   const [allTotal, setAllTotal] = useState(cart.price);
-  const { products, id } = cart; //se trae los productos y el id de la orden
-//setusercart(user);
+
+  const modAllTotal = (f) => { setAllTotal(f(allTotal)) };
+  const { products, id } = cart; //se trae los productos y el id de la orden */
 
 
   useEffect(() => {
 
     getOrders();
   }, [user]);
+
+  useEffect(() => {
+    setAllTotal(cart.price);
+    console.log(cart, "hola");
+  }, [cart]);
+  console.log("algo");
 
   async function getOrders() {
     //trae los productos de la orden carrito
@@ -58,8 +65,8 @@ console.log(user);
                   <ItemCart
                     key={index}
                     setCart={setCart}
-                    allTotal={allTotal}
-                    setAllTotal={setAllTotal}
+                    /* allTotal={allTotal} */
+                    modAllTotal={modAllTotal}
                     product={product}
                     idorder={id}
                   />

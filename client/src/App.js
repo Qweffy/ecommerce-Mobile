@@ -22,7 +22,10 @@ import jwt from "jsonwebtoken";
 import SignUp from "./Components/Login/SignUp.js";
 import SignIn from "./Components/Login/SignIn.js";
 import Me from "./Components/Login/App.js";
+import CreateReview from "./Components/CRUDreview/CreateReview.jsx";
+import ProductDetails from "./Components/ProductDetails/ProductDetails.js";
 function App() {
+  
   const dispatch = useDispatch()
   useEffect(() => {
     const token = window.localStorage.getItem("token")
@@ -53,6 +56,7 @@ function App() {
       <Route exact path="/orders/:id" component={Order} />
       <Route exact path="/createsugestion" component={CreateSugestion} />
       <Route exact path="/prueba" component={Sugestions} />
+      <Route exact path="/createreview" component={CreateReview} />
     </Router>
   );
 }
