@@ -4,12 +4,12 @@ import axios from "axios";
 
 import "./ItemCart.css";
 
-const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
+const ItemCart = ({ product, idorder, setCart, modAllTotal }) => {
   const { id, order_line, stock } = product;
   const [acum, setAcum] = useState(order_line.count);
-  const [totalItem, setTotalItem] = useState(order_line.price);
+  const [totalItem, setTotalItem] = useState(product.price * order_line.count);
   const user = useSelector((state) => state.Reducer.user);
-
+  console.log(product,"chau");
   useEffect(() => {
     if (!isNaN(acum)) {
       axios
@@ -18,12 +18,14 @@ const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
           acum: acum,
         })
         .then((res) => {
-          setAllTotal(res.data.order.price);
+          console.log(res.data.order,"orden")
+          modAllTotal((total) => res.data.order.price);
+        /*   setCart(res.data.order); */
         });
     }
   }, [acum]);
 
-  function deleteProduct(idorder) {
+  function deleteProduct() {
     axios
       .delete(`http://localhost:4000/orders/cart/${idorder}/${id}`)
       .then((res) => {
@@ -31,25 +33,27 @@ const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
       });
   }
 
-  function minAcum() {
-    var change = parseInt(acum) - 1;
-    if (change <= 0) {
+  function decAcum() {
+    var newAcum = acum - 1;
+    if (newAcum <= 0) {
       console.log("Valor erroneo");
     } else {
-      var total = product.price * change;
-      setAcum(change);
-      setTotalItem(total);
-    }
+      /* var total = product.price * change; */
+      setAcum(newAcum);
+      setTotalItem(product.price * newAcum);
+      modAllTotal((total) => total - product.price);
+    };
   }
 
-  function maxAcum() {
-    var change = parseInt(acum) + 1;
-    if (change > product.stock) {
+  function incAcum() {
+    var newAcum = acum + 1;
+    if (newAcum > product.stock) {
       console.log("no hay unidades disponibles ");
     } else {
-      var total = product.price * change;
-      setAcum(change);
-      setTotalItem(total);
+      /* var total = product.price * newAcum; */
+      setAcum(newAcum);
+      setTotalItem(product.price * newAcum);
+      modAllTotal((total) => total + product.price);
     }
   }
 
@@ -76,7 +80,7 @@ const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
         <p>$ {product.price}</p>
       </td>
       <td className="text-gen">
-        <button className="less-cart" onClick={minAcum}>
+        <button className="less-cart" onClick={decAcum}>
           -
         </button>
         <input
@@ -85,7 +89,7 @@ const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
           type="number"
           value={acum}
         />
-        <button className="more-cart" onClick={maxAcum}>
+        <button className="more-cart" onClick={incAcum}>
           +
         </button>
       </td>
@@ -93,7 +97,7 @@ const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
       <td className="text-gen">$ {isNaN(totalItem) ? 0 : totalItem}</td>
       <td>
         <button
-          onClick={() => deleteProduct(idorder)}
+          onClick={deleteProduct}
           type="button"
           className="btn btn-danger"
         >

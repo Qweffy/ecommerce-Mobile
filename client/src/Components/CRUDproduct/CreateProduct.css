@@ -1,4 +1,4 @@
-.add-product-container{
+.add-product-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,12 +6,12 @@
   background: #03080a;
 }
 
-.cont-prin{
+.cont-prin {
   width: 80%;
   padding: 20px;
 }
 
-.cont-prin h2{
+.cont-prin h2 {
   width: 100%;
   color: #45f3ff !important;
   font-size: 36px;
@@ -19,15 +19,14 @@
   margin-bottom: 10px;
 }
 
-.cont-prin .row100{
+.cont-prin .row100 {
   position: relative;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(autofit, minmax(300px, 1fr));
-
 }
 
-.cont-prin .row100 .column{
+.cont-prin .row100 .column {
   position: relative;
   width: 100%;
   padding: 0 10px;
@@ -35,22 +34,22 @@
   transition: 0.5s;
 }
 
-.cont-prin .row100 .inputBox{
+.cont-prin .row100 .inputBox {
   position: relative;
   width: 100%;
   height: 40px;
   color: #45f3ff !important;
 }
 
-.cont-prin .row100 .spa{
+.cont-prin .row100 .spa {
   margin-bottom: 30px;
 }
 
-span{
+span {
   color: #45f3ff !important;
 }
 
-.cont-prin .row100 .inputBox input{
+.cont-prin .row100 .inputBox input {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -64,7 +63,7 @@ span{
   color: #000 !important;
 }
 
-.cont-prin .row100 .inputBox .text{
+.cont-prin .row100 .inputBox .text {
   position: absolute;
   top: 0;
   left: 0;
@@ -77,12 +76,12 @@ span{
 }
 
 .cont-prin .row100 .inputBox input:focus + .text,
-.cont-prin .row100 .inputBox input:valid + .text{
+.cont-prin .row100 .inputBox input:valid + .text {
   top: -35px;
   left: -10px;
 }
 
-.cont-prin .row100 .inputBox .line{
+.cont-prin .row100 .inputBox .line {
   position: absolute;
   bottom: 0;
   display: block;
@@ -95,12 +94,12 @@ span{
 }
 
 .cont-prin .row100 .inputBox input:focus ~ .line,
-.cont-prin .row100 .inputBox input:valid ~ .line{
+.cont-prin .row100 .inputBox input:valid ~ .line {
   height: 100%;
 }
 
 .cont-prin input[type="submit"],
-.row100 .btn{
+.row100 .btn {
   border: none;
   padding: 7px 35px;
   cursor: pointer;
@@ -111,11 +110,11 @@ span{
   border-radius: 2px;
 }
 
-.btn{
+.btn {
   width: 20% !important;
 }
 
-.form-group label{
+.form-group label {
   color: #45f3ff !important;
   align-self: center;
 }

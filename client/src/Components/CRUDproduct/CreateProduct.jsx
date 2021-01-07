@@ -22,7 +22,7 @@ export default function CreateProduct() {
     price: "",
     stock: "",
     img: "",
-    colors: []
+    colors: [],
   });
 
   const [categories, setcategory] = useState([]);
@@ -98,11 +98,11 @@ export default function CreateProduct() {
   }
 
   function handleChange(e, i) {
-    if(e.target.name === `color${i}`){
-      console.log('estoy en if 1')
-      var newArr = [...products.colors]
-      for(var i = 0; i < newArr.length; i++){
-        if(newArr[i].color === e.target.name){
+    if (e.target.name === `color${i}`) {
+      console.log("estoy en if 1");
+      var newArr = [...products.colors];
+      for (var i = 0; i < newArr.length; i++) {
+        if (newArr[i].color === e.target.name) {
           newArr[i].text = e.target.value;
         }
       }
@@ -111,9 +111,7 @@ export default function CreateProduct() {
         colors: newArr,
       });
       console.log(newArr);
-
-    } 
-    else {
+    } else {
       setProducts({
         ...products,
         [e.target.name]: e.target.value,
@@ -123,7 +121,7 @@ export default function CreateProduct() {
 
   function handlerSubmnit(e) {
     e.preventDefault();
-    console.log(products.colors)
+    console.log(products.colors);
     axios
       .post("http://localhost:4000/products/", products)
       .then(function (response) {
@@ -161,7 +159,6 @@ export default function CreateProduct() {
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
     <div className="add-product-container">
-      {/* <h3>Add new product</h3> */}
       <form onSubmit={handlerSubmnit} className='cont-prin'>
         <h2>Create Product</h2>
         <div className="row100">
@@ -360,8 +357,7 @@ export default function CreateProduct() {
               <span className="text">Product img</span>
               <span className="line"></span>
             </div>
-          </div>
-          <div className="column">
+          </div><div className="column">
               {products.colors.map((n, i) => (
                 <div className="inputBox spa">
                   <input
@@ -379,13 +375,15 @@ export default function CreateProduct() {
               ))}
             <div className="column btn"
               onClick={() => {
-                var num = acum + 1
-                setAcum(num)
+                var num = acum + 1;
+                setAcum(num);
                 setProducts({
                   ...products,
-                  colors: products.colors.concat({ color: `color${num}`, text: "h" }),
+                  colors: products.colors.concat({
+                    color: `color${num}`,
+                    text: "h",
+                  }),
                 });
-                
               }}
             >
               Add empty input
@@ -412,7 +410,7 @@ export default function CreateProduct() {
         </div>
         <div className="row100">
           <div className="column">
-            <input type="submit" value='Add product' className="" />
+            <input type="submit" value="Add product" className="" />
           </div>
         </div>
       </form>

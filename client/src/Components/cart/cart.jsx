@@ -6,26 +6,40 @@ import axios from "axios";
 import "./cart.css";
 
 const Cart = () => {
-  const user = useSelector((state) => state.Reducer.user);
-
+  const user = useSelector((state) => state.auth.user);
+console.log(user);
   const [cart, setCart] = useState({
     id: 1,
     price: 0,
     products: [],
   });
+
+//  const [usercart , setusercart] = useState({});
   const [allTotal, setAllTotal] = useState(cart.price);
-  const { products, id } = cart; //se trae los productos y el id de la orden
+
+  const modAllTotal = (f) => { setAllTotal(f(allTotal)) };
+  const { products, id } = cart; //se trae los productos y el id de la orden */
+
 
   useEffect(() => {
+
     getOrders();
-  }, []);
+  }, [user]);
+
+  useEffect(() => {
+    setAllTotal(cart.price);
+    console.log(cart, "hola");
+  }, [cart]);
+  console.log("algo");
 
   async function getOrders() {
     //trae los productos de la orden carrito
+    if(user){
     let response = await axios.get(
       `http://localhost:4000/orders/cart/${user.id}`
     );
     setCart(response.data.data);
+}
   }
 
   return (
@@ -51,8 +65,8 @@ const Cart = () => {
                   <ItemCart
                     key={index}
                     setCart={setCart}
-                    allTotal={allTotal}
-                    setAllTotal={setAllTotal}
+                    /* allTotal={allTotal} */
+                    modAllTotal={modAllTotal}
                     product={product}
                     idorder={id}
                   />
