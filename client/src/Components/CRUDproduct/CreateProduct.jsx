@@ -160,7 +160,7 @@ export default function CreateProduct() {
   return (
     <div className="add-product-container">
       {/* <h3>Add new product</h3> */}
-      <form onSubmit={handlerSubmnit} className='cont-prin'>
+      <form onSubmit={handlerSubmnit} className="cont-prin">
         <h2>Create Product</h2>
         <div className="row100">
           <div className="column">
@@ -359,70 +359,39 @@ export default function CreateProduct() {
               <span className="line"></span>
             </div>
           </div>
-<<<<<<< HEAD
-        </div>
-        <div className="form-group row">
-          {products.colors.map((n, i) => (
-            <input
-              key={i}
-              name={`color${i + 1}`}
-              id={i + 1}
-              onChange={(e) => {
-                handleChange(e, i + 1);
-=======
           <div className="column">
-              {products.colors.map((n, i) => (
-                <div className="inputBox spa">
-                  <input
-                    key={i}
-                    name={`color${i+1}`}
-                    
-                    id={i+1}
-                    onChange={(e) => {
-                      handleChange(e, i+1)
-                    }}
-                  />
-                  <span className="text">{`imagen ${i+1}`}</span>
-                  <span className="line"></span>
-                </div>
-              ))}
-            <div className="column btn"
+            {products.colors.map((n, i) => (
+              <div className="inputBox spa">
+                <input
+                  key={i}
+                  name={`color${i + 1}`}
+                  id={i + 1}
+                  onChange={(e) => {
+                    handleChange(e, i + 1);
+                  }}
+                />
+                <span className="text">{`imagen ${i + 1}`}</span>
+                <span className="line"></span>
+              </div>
+            ))}
+            <div
+              className="column btn"
               onClick={() => {
-                var num = acum + 1
-                setAcum(num)
+                var num = acum + 1;
+                setAcum(num);
                 setProducts({
                   ...products,
-                  colors: products.colors.concat({ color: `color${num}`, text: "h" }),
+                  colors: products.colors.concat({
+                    color: `color${num}`,
+                    text: "h",
+                  }),
                 });
-                
->>>>>>> cff4a475f1ac3037690ad802fcb5b1bc7a7b9328
               }}
             >
               Add empty input
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-        <button
-          onClick={() => {
-            var num = acum + 1;
-            setAcum(num);
-            setProducts({
-              ...products,
-              colors: products.colors.concat({
-                color: `color${num}`,
-                text: "h",
-              }),
-            });
-          }}
-        >
-          Add empty input
-        </button>
-        <p>
-          <small>current state is shown in console</small>
-        </p>
-=======
->>>>>>> cff4a475f1ac3037690ad802fcb5b1bc7a7b9328
         <div className="form-group row">
           <hr />
           <label className="col-sm-2 col-form-label">Product categories</label>
@@ -443,7 +412,7 @@ export default function CreateProduct() {
         </div>
         <div className="row100">
           <div className="column">
-            <input type="submit" value='Add product' className="" />
+            <input type="submit" value="Add product" className="" />
           </div>
         </div>
       </form>
