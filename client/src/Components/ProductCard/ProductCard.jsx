@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 
 const ProductCard = ({ product }) => {
     const { name, price, img, id, stock, ram, storage, camara } = product;
-      const { user } = useSelector((state) => state.auth);
+    const { user } = useSelector((state) => state.auth);
     let btnDisabled = false;
 
     if (stock === 0) btnDisabled = true;
