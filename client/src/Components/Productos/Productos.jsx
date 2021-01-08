@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./Productos.css";
 
 const Productos = () => {
   const [selectProduct, setSelectProduct] = useState({
@@ -121,7 +122,7 @@ const Productos = () => {
         </div>
       </div>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal className='modal-s' show={show} onHide={handleClose}>
         <Modal.Header>
           <Modal.Title>Edit product</Modal.Title>
         </Modal.Header>
