@@ -66,9 +66,9 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true
     },
-    averageRating: {
-      type: DataTypes.FLOAT,
-      defaultValue: 0
-    }
+    // averageRating: {
+    //   type: DataTypes.FLOAT,
+    //   defaultValue: 0
+    // }
   });
 };
