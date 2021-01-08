@@ -1,5 +1,5 @@
 .product-img {
-    max-height: 150px;
+    max-height: 250px;
     display: block;
     margin: auto;
 }
@@ -13,18 +13,22 @@
 .product-card {
     height: 280px;
     width: 350px;
+    margin: 0;
     background-color: rgb(255, 255, 255, 0.15);
     /* border: 1px solid silver; */
     border-radius: 8px;
     box-shadow: 0 2px 1px 0 rgba(64,64,64,.15);
 }
 
+.product-details {
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 a {
     text-decoration: none;
     font-family: open sans,sans-serif;
     color: #404040;
-}
-
-.product-price {
-    color: #f80;
 }
