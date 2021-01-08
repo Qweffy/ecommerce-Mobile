@@ -6,12 +6,32 @@ import {
     faChartPie,
     faMicrochip,
 } from "@fortawesome/free-solid-svg-icons";
+import AddToCart from "../AddToCart/AddToCart.jsx"
+import AddToCartInvite from "../AddToCart/AddToCartInvite.jsx"
+import { useSelector } from "react-redux";
 
 const ProductCard = ({ product }) => {
     const { name, price, img, id, stock, ram, storage, camara } = product;
+      const { user } = useSelector((state) => state.auth);
     let btnDisabled = false;
 
     if (stock === 0) btnDisabled = true;
+
+    function renderaddtocartinvite(){
+      return (
+        <div>
+        <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
+        </div>
+      )
+    }
+
+    function renderaddtocartuser(){
+      return (
+        <div>
+        <AddToCart id={id} btnDisabled={btnDisabled}/>
+        </div>
+      )
+    }
 
     return (
         <div className="product-card pb-2 pt-3 px-1 d-flex">
@@ -46,7 +66,8 @@ const ProductCard = ({ product }) => {
                     </div>
                 </div>
                 <h3 className="mx-1 mt-4"><strong>${price}</strong></h3>
-            </div>            
+            </div>
+            {user===undefined? renderaddtocartinvite() : renderaddtocartuser()}
         </div>
     );
 }
@@ -55,7 +76,7 @@ const ProductCard = ({ product }) => {
 
 {/* <div className="mx-1 my-0">
     <AddToCart id={id} btnDisabled={btnDisabled}/>
-    <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />  
+    <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
 </div> */}
 
 export default ProductCard;
