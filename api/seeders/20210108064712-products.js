@@ -54,6 +54,11 @@ module.exports = {
         price: "599",
         stock: "23",
         img: "https://i.ibb.co/xzys7kJ/GALAXY-S20-PNG.png",
+        colors: [
+          `{ "color": "color1", "text": " https://i.ibb.co/rc8D9D3/BLUE-PNG.png" }`,
+          `{ "color": "color2", "text": " https://i.ibb.co/tLs2KCT/PINK-PNG.png" }`,
+          `{ "color": "color3", "text": " https://i.ibb.co/Dbd50Rb/RED-PNG.png" }`,
+        ],
         createdAt: new Date(),
         updatedAt: new Date(),
       },
