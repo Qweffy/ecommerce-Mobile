@@ -3,12 +3,14 @@ import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+
 const UserLIST = () => {
   const [selectUser, setSelectUser] = useState({
     id: "",
     givenNamename: "",
     familyNamename: "",
     email: "",
+    isAdmin: false
   });
 
   const [allProducts, setAllProducts] = useState([]);
@@ -48,6 +50,7 @@ const UserLIST = () => {
           (product) => product.id === res.data.data.id
         );
         allProducts[prod] = res.data.data;
+        
         handleClose();
       });
   }
@@ -57,6 +60,14 @@ const UserLIST = () => {
       var news = allProducts.filter((elemt) => elemt.id !== res.data.data.id);
       setAllProducts(news);
     });
+  }
+
+  function handleAdmin(id) {
+    axios.put(`http://localhost:4000/auth/promote/${id}`).then((res)=>{
+      var admin = res.isAdmin
+      console.log(admin)
+      setSelectUser(admin);
+    })
   }
 
   return (
@@ -98,7 +109,7 @@ const UserLIST = () => {
                         <i className="far fa-edit"></i>
                       </button>
                       <button
-                        onClick={() => handlerDelete(id)}
+                        onClick={() => handlerDelete(selectUser.id)}
                         type="button"
                         className="btn btn-danger"
                       >
@@ -139,51 +150,46 @@ const UserLIST = () => {
               <div className="col-sm-10">
                 <input
                   className="form-control"
-                  value={selectUser.givenName}
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
+                  placeholder={selectUser.givenName}
                   name="givenName"
                   type="text"
-                  required
+                  readOnly
                 />
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Description</label>
+              <label className="col-sm-2 col-form-label">Last name</label>
               <div className="col-sm-10">
                 <input
                   className="form-control"
-                  value={selectUser.familyName}
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                  name="familyName"
+                  placeholder={selectUser.familyName}
+                  name="givenName"
                   type="text"
-                  required
+                  readOnly
                 />
               </div>
             </div>
-            <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Price</label>
-              <div className="col-sm-10">
-                <input
-                  className="form-control"
-                  value={selectUser.email}
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
-                  name="email"
-                  type="mail"
-                  required
-                />
-              </div>
+            <div class="form-check form-switch form-group row">
+              <label class="form-check-label" for="flexSwitchCheckDefault">Admin</label>
+              {
+                selectUser.isAdmin
+                  ? <input class="form-check-input"
+                    type="checkbox"
+                    id="flexSwitchCheckDefault"
+                   /*  onChange={handleAdmin} */ 
+                   checked />
+                  : <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="flexSwitchCheckDefault"
+                    onChange={handleAdmin} />
+              }
             </div>
 
             <button onClick={handleClose} className="btn btn-secondary mb-2">
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary mb-2">
+            <button /* onChange={handleAdmin} */ type="submit" className="btn btn-primary mb-2">
               Edit
             </button>
           </form>

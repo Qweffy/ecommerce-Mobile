@@ -47,14 +47,13 @@ server.post("/login", function (req, res, next) {
 
 server.put('/promote/:id', (req, res) => {
   const { id } = req.params;
-  const { bool } = req.body
   User.findOne({ where: { id } })
     .then((user) => {
-      if (bool === true) {
-        user.isAdmin = true;
+      if (user.isAdmin) {
+        user.isAdmin = false;
         user.save();
       } else {
-        user.isAdmin = false;
+        user.isAdmin = true;
         user.save();
       }
       res.status(200).json({ mensaje: "Se modifico con exito", data: user });
