@@ -47,23 +47,7 @@ const Catalogue = (props) => {
 
   return (
     <div className="m-4">
-      <video
-        autoPlay
-        muted
-        loop
-        style={{
-          position: "absolute",
-          width: "100%",
-          left: "50%",
-          top: "50%",
-          height: "100%",
-          objectFit: "cover",
-          transform: "translate(-50%, -50%)",
-          zIndex: "-1",
-        }}
-      >
-        <source src={Background} type="video/mp4" />
-      </video>
+  
       <div className="d-flex">
         <div className="m-5">
           <CategoryCard
@@ -86,4 +70,3 @@ const Catalogue = (props) => {
 };
 
 export default Catalogue;
-
