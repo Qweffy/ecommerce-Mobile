@@ -14,32 +14,38 @@ const ProductCard = ({ product }) => {
     if (stock === 0) btnDisabled = true;
 
     return (
-        <div className="product-card pb-2 pt-3 px-1 m-3 d-flex">
+        <div className="product-card pb-2 pt-3 px-1 d-flex">
             <img src={img} alt="img not found" className="product-img mx-0" />
             <div className="product-info p-2 justify-content-between mx-1 mt-1">
                 <h4>{name}</h4>
-                <div className="d-flex m-2">
-                    <FontAwesomeIcon icon={faCamera} />
+                <div className="d-flex mx-1 my-2">
+                    <div className="d-flex align-self-center">
+                        <FontAwesomeIcon icon={faCamera} />
+                    </div>
                     <div>
-                        <p className="my-0 mx-2">{camara}</p>
-                        <p className="my-0 mx-2">Camera</p>   
+                        <p className="product-details">{camara}</p>
+                        <p className="product-details">Camera</p>   
                     </div>
                 </div>
-                <div className="d-flex m-2">
-                    <FontAwesomeIcon icon={faChartPie} />
+                <div className="d-flex mx-1 my-2">
+                    <div className="d-flex align-self-center">
+                        <FontAwesomeIcon icon={faChartPie} />
+                    </div>                    
                     <div>
-                        <p className="my-0 mx-2">{storage}</p>
-                        <p className="my-0 mx-2">Internal memory</p>   
+                        <p className="product-details">{storage}</p>
+                        <p className="product-details">Internal memory</p>   
                     </div>
                 </div>
-                <div className="d-flex m-2">
-                    <FontAwesomeIcon icon={faMicrochip} />
+                <div className="d-flex mx-1 my-2">
+                    <div className="d-flex align-self-center">
+                        <FontAwesomeIcon icon={faMicrochip} />
+                    </div>                     
                     <div>
-                        <p className="my-0 mx-2">{ram}</p>
-                        <p className="my-0 mx-2">RAM</p>   
+                        <p className="product-details">{ram}</p>
+                        <p className="product-details">RAM</p>   
                     </div>
                 </div>
-                <h5 className="product-price"><strong>${price}</strong></h5>
+                <h3 className="mx-1 mt-4"><strong>${price}</strong></h3>
             </div>            
         </div>
     );
