@@ -11,8 +11,7 @@ import {
   faExpandAlt,
   faInfo,
 } from "@fortawesome/free-solid-svg-icons";
-import AddToCart from "../AddToCart/AddToCart.jsx";
-import Catalogue from "../Catalogue/Catalogue";
+import CreateReview from "../CRUDreview/CreateReview.jsx";
 
 const Producto = ({ match }) => {
   // We get => id = :1
@@ -48,7 +47,7 @@ const Producto = ({ match }) => {
   console.log(product);
 
   return (
-    <div className="d-flex justify-content-center producto">
+    <div className="justify-content-center producto">
       <div className="product-content d-flex">
         <div className="info-top">
           <img src={product.img} alt="Img not found" />
@@ -153,6 +152,7 @@ const Producto = ({ match }) => {
           </div>
         </div>
       </div>
+      <CreateReview />
     </div>
   );
 };
