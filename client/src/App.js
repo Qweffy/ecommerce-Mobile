@@ -6,7 +6,7 @@ import Producto from "./Components/Producto/Producto.jsx";
 import CreateProduct from "./Components/CRUDproduct/CreateProduct.jsx";
 import Catalogue from "./Components/Catalogue/Catalogue.jsx";
 import Categorys from "./Components/Categorys/Categorys";
-import Cart from "./Components/cart/cart.jsx";
+import Combinedcart from "./Components/cart/combinedcart.jsx";
 import CreateUser from "./Components/CRUDuser/CreateUser.jsx";
 import Orders from "./Components/Orders/Orders.jsx";
 import Order from "./Components/Order/Order.jsx";
@@ -15,7 +15,7 @@ import CreateSugestion from "./Components/CRUDsugestion/CreateSugestion.jsx";
 import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import Sugestions from "./Components/LandingPage/Sugestions.jsx";
-import cartInvite from "./Components/cart/cartInvite.jsx";
+
 import actions from "./store/Actions/authactions";
 import { Provider, useDispatch } from "react-redux";
 import jwt from "jsonwebtoken";
@@ -50,8 +50,7 @@ function App() {
       <Route exact path="/catalogue" component={Catalogue} />
       <Route exact path="/catalogue/:search" component={Catalogue} />
       <Route exact path="/products/:id" component={Producto} />
-      <Route exact path="/cart" component={Cart} />
-      <Route exact path="/cartinvite" component={cartInvite} />
+      <Route exact path="/cart" component={Combinedcart} />
       <Route exact path="/orders" component={Orders} />
       <Route exact path="/orders/:id" component={Order} />
       <Route exact path="/createsugestion" component={CreateSugestion} />
