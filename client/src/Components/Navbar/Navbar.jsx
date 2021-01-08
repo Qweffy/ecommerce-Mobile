@@ -7,6 +7,7 @@ import {
   faAtlas,
   faShoppingCart,
   faTruck,
+  faUsers
 } from "@fortawesome/free-solid-svg-icons";
 import Searchbar from "../Searchbar/Searchbar.js";
 import { useSelector } from "react-redux";
@@ -78,6 +79,11 @@ if(user === undefined){
                 <Col xs={2} className="text-center">
                   <Nav.Link href="/orders">
                     <FontAwesomeIcon icon={faTruck} /> All Orders
+                </Nav.Link>
+                </Col>
+                <Col xs={2} className="text-center">
+                  <Nav.Link href="/userlist">
+                    <FontAwesomeIcon icon={faUsers} /> User List
                 </Nav.Link>
                 </Col>
                 <Col xs={2}>
