@@ -44,8 +44,6 @@ const Producto = ({ match }) => {
     setProduct(response.data.data);
   }
 
-  console.log(product);
-
   return (
     <div className="justify-content-center producto">
       <div className="product-content d-flex">
@@ -152,7 +150,7 @@ const Producto = ({ match }) => {
           </div>
         </div>
       </div>
-      <CreateReview />
+      <CreateReview productId={match.params.id}/>
     </div>
   );
 };
