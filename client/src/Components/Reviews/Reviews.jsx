@@ -37,10 +37,10 @@ const Reviews = ({ productId }) => {
     }
 
     return (
-        <div className="border-top">
-            <h3>Product opinions</h3>
-            <div className="d-flex">
-                <h1>4.0</h1>
+        <div className="reviews-card border-top">
+            <h3 className="reviews-header">Product opinions</h3>
+            <div className="d-flex my-4">
+                <h1 className="average-rating">4.0</h1>
                 <div>
                     <div className="d-flex">
                         <FontAwesomeIcon icon={faStar} />
@@ -49,7 +49,7 @@ const Reviews = ({ productId }) => {
                         <FontAwesomeIcon icon={faStar} />
                         <FontAwesomeIcon icon={faStar} />
                     </div>
-                    <p>Average between 2 opinios</p>
+                    <p className="py-4 m-0">Average between 2 opinios</p>
                 </div>
             </div>
         </div>   

@@ -46,7 +46,7 @@ const Producto = ({ match }) => {
   }
 
   return (
-    <div className="justify-content-center producto">
+    <div className="producto">
       <div className="product-content d-flex">
         <div className="info-top">
           <img src={product.img} alt="Img not found" />
@@ -151,7 +151,7 @@ const Producto = ({ match }) => {
           </div>
         </div>
       </div>
-      <Reviews productId={match.params.id}/>
+      <Reviews productId={match.params.id} />
       <CreateReview productId={match.params.id}/>
     </div>
   );
