@@ -6,35 +6,35 @@ module.exports = (sequelize) => {
   sequelize.define("product", {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     processor: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     screen: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     ram: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     storage: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     camara: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     frontcamara: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     battery: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     others: {
       type: DataTypes.STRING,
@@ -42,29 +42,33 @@ module.exports = (sequelize) => {
     },
     dimensions: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     price: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        min: 1,
-      },
+        min: 1
+      }
     },
     stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         min: 0,
-      },
+      }
     },
     img: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     colors: {
       type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: true,
+      allowNull: true
     },
+    // averageRating: {
+    //   type: DataTypes.FLOAT,
+    //   defaultValue: 0
+    // }
   });
 };

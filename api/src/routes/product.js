@@ -221,8 +221,11 @@ server.delete("/:id/reviews/:idReview", (req, res, next) => {
 server.get("/:id/reviews", (req, res, next) => {
   let productId = req.params.id;
 
-  Review.findAll({
-    where: { productId },
+  Product.findOne({
+    where: {id: productId},
+    include: {
+      model: Review
+    }
   })
     .then((reviews) => {
       res.json({ message: "All reviews obtained", data: reviews });
