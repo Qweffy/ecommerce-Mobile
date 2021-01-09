@@ -8,26 +8,27 @@ import {
   faCamera,
   faChartPie,
   faMicrochip,
+  faStar
 } from "@fortawesome/free-solid-svg-icons";
 import AddToCart from "../AddToCart/AddToCart.jsx";
 import AddToCartInvite from "../AddToCart/AddToCartInvite.jsx";
 import { useSelector } from "react-redux";
 
 const ProductCard = ({ product }) => {
-  const { name, price, img, id, stock, ram, storage, camara } = product;
-  const { user } = useSelector((state) => state.auth);
-  let btnDisabled = false;
-  const [averageRating, setAverageRating] = useState(0);
+    const { name, price, img, id, stock, ram, storage, camara } = product;
+    const { user } = useSelector((state) => state.auth);
+    let btnDisabled = false;
+    const [averageRating, setAverageRating] = useState(0);
 
-  if (stock === 0) btnDisabled = true;
+    if (stock === 0) btnDisabled = true;
 
-  function renderaddtocartinvite() {
-    return (
-      <div>
-        <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
-      </div>
-    );
-  }
+    function renderaddtocartinvite() {
+        return (
+        <div>
+            <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
+        </div>
+        );
+    }
 
     useEffect(() => {
         getReviews();
@@ -54,18 +55,29 @@ const ProductCard = ({ product }) => {
         return;
     }
 
-  function renderaddtocartuser() {
-    return (
-      <div>
-        <AddToCart id={id} btnDisabled={btnDisabled} />
-      </div>
-    );
-  }
+    function renderaddtocartuser() {
+        return (
+        <div>
+            <AddToCart id={id} btnDisabled={btnDisabled} />
+        </div>
+        );
+    }
 
   return (
     <div className="product-card pb-2 pt-3 px-1 d-flex">
-      <img src={img} alt="img not found" className="product-img mx-0" />
-      <div className="product-info p-2 justify-content-between mx-1 mt-1">
+      <div>
+        <img src={img} alt="img not found" className="product-img mx-0" />
+        <div className="d-flex justify-content-center m-3">
+            {
+                (Array(averageRating).fill(0)).map(n => {
+                    return (
+                        <FontAwesomeIcon icon={faStar} />
+                    )
+                })
+            }
+        </div>
+      </div>
+      <div className="product-info p-2 justify-content-between mx-1 mt-0">
         <h4>{name}</h4>
         <div className="d-flex mx-1 my-2">
           <div className="d-flex align-self-center">
