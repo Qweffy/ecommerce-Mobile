@@ -58,7 +58,7 @@ const Catalogue = (props) => {
           {allProducts.map((product, index) => {
             return (
               <div key={index}>
-                <ProductCard product={product}/>
+                <ProductCard product={product} />
               </div>
             );
           })}

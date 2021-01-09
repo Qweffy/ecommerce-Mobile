@@ -45,7 +45,7 @@
   margin-bottom: 30px;
 }
 
-span {
+.inputBox span {
   color: #45f3ff !important;
 }
 
@@ -110,7 +110,7 @@ span {
   border-radius: 2px;
 }
 
-.btn {
+.add-product-container .btn {
   width: 20% !important;
 }
 

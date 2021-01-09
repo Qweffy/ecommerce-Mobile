@@ -1,21 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
-import { editCount, removeFromCart } from "../../store/Actions/cartActions";
+import { editCount, removeFromCart, upTotal, downTotal, } from "../../store/Actions/cartActions";
 import "./ItemCartInvite.css";
 import { UPDATE_COUNT } from "../../store/types";
 
-const ItemCartInvite = ({ product, idorder, setCart, setAllTotal }) => {
+const ItemCartInvite = ({ product }) => {
   const { id, stock, count, price } = product;
   const [acum, setAcum] = useState(count);
   const [totalItem, setTotalItem] = useState(price * acum);
+  const [redux, setRedux] = useState(true)
   const dispatch = useDispatch();
+
+  useEffect( ()=>{
+    console.log(redux)
+    if(redux){
+      maximAcum();
+    }else{
+      reduzAcum();
+    }
+  }, [acum])
+
+  function maximAcum(){
+    dispatch(upTotal(price))
+  }
+
+  function reduzAcum(){
+    dispatch(downTotal(price))
+  }
 
   async function minAcum() {
     var change = parseInt(acum) - 1;
     if (change <= 0) {
       console.log("Valor erroneo");
     } else {
+      setRedux(false);
       var total = product.price * change;
       await setAcum(change);
       setTotalItem(total);
@@ -31,13 +49,14 @@ const ItemCartInvite = ({ product, idorder, setCart, setAllTotal }) => {
     dispatch(removeFromCart(product));
   }
 
-  async function maxAcum() {
+  function maxAcum() {
     var change = parseInt(acum) + 1;
     if (change > stock) {
       console.log("no hay unidades disponibles ");
     } else {
+      setRedux(true);
       var total = product.price * change;
-      await setAcum(change);
+      setAcum(change);
       setTotalItem(total);
       acumRedux(product, acum);
     }
@@ -65,7 +84,7 @@ const ItemCartInvite = ({ product, idorder, setCart, setAllTotal }) => {
       <td className="text-gen">
         <p>$ {product.price}</p>
       </td>
-      <td className="text-gen">
+      <td className="text-gen div-acum">
         <button className="less-cart" onClick={minAcum}>
           -
         </button>

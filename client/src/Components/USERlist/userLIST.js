@@ -35,14 +35,14 @@ const UserLIST = () => {
   }
 
   async function getProducts() {
-    var funcGet = await axios.get("http://localhost:4000/user/");
+    var funcGet = await axios.get("http://localhost:4000/user/",{ headers: { authorization:localStorage.getItem('token') } });
     setAllProducts(funcGet.data);
   }
 
   function handlerEdit(e) {
     e.preventDefault();
     axios
-      .put(`http://localhost:4000/user/${selectUser.id}`, selectUser)
+      .put(`http://localhost:4000/user/${selectUser.id}`, selectUser,{ headers: { authorization:localStorage.getItem('token') } })
       .then((res) => {
         var prod = allProducts.findIndex(
           (product) => product.id === res.data.data.id
@@ -53,7 +53,7 @@ const UserLIST = () => {
   }
 
   function handlerDelete(id) {
-    axios.delete(`http://localhost:4000/user/${id}`).then((res) => {
+    axios.delete(`http://localhost:4000/user/${id}`,{ headers: { authorization:localStorage.getItem('token') } }).then((res) => {
       var news = allProducts.filter((elemt) => elemt.id !== res.data.data.id);
       setAllProducts(news);
     });

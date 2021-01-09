@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./AddToCart.css";
 import { addToCart } from "../../store/Actions/cartActions";
+import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 
 const AddToCartInvite = (props) => {
