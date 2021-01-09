@@ -3,14 +3,9 @@ import { connect, useSelector } from "react-redux";
 import "./cartInvite.css";
 import ItemCartInvite from "../itemCart/ItemCartInvite";
 
-const CartInvite = (props) => {
-  const [cartInv, setCartInv] = useState(()=>{
-    const localCart = localStorage.getItem('cartItems')
-    return localCart ? JSON.parse(localCart) : [];
-  })
+const CartInvite = () => {
   const { cartItems } = useSelector(state => state.cart);
-  const { TotalOrden } = useSelector(state => state.cart)
-  const [allTotal, setAllTotal] = useState(0);
+  const { TotalOrden } = useSelector(state => state.cart);
 
   useEffect( ()=>{
     
@@ -40,8 +35,6 @@ const CartInvite = (props) => {
                 return (
                   <ItemCartInvite
                     key={index}
-                    setCartInv={setCartInv}
-                    setAllTotal={setAllTotal}
                     product={product}
                   />
                 );

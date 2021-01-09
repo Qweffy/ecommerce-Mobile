@@ -128,7 +128,7 @@ if(user === undefined || user === null){
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto infonav align">
                   <Col xs={2}>
-                    <ul class="dropdown">
+                    <ul className="dropdown">
                       <li>
                         <a href="#">Welcome {user.givenName}!</a>
                         <ul>

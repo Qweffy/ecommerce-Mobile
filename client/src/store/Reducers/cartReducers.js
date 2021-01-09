@@ -15,7 +15,7 @@ const initalOrder = {
 //funcion de calcular nuevo total
 function newTotal (arrItems){
   // se calcula el total de cada producto del carrito
-  let totalNew = arrItems.map(elem => {
+  if(arrItems.length > 0){let totalNew = arrItems.map(elem => {
     return elem.price * elem.count
   })
   // se suman todos los totales de los productos para 
@@ -23,7 +23,7 @@ function newTotal (arrItems){
   let totalInv =totalNew.reduce( (acum, curr)=>{
     return acum + curr
   })
-  return totalInv
+  return totalInv}
 }
 
 if( initalOrder.cartItems.length > 0){

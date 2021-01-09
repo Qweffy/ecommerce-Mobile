@@ -38,7 +38,7 @@ export const removeFromCart = (product) => (dispatch, getState) => {
     .cart.cartItems.slice()
     .filter((x) => x.id !== product.id);
   dispatch({ type: REMOVE_FROM_CART, payload: { cartItems } });
-  localStorage.setItem("cartItems", cartItems);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
 
 export function editCount(product, acum) {

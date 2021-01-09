@@ -1,6 +1,6 @@
 const server = require("express").Router();
 const { User } = require("../db.js");
-const validadmin = require("../verify")
+const validadmin = require("../verify");
 
 server.get("/", async (req, res, next) => {
   try {
