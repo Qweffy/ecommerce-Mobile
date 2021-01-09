@@ -1,5 +1,6 @@
 const server = require("express").Router();
 const { Category } = require("../db.js");
+const validadmin = require("../verify")
 
 server.get("/", (req, res, next) => {
   Category.findAll()
@@ -17,7 +18,7 @@ server.get("/search", (req, res) => {
   });
 });
 
-server.post("/", (req, res, next) => {
+server.post("/", validadmin ,(req, res, next) => {
   Category.create({
     name: req.body.name,
   })
@@ -27,7 +28,7 @@ server.post("/", (req, res, next) => {
     .catch(next);
 });
 
-server.delete("/:id", (req, res) => {
+server.delete("/:id",validadmin , (req, res) => {
   const { id } = req.params;
 
   return Category.findOne({ where: { id } })
@@ -45,7 +46,7 @@ server.delete("/:id", (req, res) => {
     });
 });
 
-server.put("/:id", (req, res) => {
+server.put("/:id", validadmin,(req, res) => {
   //sacamos el id del producto que queremos modificar
   const { id } = req.params;
   //del body sacamos los datos que queremos modificar

@@ -24,7 +24,7 @@ export default function CreateUser() {
 
   function handlerSubmit(e) {
     e.preventDefault();
-    axios.post("http://localhost:4000/user", user).then((res) => {
+    axios.post("http://localhost:4000/user", user,{ headers: { authorization:localStorage.getItem('token') } }).then((res) => {
       history.push("/");
       // modificar despues, llevar al login
     });

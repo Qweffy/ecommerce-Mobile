@@ -16,7 +16,7 @@ import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import Sugestions from "./Components/LandingPage/Sugestions.jsx";
 import CreateReview from "./Components/CRUDreview/CreateReview.jsx";
-
+import Test from "./Components/test.jsx";
 /* Proteccion de rutas */
 import RoutAdmin from "./Components/RoutAuth/RoutAdmin.jsx";
 import RoutClient from "./Components/RoutAuth/RoutClient.jsx";
@@ -41,6 +41,7 @@ function App() {
     <Router>
       {/* Rutas publicas */}
       <Route path="/" component={Navbar} />
+      <Route exact path="/test" component={Test} />
       <Route exact path="/login" component={SignIn} />
       <Route exact path="/register" component={SignUp} />
       <Route exact path="/" component={LandingPage} />
