@@ -54,7 +54,7 @@ function App() {
                       onClick={() => {
                         dispatch(actions.setUser(null));
                         window.localStorage.removeItem("token");
-                        replace("/signin");
+                        replace("/");
                       }}
                     >
                       Salir

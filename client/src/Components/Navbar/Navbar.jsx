@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useHistory } from "react-router-dom";
+import actions from "../../store/Actions/authactions.js";
 import {
   faShoppingBag,
   faCartArrowDown,
@@ -10,21 +12,29 @@ import {
   faUsers
 } from "@fortawesome/free-solid-svg-icons";
 import Searchbar from "../Searchbar/Searchbar.js";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch } from "react-redux";
 import "./Navbar.css";
 
 function BootstrapNavbar() {
   const { user } = useSelector((state) => state.auth)
-  //console.log(user.isAdmin);  
+  const dispatch = useDispatch();
+  const { replace } = useHistory();
+  //console.log(user.isAdmin);
   /* const isAdmin = true; */
 
+
+function logout(){
+  dispatch(actions.setUser(null));
+  window.localStorage.removeItem("token");
+  replace("/");
+}
 
 if(user === undefined || user === null){
   return (
     <Container className='' fluid>
       <Row >
         <Navbar collapseOnSelect expand="lg" className="p-2 nav">
-          <Col xs={5} className="logo-div">  
+          <Col xs={5} className="logo-div">
             <Navbar.Brand href="/" ></Navbar.Brand>
           </Col>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -60,6 +70,17 @@ if(user === undefined || user === null){
             </Col>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
+            <Col xs={2}>
+              <ul class="dropdown">
+                <li>
+                  <a href="#">Welcome {user.givenName}!</a>
+                  <ul>
+                    <li><a href="/me">My profile</a></li>
+                    <li><a onClick = {logout}>Log out</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </Col>
               <Nav className="mr-auto infonav">
                 <Col xs={1.5} className="text-center">
                   <Nav.Link href="/catalogue">
@@ -112,7 +133,7 @@ if(user === undefined || user === null){
                         <a href="#">Welcome {user.givenName}!</a>
                         <ul>
                           <li><a href="/me">My profile</a></li>
-                          <li><a href="#">Log out</a></li>
+                          <li><a onClick = {logout}>Log out</a></li>
                         </ul>
                       </li>
                     </ul>
