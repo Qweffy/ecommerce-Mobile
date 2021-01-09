@@ -45,17 +45,12 @@ server.post("/login", function (req, res, next) {
   })(req, res, next);
 });
 
-server.put('/promote/:id', (req, res) => {
-  const { id } = req.params;
+server.post('/promote', (req, res) => {
+  const { id, isAdmin } = req.body;
   User.findOne({ where: { id } })
     .then((user) => {
-      if (user.isAdmin) {
-        user.isAdmin = false;
-        user.save();
-      } else {
-        user.isAdmin = true;
-        user.save();
-      }
+      user.isAdmin = isAdmin;
+      user.save();
       res.status(200).json({ mensaje: "Se modifico con exito", data: user });
     })
     .catch((err) => {

@@ -13,60 +13,61 @@ const UserLIST = () => {
     isAdmin: false
   });
 
-  const [allProducts, setAllProducts] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (allProducts.length === 0) {
-      getProducts();
+    if (allUsers.length === 0) {
+      getUser();
     }
-    getProducts();
+    getUser();
   }, []);
 
   const handleClose = () => setShow(false);
-  const handleShow = (product) => {
+  const handleShow = (user) => {
     setShow(true);
-    setSelectUser(product);
+    setSelectUser(user);
   };
 
-  function handleChange(e) {
-    setSelectUser({
-      ...selectUser,
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  async function getProducts() {
-    var funcGet = await axios.get("http://localhost:4000/user/",{ headers: { authorization:localStorage.getItem('token') } });
-    setAllProducts(funcGet.data);
+  async function getUser() {
+    var funcGet = await axios.get("http://localhost:4000/user/", { headers: { authorization: localStorage.getItem('token') } });
+    setAllUsers(funcGet.data);
   }
 
   function handlerEdit(e) {
     e.preventDefault();
     axios
-      .put(`http://localhost:4000/user/${selectUser.id}`, selectUser,{ headers: { authorization:localStorage.getItem('token') } })
+      .put(`http://localhost:4000/user/${selectUser.id}`, selectUser, { headers: { authorization: localStorage.getItem('token') } })
       .then((res) => {
-        var prod = allProducts.findIndex(
-          (product) => product.id === res.data.data.id
+        var prod = allUsers.findIndex(
+          (user) => user.id === res.data.data.id
         );
-        allProducts[prod] = res.data.data;
-        
+        allUsers[prod] = res.data.data;
+
         handleClose();
       });
   }
 
   function handlerDelete(id) {
-    axios.delete(`http://localhost:4000/user/${id}`,{ headers: { authorization:localStorage.getItem('token') } }).then((res) => {
-      var news = allProducts.filter((elemt) => elemt.id !== res.data.data.id);
-      setAllProducts(news);
+    axios.delete(`http://localhost:4000/user/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then((res) => {
+      var news = allUsers.filter((elemt) => elemt.id !== res.data.data.id);
+      setAllUsers(news);
     });
   }
 
-  function handleAdmin(id) {
-    axios.put(`http://localhost:4000/auth/promote/${id}`).then((res)=>{
-      var admin = res.isAdmin
-      console.log(admin)
-      setSelectUser(admin);
+  function handleAdmin(e) {
+    axios.post('http://localhost:4000/auth/promote', { id: selectUser.id, isAdmin: e.target.checked }).then((res) => {
+      setAllUsers(allUsers.map(user => {
+        if (user.id === selectUser.id) {
+          return { ...user, isAdmin: res.data.data.isAdmin };
+        } else {
+          return user;
+        }
+      }));
+      setSelectUser({
+        ...selectUser,
+        isAdmin: res.data.data.isAdmin,
+      });
     })
   }
 
@@ -96,20 +97,20 @@ const UserLIST = () => {
               </tr>
             </thead>
             <tbody>
-              {allProducts.map((producto, index) => {
-                const { id, givenName, familyName, email } = producto;
+              {allUsers.map((user, index) => {
+                const { id, givenName, familyName, email } = user;
                 return (
                   <tr className="text-center" key={index}>
                     <td className=" d-flex justify-content-between">
                       <button
-                        onClick={() => handleShow(producto)}
+                        onClick={() => handleShow(user)}
                         type="button"
                         className="btn btn-primary"
                       >
                         <i className="far fa-edit"></i>
                       </button>
                       <button
-                        onClick={() => handlerDelete(selectUser.id)}
+                        onClick={() => handlerDelete(user.id)}
                         type="button"
                         className="btn btn-danger"
                       >
@@ -130,7 +131,7 @@ const UserLIST = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
-          <Modal.Title>Edit product</Modal.Title>
+          <Modal.Title>Edit User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handlerEdit}>
@@ -175,22 +176,19 @@ const UserLIST = () => {
                 selectUser.isAdmin
                   ? <input class="form-check-input"
                     type="checkbox"
-                    id="flexSwitchCheckDefault"
-                   /*  onChange={handleAdmin} */ 
-                   checked />
+                    /* id="flexSwitchCheckDefault" */
+                    onChange={handleAdmin}
+                    checked />
                   : <input
                     class="form-check-input"
                     type="checkbox"
-                    id="flexSwitchCheckDefault"
+                    /*  id="flexSwitchCheckDefault" */
                     onChange={handleAdmin} />
               }
             </div>
 
             <button onClick={handleClose} className="btn btn-secondary mb-2">
-              Cancel
-            </button>
-            <button /* onChange={handleAdmin} */ type="submit" className="btn btn-primary mb-2">
-              Edit
+              Close
             </button>
           </form>
         </Modal.Body>
