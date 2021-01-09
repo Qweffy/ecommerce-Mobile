@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import ItemCart from "../itemCart/ItemCart";
-import { connect, useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { connect, useSelector } from "react-redux";
 import "./cartInvite.css";
 import ItemCartInvite from "../itemCart/ItemCartInvite";
 

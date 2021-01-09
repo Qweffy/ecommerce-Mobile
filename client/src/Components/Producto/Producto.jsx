@@ -11,8 +11,6 @@ import {
   faExpandAlt,
   faInfo,
 } from "@fortawesome/free-solid-svg-icons";
-import AddToCart from "../AddToCart/AddToCart.jsx";
-import Catalogue from "../Catalogue/Catalogue";
 
 const Producto = ({ match }) => {
   // We get => id = :1

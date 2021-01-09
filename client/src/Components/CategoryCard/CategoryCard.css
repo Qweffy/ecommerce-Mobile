@@ -1,11 +1,54 @@
-.category-name {
-    color: #0c61e8;
-    font-weight: lighter;
-}
-
 .categories-col {
-    background-color: white;
-    border: 1px solid silver;
     border-radius: 4px;
     box-shadow: 0 2px 1px 0 rgba(64,64,64,.15);
+    color: white;
+}
+
+.categories-col > h5{
+  font-size: 22px;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.all-categorys-card{
+  margin-left: 20px;
+}
+
+.all-categorys-card input[type="checkbox"]{
+  display: none;
+}
+
+.all-categorys-card label {
+  color: white;
+  font-weight: lighter;
+  padding: 5px 15px 5px 51px;
+  display: inline-block;
+  position: relative;
+  border-radius: 3px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.all-categorys-card label:before{
+  content: '';
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  background: none;
+  border: 2px solid white;
+  position: absolute;
+  left: 17px;
+  top: 4px;
+}
+
+.all-categorys-card input[type="checkbox"]:checked + label{
+  padding: 5px 15px;
+  background-color: white;
+  color: black;
+}
+
+.all-categorys-card input[type="checkbox"]:checked + label::before{
+  display: none;
 }
