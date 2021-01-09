@@ -87,7 +87,7 @@ server.get("/search/:query", (req, res) => {
   Product.findAll({
     where: {
       [Op.or]: [
-        { name: { [Op.like]: `%${req.params.query}%` } },
+        { name: { [Op.iLike]: `%${req.params.query}%` } },
         // { description: { [Op.like]: `%${req.params.query}%` } },
       ],
     },
