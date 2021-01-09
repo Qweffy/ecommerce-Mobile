@@ -49,7 +49,7 @@ const ProductCard = ({ product }) => {
             reviews.forEach(review => {
                 reviewsSum += review.rating;
             })
-            setAverageRating(reviewsSum / reviews.length);
+            setAverageRating(parseInt((reviewsSum / reviews.length).toFixed()));
         }
 
         return;
