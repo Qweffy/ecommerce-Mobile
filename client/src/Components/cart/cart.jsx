@@ -7,43 +7,31 @@ import "./cart.css";
 
 const Cart = () => {
   const user = useSelector((state) => state.auth.user);
-console.log(user);
-  const [cart, setCart] = useState({
-    id: 1,
-    price: 0,
-    products: [],
-  });
+  const [cart, setCart] = useState({ });
 
 //  const [usercart , setusercart] = useState({});
   const [allTotal, setAllTotal] = useState(cart.price);
-
-  const modAllTotal = (f) => { setAllTotal(f(allTotal)) };
   const { products, id } = cart; //se trae los productos y el id de la orden */
 
+  function changeAllTotal(){
+
+  }
 
   useEffect(() => {
-
     getOrders();
-  }, [user]);
-
-  useEffect(() => {
-    setAllTotal(cart.price);
-    console.log(cart, "hola");
-  }, [cart]);
-  console.log("algo");
+  }, [user, allTotal]);
 
   async function getOrders() {
     //trae los productos de la orden carrito
     if(user){
-    let response = await axios.get(
-      `http://localhost:4000/orders/cart/${user.id}`
-    );
-    setCart(response.data.data);
-}
+      let response = await axios.get(`http://localhost:4000/orders/cart/${user.id}` );
+      setCart(response.data.data);
+      setAllTotal(response.data.data.price);
+    }
   }
 
   return (
-    <div className=" container d-flex">
+    <div className="cart-log container d-flex">
       <div className="row justify-content-end">
         <div className="col-12">
           <h3>Shopping Cart</h3>
@@ -60,13 +48,13 @@ console.log(user);
               </tr>
             </thead>
             <tbody>
-              {products.map((product, index) => {
+              {products && products.map((product, index) => {
                 return (
                   <ItemCart
                     key={index}
                     setCart={setCart}
-                    /* allTotal={allTotal} */
-                    modAllTotal={modAllTotal}
+                    setAllTotal={setAllTotal}
+                    allTotal={allTotal}
                     product={product}
                     idorder={id}
                   />

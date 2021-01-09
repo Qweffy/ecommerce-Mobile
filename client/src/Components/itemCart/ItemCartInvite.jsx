@@ -5,48 +5,22 @@ import "./ItemCartInvite.css";
 import { UPDATE_COUNT } from "../../store/types";
 
 const ItemCartInvite = ({ product }) => {
-  const { id, stock, count, price } = product;
+  const { stock, count, price } = product;
   const [acum, setAcum] = useState(count);
   const [totalItem, setTotalItem] = useState(price * acum);
-  const [redux, setRedux] = useState(true)
   const dispatch = useDispatch();
 
-  useEffect( ()=>{
-    console.log(redux)
-    if(redux){
-      maximAcum();
-    }else{
-      reduzAcum();
-    }
-  }, [acum])
-
-  function maximAcum(){
-    dispatch(upTotal(price))
-  }
-
-  function reduzAcum(){
-    dispatch(downTotal(price))
-  }
 
   async function minAcum() {
     var change = parseInt(acum) - 1;
     if (change <= 0) {
       console.log("Valor erroneo");
     } else {
-      setRedux(false);
       var total = product.price * change;
-      await setAcum(change);
+      setAcum(change);
       setTotalItem(total);
-      acumRedux(product, acum);
+      dispatch(editCount(product, change));
     }
-  }
-
-  function acumRedux(product) {
-    dispatch(editCount(product, acum));
-  }
-
-  function removeCart(product) {
-    dispatch(removeFromCart(product));
   }
 
   function maxAcum() {
@@ -54,12 +28,15 @@ const ItemCartInvite = ({ product }) => {
     if (change > stock) {
       console.log("no hay unidades disponibles ");
     } else {
-      setRedux(true);
       var total = product.price * change;
       setAcum(change);
       setTotalItem(total);
-      acumRedux(product, acum);
+      dispatch(editCount(product, change));
     }
+  }
+
+  function removeCart(product) {
+    dispatch(removeFromCart(product));
   }
 
   function onChange(e) {

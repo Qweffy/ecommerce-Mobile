@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import "./cartInvite.css";
 import ItemCartInvite from "../itemCart/ItemCartInvite";
 
-const CartInvite = (props) => {
+const CartInvite = () => {
+  const { cartItems } = useSelector(state => state.cart);
+  const { TotalOrden } = useSelector(state => state.cart);
 
-  const [cart, setCart] = useState(props["cart"]["cartItems"]);
-  const [allTotal, setAllTotal] = useState(cart.price);
-  const { id } = cart; //se trae los productos y el id de la orden
-  const cartState = useSelector((state) => state.cart);
-  const totalOrder = useSelector((state) => state.cart.TotalOrden);
+  useEffect( ()=>{
+    
+  
+  }, [])
+
 
   return (
     <div className=" cart-invnt container d-flex">
@@ -29,14 +31,11 @@ const CartInvite = (props) => {
               </tr>
             </thead>
             <tbody>
-              {cartState.cartItems.map((product, index) => {
+              {cartItems.map((product, index) => {
                 return (
                   <ItemCartInvite
                     key={index}
-                    setCart={setCart}
-                    setAllTotal={setAllTotal}
                     product={product}
-                    idorder={id}
                   />
                 );
               })}
@@ -45,7 +44,7 @@ const CartInvite = (props) => {
         </div>
         <div className="col-4">
           <div>
-            <p>Subtotal: {totalOrder}</p>
+            <p>Subtotal: {TotalOrden}</p>
           </div>
           <h3> Total: </h3>
           <div>
