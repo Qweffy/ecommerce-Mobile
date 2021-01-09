@@ -36,7 +36,7 @@ const Categorys = () => {
     axios
       .put(
         `http://localhost:4000/category/${selectCategory.id}`,
-        selectCategory
+        selectCategory,{ headers: { authorization:localStorage.getItem('token') } }
       )
       .then((res) => {
         var cat = allCategories.findIndex((cat) => cat.id === res.data.data.id);
@@ -46,7 +46,7 @@ const Categorys = () => {
   }
 
   function handlerDelete(id) {
-    axios.delete(`http://localhost:4000/category/${id}`).then((res) => {
+    axios.delete(`http://localhost:4000/category/${id}`,{ headers: { authorization:localStorage.getItem('token') } }).then((res) => {
       var news = allCategories.filter((elemt) => elemt.id !== res.data.data.id);
       setAllCategories(news);
     });

@@ -17,7 +17,7 @@ export default function CreateCategory() {
 
   function postcategories() {
     axios
-      .post("http://localhost:4000/category/", category)
+      .post("http://localhost:4000/category/", category ,{ headers: { authorization:localStorage.getItem('token') } })
       .then(function (response) {
         history.push("/showCategories");
       });
@@ -43,7 +43,7 @@ export default function CreateCategory() {
             />
             <button type="submit" class="btn btn-primary my-4">
               Add category
-            </button>            
+            </button>
           </div>
         </div>
       </form>
