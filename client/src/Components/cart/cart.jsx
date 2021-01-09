@@ -68,7 +68,7 @@ const Cart = () => {
             <p>Subtotal: {allTotal}</p>
           </div>
           <h3> Total: </h3>
-          <div>
+          <div className='bot-button'>
             <button> Next </button>
             <button> Cancel </button>
           </div>

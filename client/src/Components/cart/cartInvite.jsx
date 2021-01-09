@@ -1,16 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { connect, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import "./cartInvite.css";
 import ItemCartInvite from "../itemCart/ItemCartInvite";
 
 const CartInvite = () => {
   const { cartItems } = useSelector(state => state.cart);
   const { TotalOrden } = useSelector(state => state.cart);
+  const { user } = useSelector((state) => state.auth);
+  const history = useHistory();
 
   useEffect( ()=>{
     
   
   }, [])
+
+  //preguntar para despues de la compra del carrito
+
+  function cartContinue(){
+    console.log(history)
+    if(user){
+      //lo manda a completar la compra
+    }else{
+      console.log('aqui redirect')
+      history.push('/register')
+    }
+  } 
 
 
   return (
@@ -47,8 +63,8 @@ const CartInvite = () => {
             <p>Subtotal: {TotalOrden}</p>
           </div>
           <h3> Total: </h3>
-          <div>
-            <button> Next </button>
+          <div className='bot-button'>
+            <button onClick={ ()=> cartContinue() }> Next </button>
             <button> Cancel </button>
           </div>
         </div>
@@ -57,6 +73,4 @@ const CartInvite = () => {
   );
 };
 
-export default connect((state) => {
-  return { cart: state.cart };
-})(CartInvite);
+export default CartInvite;

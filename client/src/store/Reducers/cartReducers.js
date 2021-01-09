@@ -45,11 +45,19 @@ export const cartReducer = (state = initalOrder, action) => {
 
     case REMOVE_FROM_CART:
       let removrItemToal = newTotal(action.payload.cartItems)
-      return {
-        ...state, 
-        cartItems: action.payload.cartItems,
-        TotalOrden: removrItemToal
-      };
+      if (removrItemToal ){
+        return {
+          ...state, 
+          cartItems: action.payload.cartItems,
+          TotalOrden: removrItemToal
+        }
+      }else{
+        return {
+          ...state, 
+          cartItems: action.payload.cartItems,
+          TotalOrden: 0
+        }
+      }
 
     case FETCH_LOCAL_CART:
       return {...state,  cartItems: action.payload.cartItems };
