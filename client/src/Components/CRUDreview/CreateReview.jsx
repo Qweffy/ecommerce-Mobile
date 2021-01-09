@@ -4,13 +4,13 @@ import { createReview } from "../../store/Actions/reviewActions.js";
 //import axios from "axios";
 import './CreateReview.css'
 
-export default function CreateReview() {
+const CreateReview = (props) => {
     const user = useSelector(state => state.Reducer.user);
     //const reduxReviews = useSelector(state => state.Reducer.reviews);
     const dispatch = useDispatch();
 
     const [review, setReview] = useState({
-        productId: "",
+        productId: props.productId,
         userId: "",
         rating: "",
         description: ""
@@ -30,23 +30,9 @@ export default function CreateReview() {
     return (
       <div className="container">
         <form onSubmit={handleSubmit}>
-          <div className="form-group-row">
-            <label className="col-sm-2 col-form-label">Product Id</label>
-            <div className="col-sm-10">
-              <input
-                className="form-control m-1"
-                placeholder="Insert product id"
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                name="productId"
-                type="text"
-                required
-              />
-            </div>
-          </div>
-          <div className="form-group-row">
-            <label className="col-sm-2 col-form-label">Rating</label>
+          <h3 className="m-1 mb-3">Add your review</h3>
+          <div className="form-group-row m-3">
+            {/* <label className="col-sm-2 col-form-label">Rating</label> */}
             <div className="col-sm-10">
               <input
                 className="form-control m-1"
@@ -60,8 +46,8 @@ export default function CreateReview() {
               />
             </div>
           </div>
-          <div className="form-group-row">
-            <label className="col-sm-2 col-form-label">Description</label>
+          <div className="form-group-row m-3">
+            {/* <label className="col-sm-2 col-form-label">Description</label> */}
             <div className="col-sm-10">
               <input
                 className="form-control m-1"
@@ -82,3 +68,5 @@ export default function CreateReview() {
       </div>
     );
 }
+
+export default CreateReview;
