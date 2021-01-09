@@ -15,7 +15,7 @@ const Review = () => {
                 <FontAwesomeIcon icon={faStar} />
                 <FontAwesomeIcon icon={faStar} />
             </div>
-            <p>Average between 2 opinios</p>
+            <h5>This product...</h5>
         </div>
     )
 }

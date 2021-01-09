@@ -33,7 +33,7 @@ const Reviews = ({ productId }) => {
             reviews.forEach(review => {
                 reviewsSum += review.rating;
             })
-            setAverageRating(reviewsSum / reviews.length);
+            setAverageRating(parseInt((reviewsSum / reviews.length).toFixed()));
         }
 
         return;
@@ -46,19 +46,21 @@ const Reviews = ({ productId }) => {
                 <h1 className="average-rating">4.0</h1>
                 <div>
                     <div className="d-flex">
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
-                        <FontAwesomeIcon icon={faStar} />
+                        {
+                            (Array(averageRating).fill(0)).map(n => {
+                                return (
+                                    <FontAwesomeIcon icon={faStar} />
+                                )
+                            })
+                        }
                     </div>
-                    <p className="py-4 m-0">Average between 2 opinios</p>
+                    <h5 className="py-4 m-0">Average between {reviews.length} opinions</h5>
                 </div>
             </div>
             {
                 reviews.map(review => {
                     return (
-                        <Review />
+                        <Review averageRating={averageRating}/>
                     )
                 })
             }
