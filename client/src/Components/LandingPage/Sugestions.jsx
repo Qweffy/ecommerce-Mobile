@@ -9,7 +9,7 @@ const [products, setProducts] = useState([]);
 
 useEffect(() => {
   //trae las categorias apenas entra a la pagina
-  console.log(sugestions);  //transformo el arreglo en numeros
+  //transformo el arreglo en numeros
   var result = sugestions.map(function (x) {
   return parseInt(x, 10);
 });
@@ -18,12 +18,6 @@ useEffect(() => {
   });
 
 }, []);
-
-
-
-function prueba() {
-  console.log(sugestions);
-}
 
 return (
   <div className="m-4">

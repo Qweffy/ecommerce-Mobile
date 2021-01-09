@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./AddToCart.css";
 import { addToCart } from "../../store/Actions/cartActions";
+import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 
 const AddToCartInvite = (props) => {
@@ -11,8 +12,7 @@ const AddToCartInvite = (props) => {
       className="btn btn-primary"
       disabled={props.btnDisabled}
     >
-      {console.log(props.product)}
-      <i class="fas fa-shopping-cart"></i>
+      <i className="fas fa-shopping-cart"></i>
     </button>
   );
 };

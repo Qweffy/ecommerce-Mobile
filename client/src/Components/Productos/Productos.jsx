@@ -45,7 +45,7 @@ const Productos = () => {
   function handlerEdit(e) {
     e.preventDefault();
     axios
-      .put(`http://localhost:4000/products/${selectProduct.id}`, selectProduct)
+      .put(`http://localhost:4000/products/${selectProduct.id}`, selectProduct ,{ headers: { authorization:localStorage.getItem('token') } })
       .then((res) => {
         var prod = allProducts.findIndex(
           (product) => product.id === res.data.data.id
@@ -56,7 +56,7 @@ const Productos = () => {
   }
 
   function handlerDelete(id) {
-    axios.delete(`http://localhost:4000/products/${id}`).then((res) => {
+    axios.delete(`http://localhost:4000/products/${id}`,{ headers: { authorization:localStorage.getItem('token') } }).then((res) => {
       var news = allProducts.filter((elemt) => elemt.id !== res.data.data.id);
       setAllProducts(news);
     });

@@ -1,6 +1,7 @@
 const server = require("express").Router();
 const { Product, Category, Review } = require("../db.js");
 const { Op } = require("sequelize");
+const validadmin = require("../verify")
 
 //Create new product ----> '/products'
 
@@ -27,14 +28,14 @@ server.post("/", (req, res, next) => {
     .catch(next);
 });
 
-server.post("/:idProd/category/:idCateg", (req, res, next) => {
+server.post("/:idProd/category/:idCateg",validadmin , (req, res, next) => {
   // agrega categoria al producto
   Product.findByPk(req.params.idProd)
     .then((product) => product.addCategory(req.params.idCateg))
     .then((success) => res.sendStatus(201)); // sequelize crea un metodo add para las relaciones n:n, ergo, tambien esta el metodo addProduct en la tabla Category
 });
 
-server.post("/:idProd/sugestion/:idCateg", (req, res, next) => {
+server.post("/:idProd/sugestion/:idCateg",validadmin, (req, res, next) => {
   // agrega sugestion al producto
   Product.findByPk(req.params.idProd)
     .then((product) => product.addSugestion(req.params.idCateg))
@@ -63,7 +64,7 @@ server.get("/", (req, res, next) => {
   }).catch(next);
 });
 
-server.post("/sugestions", (req, res) => {
+server.post("/sugestions",validadmin, (req, res) => {
   //esta ruta filtra los productos por las sugestions
   const { sugestion } = req.body;
 
@@ -87,8 +88,8 @@ server.get("/search/:query", (req, res) => {
   Product.findAll({
     where: {
       [Op.or]: [
-        { name: { [Op.like]: `%${req.params.query}%` } },
-        { description: { [Op.like]: `%${req.params.query}%` } },
+        { name: { [Op.iLike]: `%${req.params.query}%` } },
+        // { description: { [Op.like]: `%${req.params.query}%` } },
       ],
     },
   }).then((data) => {
@@ -116,7 +117,7 @@ server.get("/:id", (req, res) => {
 });
 
 //Modify an especific product ---> '/products/:id'
-server.put("/:id", (req, res) => {
+server.put("/:id",validadmin, (req, res) => {
   //sacamos el id del producto que queremos modificar
   const { id } = req.params;
   //del body sacamos los datos que queremos modificar
@@ -141,7 +142,7 @@ server.put("/:id", (req, res) => {
 });
 
 //Delete an especific product -----> '/products/:id'
-server.delete("/:id", (req, res) => {
+server.delete("/:id",validadmin, (req, res) => {
   const { id } = req.params;
 
   return Product.findOne({ where: { id } })
@@ -169,15 +170,15 @@ server.post("/:id/reviews/:userid", (req, res) => {
     productId,
     userId,
     rating,
-    description
+    description,
   })
-  .then(review => {
-    res.json({message: "Review created", data: review});
-  })
-  .catch(err => {
-    res.status(400).json({ message: "Couldn't create review", data: err });
-  });
-})
+    .then((review) => {
+      res.json({ message: "Review created", data: review });
+    })
+    .catch((err) => {
+      res.status(400).json({ message: "Couldn't create review", data: err });
+    });
+});
 
 //Modify review
 server.put("/:id/reviews/:idReview", (req, res) => {
@@ -186,49 +187,49 @@ server.put("/:id/reviews/:idReview", (req, res) => {
 
   Review.findOne({
     where: {
-      id: reviewId
-    }
+      id: reviewId,
+    },
   })
-  .then(review => {
-    review.rating = rating;
-    review.description = description;
-    review.save();
-    res.status(200).json({ message: "Review modified", data: review });
-  })
-  .catch(err => {
-    res.status(400).json({ message: "Couldn't modify review", data: err });
-  });
-})
+    .then((review) => {
+      review.rating = rating;
+      review.description = description;
+      review.save();
+      res.status(200).json({ message: "Review modified", data: review });
+    })
+    .catch((err) => {
+      res.status(400).json({ message: "Couldn't modify review", data: err });
+    });
+});
 
 //Delete review
 server.delete("/:id/reviews/:idReview", (req, res, next) => {
   const reviewId = req.params.idReview;
 
   Review.findOne({
-    where: {id: reviewId}
+    where: { id: reviewId },
   })
-  .then(review => {
-    review.destroy();
-    res.status(200).json({ message: "Review deleted", data: review })
-  })
-  .catch(err => {
-    res.status(400).json({ message: "Couldn't delete review", data: err });
-  });
-})
+    .then((review) => {
+      review.destroy();
+      res.status(200).json({ message: "Review deleted", data: review });
+    })
+    .catch((err) => {
+      res.status(400).json({ message: "Couldn't delete review", data: err });
+    });
+});
 
 // Get all product reviews
 server.get("/:id/reviews", (req, res, next) => {
   let productId = req.params.id;
 
   Review.findAll({
-    where: { productId }
+    where: { productId },
   })
-  .then(reviews => {
-    res.json({ message: "All reviews obtained", data: reviews });
-  })
-  .catch(err => {
-    res.status(400).json({ message: "Couldn't get reviews", data: err });
-  });
-})
+    .then((reviews) => {
+      res.json({ message: "All reviews obtained", data: reviews });
+    })
+    .catch((err) => {
+      res.status(400).json({ message: "Couldn't get reviews", data: err });
+    });
+});
 
 module.exports = server;

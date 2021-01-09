@@ -8,7 +8,7 @@ import {
   FormGroup,
   Panel,
 } from "rsuite";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import dotenv from "dotenv";
@@ -21,7 +21,6 @@ dotenv.config();
 function SignIn() {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
-  const { user } = useSelector((state) => state.auth);
   const { replace, push } = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {

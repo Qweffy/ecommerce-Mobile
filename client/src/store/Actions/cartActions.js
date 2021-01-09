@@ -3,21 +3,25 @@ import {
   REMOVE_FROM_CART,
   FETCH_LOCAL_CART,
   UPDATE_COUNT,
+  CREATE_ORDER,
+  UPDATE_ORDER,
+  DOWN_ORDER
 } from "../types";
 
 export const addToCart = (product) => (dispatch, getState) => {
+
   const cartItems = getState().cart.cartItems.slice();
   let alreadyExists = false;
-  cartItems.forEach((x) => {
+
+  cartItems.map((x) => {
     if (x.id === product.id) {
       alreadyExists = true;
       x.count++;
     }
   });
+  
   if (!alreadyExists) {
-    if (!product.count) {
-      product.count = 1;
-    }
+    product.count = 1;
     cartItems.push(product);
   }
 
@@ -54,3 +58,22 @@ export const fetchFromCart = () => (dispatch, getState) => {
     payload: { cartItems: JSON.parse(localStorage.getItem("cartItems")) },
   });
 };
+
+export function upTotal (data){
+  return (dispatch) =>{
+    console.log(data)
+    dispatch({
+      type:  UPDATE_ORDER,
+      payload: data
+    })
+  }
+}
+
+export function downTotal (data){
+  return (dispatch) =>{
+    dispatch({
+      type: DOWN_ORDER,
+      payload: data
+    })
+  }
+}

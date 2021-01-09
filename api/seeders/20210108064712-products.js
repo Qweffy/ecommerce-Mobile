@@ -1,5 +1,4 @@
 "use strict";
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     /**
@@ -20,6 +19,10 @@ module.exports = {
         price: "820",
         stock: "13",
         img: "https://i.ibb.co/jLYT6bj/HUAWEI-P30-PNG.png",
+        colors: [
+          `{ "color": "color1", "text": " https://i.ibb.co/bNrDDRc/blue-png.png" }`,
+          `{ "color": "color2", "text": " https://i.ibb.co/9rm0KrF/black-PNG.png" }`,
+        ],
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -37,6 +40,9 @@ module.exports = {
         price: "630",
         stock: "2",
         img: "https://i.ibb.co/V0GzPHL/Asus-rogphone-3-PNG.png",
+        colors: [
+          `{ "color": "color1", "text": " https://i.ibb.co/PFtnxgM/back-PNG.png" }`,
+        ],
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -54,6 +60,11 @@ module.exports = {
         price: "599",
         stock: "23",
         img: "https://i.ibb.co/xzys7kJ/GALAXY-S20-PNG.png",
+        colors: [
+          `{ "color": "color1", "text": " https://i.ibb.co/rc8D9D3/BLUE-PNG.png" }`,
+          `{ "color": "color2", "text": " https://i.ibb.co/tLs2KCT/PINK-PNG.png" }`,
+          `{ "color": "color3", "text": " https://i.ibb.co/Dbd50Rb/RED-PNG.png" }`,
+        ],
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -71,6 +82,9 @@ module.exports = {
         price: "309",
         stock: "4",
         img: "https://i.ibb.co/dmcFQHH/Blackview-Bv9700-PNG.png",
+        colors: [
+          `{ "color": "color1", "text": " https://i.ibb.co/Rhb6wSr/Back-PNG.png" }`,
+        ],
         createdAt: new Date(),
         updatedAt: new Date(),
       },
