@@ -1,0 +1,17 @@
+.reviews-card {
+   margin-left: 180px;
+   margin-right: 180px;
+   margin-top: 0;
+   margin-bottom: 10px;
+   padding-left: 65px;
+   padding-right: 65px;
+}
+
+.reviews-header {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.average-rating {
+    padding-right: 20px;
+}
