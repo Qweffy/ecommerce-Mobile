@@ -15,7 +15,8 @@ const ProductCard = ({ product }) => {
     const { name, price, img, id, stock, ram, storage, camara } = product;
     const { user } = useSelector((state) => state.auth);
     let btnDisabled = false;
-    const [averageRating, setAverageRating] = useState([]);
+    const [reviews, setReviews] = useState([]);
+    const [averageRating, setAverageRating] = useState(0);
 
     if (stock === 0) btnDisabled = true;
 
@@ -43,26 +44,22 @@ const ProductCard = ({ product }) => {
         await axios.get(`http://localhost:4000/products/${id}/reviews`)
         .then(products => {
             let reviews = products.data.data.reviews;
-            // let reviewsSum = 0;
 
-            // if (reviews.length > 0 ) {
-            //     reviewsSum = reviews.reduce((a, b) => a + b);
-            //     console.log(reviewsSum);
-            // } 
-
-            setAverageRating(reviews);
+            calculateAverageRating(reviews);
         })
     }
 
-    console.log(averageRating);
+    function calculateAverageRating(reviews) {
+        if (reviews.length > 0) {
+            let reviewsSum = 0;
+            reviews.forEach(review => {
+                reviewsSum += review.rating;
+            })
+            setAverageRating(reviewsSum / reviews.length);
+        }
 
-    if (averageRating.length > 0) {
-        averageRating.forEach(avgRating => {
-            avg
-        })
+        return;
     }
-
-
 
     return (
         <div className="product-card pb-2 pt-3 px-1 d-flex">
