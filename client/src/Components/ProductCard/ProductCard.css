@@ -12,6 +12,7 @@
   background: -o-linear-gradient(top, rgba(20,20,20,1) 0%, rgba(26,26,26,0.88) 12%, rgba(28,28,28,0.75) 25%, rgba(20,20,20,0.61) 39%, rgba(13,13,13,0.58) 42%, rgba(0,0,0,0.49) 51%, rgba(5,5,5,0.4) 60%, rgba(13,13,13,0.24) 76%, rgba(8,8,8,0.09) 91%, rgba(5,5,5,0) 100%);
   background: -ms-linear-gradient(top, rgba(20,20,20,1) 0%, rgba(26,26,26,0.88) 12%, rgba(28,28,28,0.75) 25%, rgba(20,20,20,0.61) 39%, rgba(13,13,13,0.58) 42%, rgba(0,0,0,0.49) 51%, rgba(5,5,5,0.4) 60%, rgba(13,13,13,0.24) 76%, rgba(8,8,8,0.09) 91%, rgba(5,5,5,0) 100%);
   background: linear-gradient(to bottom, rgba(20,20,20,1) 0%, rgba(26,26,26,0.88) 12%, rgba(28,28,28,0.75) 25%, rgba(20,20,20,0.61) 39%, rgba(13,13,13,0.58) 42%, rgba(0,0,0,0.49) 51%, rgba(5,5,5,0.4) 60%, rgba(13,13,13,0.24) 76%, rgba(8,8,8,0.09) 91%, rgba(5,5,5,0) 100%);
+
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#141414', endColorstr='#050505', GradientType=0 );
 }
 

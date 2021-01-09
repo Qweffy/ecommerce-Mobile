@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 var cors = require('cors');
 const passport = require("./passport");
-
+const validadmin = require("./verify")
 require('./db.js');
 
 const server = express();
@@ -36,6 +36,7 @@ server.all("*", function (req, res, next) {
   })(req, res, next);
 });
 
+server.get('/test', validadmin);
 
 server.use('/', routes);
 

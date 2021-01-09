@@ -1,6 +1,7 @@
 const server = require("express").Router();
 const { Product, Category, Review } = require("../db.js");
 const { Op } = require("sequelize");
+const validadmin = require("../verify")
 
 //Create new product ----> '/products'
 
@@ -27,14 +28,14 @@ server.post("/", (req, res, next) => {
     .catch(next);
 });
 
-server.post("/:idProd/category/:idCateg", (req, res, next) => {
+server.post("/:idProd/category/:idCateg",validadmin , (req, res, next) => {
   // agrega categoria al producto
   Product.findByPk(req.params.idProd)
     .then((product) => product.addCategory(req.params.idCateg))
     .then((success) => res.sendStatus(201)); // sequelize crea un metodo add para las relaciones n:n, ergo, tambien esta el metodo addProduct en la tabla Category
 });
 
-server.post("/:idProd/sugestion/:idCateg", (req, res, next) => {
+server.post("/:idProd/sugestion/:idCateg",validadmin, (req, res, next) => {
   // agrega sugestion al producto
   Product.findByPk(req.params.idProd)
     .then((product) => product.addSugestion(req.params.idCateg))
@@ -63,7 +64,7 @@ server.get("/", (req, res, next) => {
   }).catch(next);
 });
 
-server.post("/sugestions", (req, res) => {
+server.post("/sugestions",validadmin, (req, res) => {
   //esta ruta filtra los productos por las sugestions
   const { sugestion } = req.body;
 
@@ -116,7 +117,7 @@ server.get("/:id", (req, res) => {
 });
 
 //Modify an especific product ---> '/products/:id'
-server.put("/:id", (req, res) => {
+server.put("/:id",validadmin, (req, res) => {
   //sacamos el id del producto que queremos modificar
   const { id } = req.params;
   //del body sacamos los datos que queremos modificar
@@ -141,7 +142,7 @@ server.put("/:id", (req, res) => {
 });
 
 //Delete an especific product -----> '/products/:id'
-server.delete("/:id", (req, res) => {
+server.delete("/:id",validadmin, (req, res) => {
   const { id } = req.params;
 
   return Product.findOne({ where: { id } })
