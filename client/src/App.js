@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import CreateCategory from "./Components/CRUDcategory/CreateCategory.jsx";
 import Productos from "./Components/Productos/Productos";
@@ -15,15 +15,18 @@ import CreateSugestion from "./Components/CRUDsugestion/CreateSugestion.jsx";
 import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import Sugestions from "./Components/LandingPage/Sugestions.jsx";
+import CreateReview from "./Components/CRUDreview/CreateReview.jsx";
+
+/* Proteccion de rutas */
+import RoutAdmin from "./Components/RoutAuth/RoutAdmin.jsx";
+import RoutClient from "./Components/RoutAuth/RoutClient.jsx";
 
 import actions from "./store/Actions/authactions";
-import { Provider, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import jwt from "jsonwebtoken";
 import SignUp from "./Components/Login/SignUp.js";
 import SignIn from "./Components/Login/SignIn.js";
-import Me from "./Components/Login/App.js";
-import CreateReview from "./Components/CRUDreview/CreateReview.jsx";
-import ProductDetails from "./Components/ProductDetails/ProductDetails.js";
+import Me from "./Components/Login/Me.js";
 function App() {
 
   const dispatch = useDispatch()
@@ -36,26 +39,33 @@ function App() {
 
   return (
     <Router>
+      {/* Rutas publicas */}
       <Route path="/" component={Navbar} />
-      <Route path="/login" component={SignIn} />
-      <Route path="/register" component={SignUp} />
-      <Route path="/me" component={Me} />
+      <Route exact path="/login" component={SignIn} />
+      <Route exact path="/register" component={SignUp} />
       <Route exact path="/" component={LandingPage} />
-      <Route exact path="/showProducts" component={Productos} />
-      <Route exact path="/showCategories" component={Categorys} />
-      <Route exact path="/createproduct" component={CreateProduct} />
-      <Route exact path="/createcategory" component={CreateCategory} />
-      <Route exact path="/createuser" component={CreateUser} />
-      <Route exact path="/userlist" component={userLIST} />
       <Route exact path="/catalogue" component={Catalogue} />
       <Route exact path="/catalogue/:search" component={Catalogue} />
       <Route exact path="/products/:id" component={Producto} />
       <Route exact path="/cart" component={Combinedcart} />
-      <Route exact path="/orders" component={Orders} />
-      <Route exact path="/orders/:id" component={Order} />
-      <Route exact path="/createsugestion" component={CreateSugestion} />
       <Route exact path="/prueba" component={Sugestions} />
-      <Route exact path="/createreview" component={CreateReview} />
+
+      {/* Rutas del cliente */}
+      <Route exact path="/me" component={ props => <RoutClient { ...props } Component={Me} />}/>
+      <Route exact path="/createreview" component={ props => <RoutClient { ...props } Component={CreateReview} />} />
+
+      {/* Rutas del Admin */}
+      <Route exact path="/showProducts" component={ props => <RoutAdmin { ...props } Component={Productos} />} />
+      <Route exact path="/createproduct" component={ props => <RoutAdmin { ...props } Component={CreateProduct} />} />
+      <Route exact path="/showCategories" component={ props => <RoutAdmin { ...props } Component={Categorys} />} />
+      <Route exact path="/createcategory" component={ props => <RoutAdmin { ...props } Component={CreateCategory} />} />
+      <Route exact path="/userlist" component={ props => <RoutAdmin { ...props } Component={userLIST} />} />
+      <Route exact path="/createuser" component={ props => <RoutAdmin { ...props } Component={CreateUser} />}/>{/* Pendiente preguntar */}
+      <Route exact path="/orders" component={ props => <RoutAdmin { ...props } Component={Orders} />} />
+      <Route exact path="/orders/:id" component={ props => <RoutAdmin { ...props } Component={Order} />}  />
+      <Route exact path="/createsugestion" component={ props => <RoutAdmin { ...props } Component={CreateSugestion} />} />
+      <Route exact path="/signin" component={ props => <RoutAdmin { ...props } Component={SignIn} />} />
+
     </Router>
   );
 }

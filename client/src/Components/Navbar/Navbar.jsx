@@ -19,7 +19,7 @@ function BootstrapNavbar() {
   /* const isAdmin = true; */
 
 
-if(user === undefined){
+if(user === undefined || user === null){
   return (
     <Container className='' fluid>
       <Row >
@@ -50,7 +50,7 @@ if(user === undefined){
     </Container>
   );
 }else {
-  if (user.isAdmin) {
+  if (user && user.isAdmin) {
     return (
       <Container fluid>
         <Row>
