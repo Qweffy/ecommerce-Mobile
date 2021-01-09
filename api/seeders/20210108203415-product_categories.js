@@ -16,12 +16,6 @@ module.exports = {
       {
         createdAt: new Date(),
         updatedAt: new Date(),
-        categoryId: "1",
-        productId: "2",
-      },
-      {
-        createdAt: new Date(),
-        updatedAt: new Date(),
         categoryId: "2",
         productId: "3",
       },
