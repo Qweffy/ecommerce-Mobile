@@ -6,10 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faStar
 } from "@fortawesome/free-solid-svg-icons";
+import Review from "../Review/Review.jsx";
 
 const Reviews = ({ productId }) => {
     const { user } = useSelector((state) => state.auth);
     const [averageRating, setAverageRating] = useState(0);
+    const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
         getReviews();
@@ -21,6 +23,7 @@ const Reviews = ({ productId }) => {
             let reviews = products.data.data.reviews;
 
             calculateAverageRating(reviews);
+            setReviews(reviews);
         })
     }
 
@@ -38,7 +41,7 @@ const Reviews = ({ productId }) => {
 
     return (
         <div className="reviews-card border-top">
-            <h3 className="reviews-header">Product opinions</h3>
+            <h2 className="reviews-header">Product opinions</h2>
             <div className="d-flex my-4">
                 <h1 className="average-rating">4.0</h1>
                 <div>
@@ -52,6 +55,13 @@ const Reviews = ({ productId }) => {
                     <p className="py-4 m-0">Average between 2 opinios</p>
                 </div>
             </div>
+            {
+                reviews.map(review => {
+                    return (
+                        <Review />
+                    )
+                })
+            }
         </div>   
     )
 }
