@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ItemCart from "../itemCart/ItemCart";
 import { connect, useSelector, useDispatch } from "react-redux";
-import "./cart.css";
+import "./cartInvite.css";
 import ItemCartInvite from "../itemCart/ItemCartInvite";
 
 const CartInvite = (props) => {
@@ -21,7 +21,7 @@ const CartInvite = (props) => {
   // const { products, id } = cart; //se trae los productos y el id de la orden
 
   return (
-    <div className=" container d-flex">
+    <div className=" cart-invnt container d-flex">
       <div className="row justify-content-end">
         <div className="col-12">
           <h3>Shopping Cart</h3>

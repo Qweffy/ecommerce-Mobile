@@ -1,7 +1,11 @@
+body{
+  background: #000 !important;
+}
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 25px;
+    grid-gap: 30px;
     /* grid-auto-rows: minmax(100px, auto); */
     margin-right: 10px;
     margin-left: 20px;
