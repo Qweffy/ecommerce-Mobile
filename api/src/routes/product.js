@@ -88,7 +88,7 @@ server.get("/search/:query", (req, res) => {
     where: {
       [Op.or]: [
         { name: { [Op.like]: `%${req.params.query}%` } },
-        { description: { [Op.like]: `%${req.params.query}%` } },
+       // { description: { [Op.like]: `%${req.params.query}%` } },
       ],
     },
   }).then((data) => {
@@ -158,6 +158,7 @@ server.delete("/:id", (req, res) => {
         .json({ mensaje: "No se pudo eliminar el producto", data: err });
     });
 });
+
 
 // Add review
 server.post("/:id/reviews/:userid", (req, res) => {

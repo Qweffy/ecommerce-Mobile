@@ -1,6 +1,8 @@
 .product {
   height: 75px;
   max-height: 75px;
+  color: white !important;
+  background-color: grey !important;
 }
 
 p {
@@ -51,4 +53,7 @@ p {
   border-left: none;
   border-right: none;
   text-align: center;
+}
+.div-acum{
+  color: black !important;
 }

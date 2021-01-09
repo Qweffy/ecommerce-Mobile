@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 import { editCount, removeFromCart } from "../../store/Actions/cartActions";
 import "./ItemCartInvite.css";
 import { UPDATE_COUNT } from "../../store/types";
@@ -65,7 +64,7 @@ const ItemCartInvite = ({ product, idorder, setCart, setAllTotal }) => {
       <td className="text-gen">
         <p>$ {product.price}</p>
       </td>
-      <td className="text-gen">
+      <td className="text-gen div-acum">
         <button className="less-cart" onClick={minAcum}>
           -
         </button>

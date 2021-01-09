@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
     function renderaddtocartinvite(){
       return (
         <div>
-        <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
+          <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
         </div>
       )
     }
@@ -65,9 +65,10 @@ const ProductCard = ({ product }) => {
                         <p className="product-details">RAM</p>   
                     </div>
                 </div>
-                <h3 className="mx-1 mt-4"><strong>${price}</strong></h3>
+                <h3 className="mx-1 mt-3 mb-2"><strong>${price}</strong></h3>
+                {user===undefined? renderaddtocartinvite() : renderaddtocartuser()}
             </div>
-            {user===undefined? renderaddtocartinvite() : renderaddtocartuser()}
+            
         </div>
     );
 }
