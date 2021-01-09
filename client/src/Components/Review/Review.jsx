@@ -7,17 +7,15 @@ import {
 
 const Review = () => {
     return (
-        <div>
-            <div>
-                <div className="d-flex">
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                </div>
-                <p className="py-4 m-0">Average between 2 opinios</p>
-            </div>            
+        <div className="my-5">
+            <div className="d-flex mb-2">
+                <FontAwesomeIcon icon={faStar} />
+                <FontAwesomeIcon icon={faStar} />
+                <FontAwesomeIcon icon={faStar} />
+                <FontAwesomeIcon icon={faStar} />
+                <FontAwesomeIcon icon={faStar} />
+            </div>
+            <p>Average between 2 opinios</p>
         </div>
     )
 }
