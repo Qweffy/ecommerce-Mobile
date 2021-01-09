@@ -14,14 +14,10 @@ import AddToCartInvite from "../AddToCart/AddToCartInvite.jsx";
 import { useSelector } from "react-redux";
 
 const ProductCard = ({ product }) => {
-    const { name, price, img, id, stock, ram, storage, camara } = product;
-    const { user } = useSelector((state) => state.auth);
-    let btnDisabled = false;
-    const [reviews, setReviews] = useState([]);
-    const [averageRating, setAverageRating] = useState(0);
   const { name, price, img, id, stock, ram, storage, camara } = product;
   const { user } = useSelector((state) => state.auth);
   let btnDisabled = false;
+  const [averageRating, setAverageRating] = useState(0);
 
   if (stock === 0) btnDisabled = true;
 
