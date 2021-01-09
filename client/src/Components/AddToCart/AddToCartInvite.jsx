@@ -12,7 +12,7 @@ const AddToCartInvite = (props) => {
       className="btn btn-primary"
       disabled={props.btnDisabled}
     >
-      <i class="fas fa-shopping-cart"></i>
+      <i className="fas fa-shopping-cart"></i>
     </button>
   );
 };

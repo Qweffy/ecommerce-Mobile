@@ -100,21 +100,12 @@ const ProductCard = ({ product }) => {
         <div className="detailsss">
           {user === undefined ? renderaddtocartinvite() : renderaddtocartuser()}
           <Link to={`/products/${id}`}>
-            <Button>Details</Button>
+            <Button className='detail-product-card'>Ver mas</Button>
           </Link>
         </div>
       </div>
     </div>
   );
 };
-
-// Buy button
-
-{
-  /* <div className="mx-1 my-0">
-    <AddToCart id={id} btnDisabled={btnDisabled}/>
-    <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
-</div> */
-}
 
 export default ProductCard;
