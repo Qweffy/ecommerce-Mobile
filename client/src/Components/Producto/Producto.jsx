@@ -12,6 +12,7 @@ import {
   faInfo,
 } from "@fortawesome/free-solid-svg-icons";
 import CreateReview from "../CRUDreview/CreateReview.jsx";
+import Reviews from "../Reviews/Reviews.jsx";
 
 const Producto = ({ match }) => {
   // We get => id = :1
@@ -150,6 +151,7 @@ const Producto = ({ match }) => {
           </div>
         </div>
       </div>
+      <Reviews productId={match.params.id}/>
       <CreateReview productId={match.params.id}/>
     </div>
   );
