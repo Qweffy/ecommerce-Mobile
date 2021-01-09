@@ -31,3 +31,10 @@
 .Landing .btn:hover {
   background-color: #398ab2;
 }
+
+.butn{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 300px;
+}

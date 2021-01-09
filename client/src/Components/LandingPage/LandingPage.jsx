@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import Background from "./Twirl__2.mp4";
 import Iphone from "./iPhone.png";
 import { Container, Row, Col, Button } from "react-bootstrap";
@@ -38,9 +39,16 @@ const LandingPage = () => {
       </video> */}
       <Container className="container">
         <Row>
-          <Col xs={6} className="Landing">
+          <Col xs={6} className="Landing ">
             <h1>ACÁ VA UN TITULO BIEN LLAMATIVO</h1>
-            <Button>INGRESAR</Button>
+            <div className="butn">
+              <Link to={'/login'}>
+                <Button >INGRESAR</Button>
+              </Link>
+              <Link to={'/register'}>
+                <Button >REGISTRATE</Button>
+              </Link>
+            </div>
           </Col>
           <Col xs={6} className="iphone">
             <img src={Iphone} type="image/png" />

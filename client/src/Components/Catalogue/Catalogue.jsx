@@ -12,7 +12,7 @@ const Catalogue = (props) => {
   const [allProducts, setAllProducts] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-
+  
   useEffect(() => {
     if (props.match.params.search) {
       axios

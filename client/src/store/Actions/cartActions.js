@@ -6,18 +6,19 @@ import {
 } from "../types";
 
 export const addToCart = (product) => (dispatch, getState) => {
+
   const cartItems = getState().cart.cartItems.slice();
   let alreadyExists = false;
-  cartItems.forEach((x) => {
+
+  cartItems.map((x) => {
     if (x.id === product.id) {
       alreadyExists = true;
       x.count++;
     }
   });
+  
   if (!alreadyExists) {
-    if (!product.count) {
-      product.count = 1;
-    }
+    product.count = 1;
     cartItems.push(product);
   }
 
