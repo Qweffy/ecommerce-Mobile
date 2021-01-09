@@ -12,7 +12,7 @@ const Catalogue = (props) => {
   const [allProducts, setAllProducts] = useState([]);
   const [allCategories, setAllCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  
+
   useEffect(() => {
     if (props.match.params.search) {
       axios
@@ -47,7 +47,6 @@ const Catalogue = (props) => {
 
   return (
     <div className="m-4">
-  
       <div className="d-flex">
         <div className="m-5">
           <CategoryCard
@@ -58,9 +57,9 @@ const Catalogue = (props) => {
         <div className="products-grid m-5">
           {allProducts.map((product, index) => {
             return (
-                <div key={index}>
-                  <ProductCard product={product} />
-                </div>
+              <div key={index}>
+                <ProductCard product={product} />
+              </div>
             );
           })}
         </div>
