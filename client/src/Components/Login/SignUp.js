@@ -17,7 +17,6 @@ import jwt from "jsonwebtoken";
 
 dotenv.config();
 
-
 function SignUp() {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
@@ -25,7 +24,7 @@ function SignUp() {
   const { replace, push } = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
-  /*   user && replace("/"); */
+    /*   user && replace("/"); */
   }, []);
   return (
     <div style={{ maxWidth: "30rem", margin: "auto", marginTop: "4rem" }}>
