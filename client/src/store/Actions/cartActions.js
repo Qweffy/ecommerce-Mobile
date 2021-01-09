@@ -11,6 +11,7 @@ import {
 export const addToCart = (product) => (dispatch, getState) => {
 
   const cartItems = getState().cart.cartItems.slice();
+  console.log(cartItems);
   let alreadyExists = false;
 
   cartItems.map((x) => {
@@ -61,7 +62,6 @@ export const fetchFromCart = () => (dispatch, getState) => {
 
 export function upTotal (data){
   return (dispatch) =>{
-    console.log(data)
     dispatch({
       type:  UPDATE_ORDER,
       payload: data
