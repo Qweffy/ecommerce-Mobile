@@ -46,9 +46,8 @@ const Catalogue = (props) => {
   };
 
   return (
-    <div className="m-4">
-      <div className="d-flex">
-        <div className="m-5">
+    <div className="m-4 d-flex catalog">
+        <div className="m-5 catg">
           <CategoryCard
             onCategoryToggle={categoryHandler}
             categories={allCategories}
@@ -63,7 +62,6 @@ const Catalogue = (props) => {
             );
           })}
         </div>
-      </div>
     </div>
   );
 };
