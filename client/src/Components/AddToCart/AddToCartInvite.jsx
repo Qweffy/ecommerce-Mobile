@@ -9,10 +9,9 @@ const AddToCartInvite = (props) => {
     <button
       onClick={() => props.addToCart(props.product)}
       type="button"
-      className="btn btn-primary"
       disabled={props.btnDisabled}
     >
-      <i className="fas fa-shopping-cart"></i>
+      <strong>ADD TO CART</strong>
     </button>
   );
 };

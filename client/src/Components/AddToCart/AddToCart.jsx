@@ -23,10 +23,9 @@ const AddToCart = (props) => {
         addToCart(props.id);
       }}
       type="button"
-      className="btn btn-primary"
       disabled={props.btnDisabled}
     >
-      <i class="fas fa-shopping-cart"></i>
+      <strong>ADD TO CART</strong>
     </button>
   );
 };
