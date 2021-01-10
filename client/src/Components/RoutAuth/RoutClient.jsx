@@ -8,7 +8,6 @@ const RoutClient = ({Component}) => {
   if(!user){
     return <Redirect to={'./login'} />
   }
-
   return ( 
       <Component />
    );
