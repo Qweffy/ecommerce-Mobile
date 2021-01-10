@@ -10,14 +10,13 @@ const Cart = () => {
   const [cart, setCart] = useState({ });
 
 //  const [usercart , setusercart] = useState({});
-  const [allTotal, setAllTotal] = useState(cart.price);
-  const { products, id } = cart; //se trae los productos y el id de la orden */
+  const [allTotal, setAllTotal] = useState(cart && cart.price);
+  //const { products, id } = cart; //se trae los productos y el id de la orden */
 
-  function changeAllTotal(){
 
-  }
 
   useEffect(() => {
+
     getOrders();
   }, [user, allTotal]);
 
@@ -25,13 +24,39 @@ const Cart = () => {
     //trae los productos de la orden carrito
     if(user){
       let response = await axios.get(`http://localhost:4000/orders/cart/${user.id}` );
-      setCart(response.data.data);
-      setAllTotal(response.data.data.price);
+      console.log(response);
+      if(response.data.data === null || response.data.data.products.length < 1){
+        var storageCart =JSON.parse( localStorage.getItem('cartItems'));
+        localStorage.removeItem('cartItems');
+        if(storageCart){
+          axios.post(`http://localhost:4000/orders/cart`, { id: user.id })
+                .then( res => {
+                  console.log(res);
+                  storageCart.map(product =>{
+                    axios.post(`http://localhost:4000/users/${user.id}/cart/${res.data}`, { id: product.id, acum: product.count });
+                  })
+                })
+                .then(res => {
+                  console.log(res);
+                  axios.get(`http://localhost:4000/orders/cart/${user.id}` )
+                        .then( localResponse =>{
+                          console.log(localResponse)
+                          setCart(localResponse.data.data);
+                          setAllTotal(localResponse.data.data && localResponse.data.data.price);
+                        })
+                })
+          console.log(user)
+        }
+      }else{
+        setCart(response.data.data);
+        setAllTotal(response.data.data && response.data.data.price);
+      }
     }
   }
 
   return (
     <div className="cart-log container d-flex">
+    { cart ? 
       <div className="row justify-content-end">
         <div className="col-12">
           <h3>Shopping Cart</h3>
@@ -48,7 +73,7 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              {products && products.map((product, index) => {
+              {cart.products && cart.products.map((product, index) => {
                 return (
                   <ItemCart
                     key={index}
@@ -56,7 +81,7 @@ const Cart = () => {
                     setAllTotal={setAllTotal}
                     allTotal={allTotal}
                     product={product}
-                    idorder={id}
+                    idorder={cart.id}
                   />
                 );
               })}
@@ -74,6 +99,9 @@ const Cart = () => {
           </div>
         </div>
       </div>
+      :
+      <div>No hay nada en el carrito</div>
+    }
     </div>
   );
 };
