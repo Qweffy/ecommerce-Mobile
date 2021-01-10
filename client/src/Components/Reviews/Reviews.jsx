@@ -43,7 +43,7 @@ const Reviews = ({ productId }) => {
         <div className="reviews-card border-top">
             <h2 className="reviews-header">Product opinions</h2>
             <div className="d-flex my-4">
-                <h1 className="average-rating">4.0</h1>
+                <h1 className="average-rating">{averageRating}</h1>
                 <div>
                     <div className="d-flex">
                         {
