@@ -113,9 +113,12 @@
 }
 
 .product-price button{
-  width: 50%;
-  background-color: blueviolet;
-  border-radius: 520px;
+  width: 180px;
+  background-color: #6C66BF;
+  border-radius: 20px;
   border: none;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
