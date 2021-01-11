@@ -46,22 +46,22 @@ const Catalogue = (props) => {
   };
 
   return (
-    <div className="m-4 d-flex catalog">
-        <div className="m-5 catg">
-          <CategoryCard
-            onCategoryToggle={categoryHandler}
-            categories={allCategories}
-          />
-        </div>
-        <div className="products-grid m-5">
-          {allProducts.map((product, index) => {
-            return (
-              <div key={index}>
-                <ProductCard product={product} />
-              </div>
-            );
-          })}
-        </div>
+    <div className=" d-flex catalog">
+      <div className="m-5 catg">
+        <CategoryCard
+          onCategoryToggle={categoryHandler}
+          categories={allCategories}
+        />
+      </div>
+      <div className="products-grid m-5">
+        {allProducts.map((product, index) => {
+          return (
+            <div key={index}>
+              <ProductCard product={product} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
