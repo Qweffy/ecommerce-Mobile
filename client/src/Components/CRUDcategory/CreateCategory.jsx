@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import './CreateCategory.css'
+import "./CreateCategory.css";
 
 export default function CreateCategory() {
   const [category, setCategory] = useState({});
@@ -17,7 +17,9 @@ export default function CreateCategory() {
 
   function postcategories() {
     axios
-      .post("http://localhost:4000/category/", category ,{ headers: { authorization:localStorage.getItem('token') } })
+      .post("http://localhost:4000/category/", category, {
+        headers: { authorization: localStorage.getItem("token") },
+      })
       .then(function (response) {
         history.push("/showCategories");
       });
@@ -27,7 +29,7 @@ export default function CreateCategory() {
   return (
     <div className="add-category-container">
       {/* <h3>Add new category</h3> */}
-      <form onSubmit={postcategories}>
+      <form onSubmit={postcategories} className="create-category-content">
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Category name</label>
           <div class="col-sm-10">

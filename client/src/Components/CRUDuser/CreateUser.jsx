@@ -9,8 +9,8 @@ export default function CreateUser() {
     familyName: "",
     email: "",
     password: "",
-    googleId:"",
-    photoURL:"",
+    googleId: "",
+    photoURL: "",
   });
 
   const history = useHistory();
@@ -24,16 +24,20 @@ export default function CreateUser() {
 
   function handlerSubmit(e) {
     e.preventDefault();
-    axios.post("http://localhost:4000/user", user,{ headers: { authorization:localStorage.getItem('token') } }).then((res) => {
-      history.push("/");
-      // modificar despues, llevar al login
-    });
+    axios
+      .post("http://localhost:4000/user", user, {
+        headers: { authorization: localStorage.getItem("token") },
+      })
+      .then((res) => {
+        history.push("/");
+        // modificar despues, llevar al login
+      });
   }
 
   // el prevent default sirve para q no recargue la pagina con el primer post
   return (
-    <div className="add-product-container">
-      <form onSubmit={handlerSubmit} className="mx-5 my-4">
+    <div className="add-user-container">
+      <form onSubmit={handlerSubmit} className="mx-5 my-4 add-user-content">
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">First name</label>
           <div className="col-sm-10">

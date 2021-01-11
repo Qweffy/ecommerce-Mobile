@@ -45,7 +45,11 @@ const Productos = () => {
   function handlerEdit(e) {
     e.preventDefault();
     axios
-      .put(`http://localhost:4000/products/${selectProduct.id}`, selectProduct ,{ headers: { authorization:localStorage.getItem('token') } })
+      .put(
+        `http://localhost:4000/products/${selectProduct.id}`,
+        selectProduct,
+        { headers: { authorization: localStorage.getItem("token") } }
+      )
       .then((res) => {
         var prod = allProducts.findIndex(
           (product) => product.id === res.data.data.id
@@ -56,14 +60,18 @@ const Productos = () => {
   }
 
   function handlerDelete(id) {
-    axios.delete(`http://localhost:4000/products/${id}`,{ headers: { authorization:localStorage.getItem('token') } }).then((res) => {
-      var news = allProducts.filter((elemt) => elemt.id !== res.data.data.id);
-      setAllProducts(news);
-    });
+    axios
+      .delete(`http://localhost:4000/products/${id}`, {
+        headers: { authorization: localStorage.getItem("token") },
+      })
+      .then((res) => {
+        var news = allProducts.filter((elemt) => elemt.id !== res.data.data.id);
+        setAllProducts(news);
+      });
   }
 
   return (
-    <div className=" container mt-3 ">
+    <div className=" container mt-3 productos-bg ">
       <div className="row">
         <div className="col-3"></div>
         <div className="col-8">
@@ -92,7 +100,7 @@ const Productos = () => {
               {allProducts.map((producto, index) => {
                 const { id, name, description, price, stock } = producto;
                 return (
-                  <tr className="text-center" key={index}>
+                  <tr className="text-center products-container" key={index}>
                     <td className=" d-flex justify-content-between">
                       <button
                         onClick={() => handleShow(producto)}
@@ -122,7 +130,7 @@ const Productos = () => {
         </div>
       </div>
 
-      <Modal className='modal-s' show={show} onHide={handleClose}>
+      <Modal className="modal-s" show={show} onHide={handleClose}>
         <Modal.Header>
           <Modal.Title>Edit product</Modal.Title>
         </Modal.Header>
