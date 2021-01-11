@@ -23,7 +23,7 @@ const LandingPage = () => {
 
   return (
     <div>
-      {/* <video
+      <video
         autoPlay
         muted
         loop
@@ -39,22 +39,23 @@ const LandingPage = () => {
         }}
       >
         <source src={Background} type="video/mp4" />
-      </video> */}
+      </video>
       <Container className="container">
         <Row>
           <Col xs={6} className="Landing ">
             <h1>ACÁ VA UN TITULO BIEN LLAMATIVO</h1>
-            { user ? 
-              <div></div> :
+            {user ? (
+              <div></div>
+            ) : (
               <div className="butn">
-                <Link to={'/login'}>
-                  <Button >INGRESAR</Button>
+                <Link to={"/login"}>
+                  <Button>INGRESAR</Button>
                 </Link>
-                <Link to={'/register'}>
-                  <Button >REGISTRATE</Button>
+                <Link to={"/register"}>
+                  <Button>REGISTRATE</Button>
                 </Link>
               </div>
-            }       
+            )}
           </Col>
           <Col xs={6} className="iphone">
             <img src={Iphone} type="image/png" />
