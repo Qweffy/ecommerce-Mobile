@@ -4,12 +4,11 @@ const validadmin = require("../verify");
 
 server.get("/", async (req, res, next) => {
   try {
-
     //if (req.user?.isAdmin) {
-      const result = await User.findAll();
-      res.json(result);
+    const result = await User.findAll();
+    res.json(result);
     //else {
-      //res.sendStatus(401);;
+    //res.sendStatus(401);;
     //}
   } catch (error) {
     next(error);
@@ -24,19 +23,12 @@ server.get("/:id", async (req, res, next) => {
     next(error);
   }
 });
-server.post("/",validadmin, async (req, res, next) => {
-  try {
-    const result = await User.create(req.body);
-    res.status(201).json(result);
-  } catch (error) {
-    next(error);
-  }
-});
 
-server.put("/:id",validadmin, (req, res) => {
+server.put("/:id", validadmin, (req, res) => {
   const { id } = req.params;
   //del body sacamos los datos que queremos modificar
-  const { givenName, familyName, email } = req.body;
+  const { givenName, familyName, email, isAdmin } = req.body;
+  console.log(isAdmin);
 
   return User.findOne({ where: { id } })
     .then((product) => {
@@ -44,6 +36,7 @@ server.put("/:id",validadmin, (req, res) => {
       product.givenName = givenName;
       product.familyName = familyName;
       product.email = email;
+      product.isAdmin = isAdmin;
       product.save();
       res.status(200).json({ mensaje: "Se modifico con exito", data: product });
     })
@@ -54,7 +47,7 @@ server.put("/:id",validadmin, (req, res) => {
     });
 });
 
-server.delete("/:id",validadmin, (req, res) => {
+server.delete("/:id", validadmin, (req, res) => {
   const { id } = req.params;
 
   return User.findOne({ where: { id } })
