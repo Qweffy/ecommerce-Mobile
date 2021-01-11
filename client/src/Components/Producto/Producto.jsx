@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import "./Producto.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,7 +19,7 @@ import AddToCart from "../AddToCart/AddToCart.jsx";
 import AddToCartInvite from "../AddToCart/AddToCartInvite.jsx";
 import { useSelector } from "react-redux";
 
-// toast.configure();
+toast.configure();
 
 
 const Producto = ({ match }) => {
@@ -59,17 +59,17 @@ const Producto = ({ match }) => {
 
   //notifiacion de add to cart
 
-  // const notify = ()=>{
-  //   toast.dark(' 🦄 Se agrego este producto al carrito', {
-  //     position: "bottom-center",
-  //     autoClose: 2000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: false,
-  //     draggable: true,
-  //     progress: undefined,
-  //   })
-  // }
+  const notify = ()=>{
+    toast.dark(' 🦄 Se agrego este producto al carrito', {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    })
+  }
 
   function renderaddtocartinvite() {
     return (
