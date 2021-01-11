@@ -10,25 +10,13 @@ import {
   faMicrochip,
   faStar
 } from "@fortawesome/free-solid-svg-icons";
-import AddToCart from "../AddToCart/AddToCart.jsx";
-import AddToCartInvite from "../AddToCart/AddToCartInvite.jsx";
-import { useSelector } from "react-redux";
 
 const ProductCard = ({ product }) => {
     const { name, price, img, id, stock, ram, storage, camara } = product;
-    const { user } = useSelector((state) => state.auth);
     let btnDisabled = false;
     const [averageRating, setAverageRating] = useState(0);
 
     if (stock === 0) btnDisabled = true;
-
-    function renderaddtocartinvite() {
-        return (
-        <div>
-            <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
-        </div>
-        );
-    }
 
     useEffect(() => {
         getReviews();
@@ -49,18 +37,10 @@ const ProductCard = ({ product }) => {
             reviews.forEach(review => {
                 reviewsSum += review.rating;
             })
-            setAverageRating(reviewsSum / reviews.length);
+            setAverageRating(parseInt((reviewsSum / reviews.length).toFixed()));
         }
 
         return;
-    }
-
-    function renderaddtocartuser() {
-        return (
-        <div>
-            <AddToCart id={id} btnDisabled={btnDisabled} />
-        </div>
-        );
     }
 
   return (
@@ -83,7 +63,7 @@ const ProductCard = ({ product }) => {
           <div className="d-flex align-self-center">
             <FontAwesomeIcon icon={faCamera} />
           </div>
-          <div>
+          <div className="mx-2">
             <p className="product-details">{camara}</p>
             <p className="product-details">Camera</p>
           </div>
@@ -92,7 +72,7 @@ const ProductCard = ({ product }) => {
           <div className="d-flex align-self-center">
             <FontAwesomeIcon icon={faChartPie} />
           </div>
-          <div>
+          <div className="mx-2">
             <p className="product-details">{storage}</p>
             <p className="product-details">Internal memory</p>
           </div>
@@ -101,18 +81,17 @@ const ProductCard = ({ product }) => {
           <div className="d-flex align-self-center">
             <FontAwesomeIcon icon={faMicrochip} />
           </div>
-          <div>
+          <div className="mx-2">
             <p className="product-details">{ram}</p>
             <p className="product-details">RAM</p>
           </div>
         </div>
         <h3 className="mx-1 mt-3 mb-2">
-          <strong>${price}</strong>
+          ${price}
         </h3>
         <div className="detailsss">
-          {user === undefined ? renderaddtocartinvite() : renderaddtocartuser()}
           <Link to={`/products/${id}`}>
-            <Button className='detail-product-card'>Ver mas</Button>
+            <Button className='detail-product-card'>See more</Button>
           </Link>
         </div>
       </div>

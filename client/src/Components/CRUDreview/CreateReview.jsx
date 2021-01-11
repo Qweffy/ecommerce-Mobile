@@ -28,14 +28,14 @@ const CreateReview = (props) => {
     }
 
     return (
-      <div className="container">
+      <div className="create-review-card">
         <form onSubmit={handleSubmit}>
-          <h3 className="m-1 mb-3">Add your review</h3>
-          <div className="form-group-row m-3">
+          <h3 className="mb-3">Add your review</h3>
+          <div className="form-group-row m-3 mx-0">
             {/* <label className="col-sm-2 col-form-label">Rating</label> */}
             <div className="col-sm-10">
               <input
-                className="form-control m-1"
+                className="form-control"
                 placeholder="Insert rating"
                 onChange={(e) => {
                   handleChange(e);
@@ -46,11 +46,11 @@ const CreateReview = (props) => {
               />
             </div>
           </div>
-          <div className="form-group-row m-3">
+          <div className="form-group-row m-3 mx-0">
             {/* <label className="col-sm-2 col-form-label">Description</label> */}
             <div className="col-sm-10">
               <input
-                className="form-control m-1"
+                className="form-control"
                 placeholder="Insert description"
                 onChange={(e) => {
                   handleChange(e);

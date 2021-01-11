@@ -1,15 +1,33 @@
-import React, { useState } from "react";
-import { connect, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import "./cartInvite.css";
 import ItemCartInvite from "../itemCart/ItemCartInvite";
 
-const CartInvite = (props) => {
+const CartInvite = () => {
+  const { cartItems } = useSelector(state => state.cart);
+  const { TotalOrden } = useSelector(state => state.cart);
+  const { user } = useSelector((state) => state.auth);
+  const history = useHistory();
 
-  const [cart, setCart] = useState(props["cart"]["cartItems"]);
-  const [allTotal, setAllTotal] = useState(cart.price);
-  const { id } = cart; //se trae los productos y el id de la orden
-  const cartState = useSelector((state) => state.cart);
-  const totalOrder = useSelector((state) => state.cart.TotalOrden);
+  useEffect( ()=>{
+    
+  
+  }, [])
+
+  //preguntar para despues de la compra del carrito
+
+  function cartContinue(){
+    console.log(history)
+    if(user){
+      //lo manda a completar la compra
+    }else{
+      console.log('aqui redirect')
+      history.push('/register')
+    }
+  } 
+
 
   return (
     <div className=" cart-invnt container d-flex">
@@ -29,14 +47,11 @@ const CartInvite = (props) => {
               </tr>
             </thead>
             <tbody>
-              {cartState.cartItems.map((product, index) => {
+              {cartItems.map((product, index) => {
                 return (
                   <ItemCartInvite
                     key={index}
-                    setCart={setCart}
-                    setAllTotal={setAllTotal}
                     product={product}
-                    idorder={id}
                   />
                 );
               })}
@@ -45,11 +60,11 @@ const CartInvite = (props) => {
         </div>
         <div className="col-4">
           <div>
-            <p>Subtotal: {totalOrder}</p>
+            <p>Subtotal: {TotalOrden}</p>
           </div>
           <h3> Total: </h3>
-          <div>
-            <button> Next </button>
+          <div className='bot-button'>
+            <button onClick={ ()=> cartContinue() }> Next </button>
             <button> Cancel </button>
           </div>
         </div>
@@ -58,6 +73,4 @@ const CartInvite = (props) => {
   );
 };
 
-export default connect((state) => {
-  return { cart: state.cart };
-})(CartInvite);
+export default CartInvite;

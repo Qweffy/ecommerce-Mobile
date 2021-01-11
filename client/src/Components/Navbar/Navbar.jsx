@@ -70,18 +70,18 @@ if(user === undefined || user === null){
             </Col>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-            <Col xs={2}>
-              <ul class="dropdown">
-                <li>
-                  <a href="#">Welcome {user.givenName}!</a>
-                  <ul>
-                    <li><a href="/me">My profile</a></li>
-                    <li><a onClick = {logout}>Log out</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </Col>
               <Nav className="mr-auto infonav">
+                <Col xs={2}>
+                  <ul className="dropdown">
+                    <li>
+                      <a href="#">Welcome {user.givenName}!</a>
+                      <ul>
+                        <li><a href="/me">My profile</a></li>
+                        <li><a onClick = {logout}>Log out</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </Col>
                 <Col xs={1.5} className="text-center">
                   <Nav.Link href="/catalogue">
                     <FontAwesomeIcon icon={faShoppingBag} /> Catalogue
@@ -128,7 +128,7 @@ if(user === undefined || user === null){
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto infonav align">
                   <Col xs={2}>
-                    <ul class="dropdown">
+                    <ul className="dropdown">
                       <li>
                         <a href="#">Welcome {user.givenName}!</a>
                         <ul>

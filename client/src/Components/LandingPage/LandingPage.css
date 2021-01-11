@@ -11,14 +11,19 @@
   z-index: 2;
 }
 .Landing {
-  padding-top: 250px;
+  padding-top: 150px;
   height: 700px;
   width: 900px;
 }
 .Landing h1 {
   font-family: "Lato";
   font-size: 85px;
+<<<<<<< HEAD
   color: #f2f2f2f2;
+=======
+  color: white !important;
+  line-height: 80px;
+>>>>>>> 95cc72a8162d0abfdbad5a347f37f1337f880ea0
 }
 .login-landing {
   width: 415px;
@@ -40,5 +45,5 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 300px;
+  height: 170px;
 }

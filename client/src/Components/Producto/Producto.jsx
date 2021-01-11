@@ -12,10 +12,14 @@ import {
   faInfo,
 } from "@fortawesome/free-solid-svg-icons";
 import CreateReview from "../CRUDreview/CreateReview.jsx";
+import Reviews from "../Reviews/Reviews.jsx";
+import AddToCart from "../AddToCart/AddToCart.jsx";
+import AddToCartInvite from "../AddToCart/AddToCartInvite.jsx";
+import { useSelector } from "react-redux";
 
 const Producto = ({ match }) => {
   // We get => id = :1
-  let { id } = match.params;
+  let { id, stock } = match.params;
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -33,6 +37,10 @@ const Producto = ({ match }) => {
     img: "",
     colors: [],
   });
+  const { user } = useSelector((state) => state.auth);
+  let btnDisabled = false;
+
+  if (stock === 0) btnDisabled = true;
 
   useEffect(() => {
     getSpecificProduct(id);
@@ -44,8 +52,24 @@ const Producto = ({ match }) => {
     setProduct(response.data.data);
   }
 
+  function renderaddtocartinvite() {
+    return (
+    <div>
+        <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
+    </div>
+    );
+}
+
+  function renderaddtocartuser() {
+    return (
+    <div>
+        <AddToCart id={id} btnDisabled={btnDisabled} />
+    </div>
+    );
+}
+
   return (
-    <div className="justify-content-center producto">
+    <div className="producto">
       <div className="product-content d-flex">
         <div className="info-top">
           <img src={product.img} alt="Img not found" />
@@ -145,11 +169,12 @@ const Producto = ({ match }) => {
                 <p>Precio final</p>
                 <p>${product.price}</p>
               </div>
-              <button> COMPRAR </button>
+              {user === undefined ? renderaddtocartinvite() : renderaddtocartuser()}
             </div>
           </div>
         </div>
       </div>
+      <Reviews productId={match.params.id} />
       <CreateReview productId={match.params.id}/>
     </div>
   );

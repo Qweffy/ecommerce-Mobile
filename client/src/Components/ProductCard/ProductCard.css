@@ -2,7 +2,7 @@
   height: 329px;
   width: 415px;
   margin: 0;
-  border-radius: 20px;
+  border-radius: 15px;
   color: white !important;
   background: rgba(20, 20, 20, 1);
   background: rgba(20,20,20,1);
@@ -48,7 +48,7 @@
 
 .detailsss button{
   width: 120%;
-  border: 2px solid purple;
+  border: 2px solid #6C66BF;
   border-radius: 20px;
   background: none !important;
 }
