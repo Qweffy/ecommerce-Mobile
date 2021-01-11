@@ -1,12 +1,80 @@
 .login {
   /* background-color: transparent; */
   border-radius: 20px !important;
+  color: #f2f2f2f2;
+  background-color: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(15px);
+  width: 390px;
+}
+.all-login {
+  text-align: center;
 }
 p.danger {
-  color: red;
+  color: #cc0000;
   font-size: 10px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-size: 15px;
 }
 
 input.danger {
   border: 2px solid red;
+}
+.login-user {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.forgot {
+  text-align: center !important;
+  display: block !important;
+  margin-top: 16px;
+}
+
+.your-password {
+  margin-left: 5px;
+  color: #684aa3;
+}
+.your-password :hover {
+  color: #684aa3;
+  background-color: #444499;
+}
+
+.icon-password {
+  margin-right: 10px;
+}
+.icon-email {
+  margin-right: 10px;
+}
+
+.sign-in {
+  margin-top: 10px;
+  padding-inline: 129px;
+  background-color: #684aa3;
+  border: none;
+}
+
+.sign-in:hover {
+  background-color: #444499;
+}
+
+.sign-fb {
+  padding-inline: 147px;
+}
+.sign-go {
+  padding-inline: 145px;
+}
+.register-in {
+  padding-inline: 124px;
+  margin-top: 10px;
+  background-color: #684aa3;
+  border: none;
+}
+.register-in:hover {
+  background-color: #444499;
+}
+
+.close-login {
+  background-color: transparent;
+  font-size: 20px;
 }

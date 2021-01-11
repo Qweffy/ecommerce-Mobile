@@ -14,13 +14,13 @@ function SearchBar() {
       <form className="d-flex">
         <Link onClick={() => (window.location.href = "/catalogue/" + bar)}>
           <button className="search-btn btn mx-2" type="submit">
-            <i className="fas fa-search"></i>
+            <i className="fas fa-search search-icon"></i>
           </button>
         </Link>
         <input
           onChange={(e) => loadbar(e)}
           type="text"
-          placeholder="Search"
+          placeholder="Search..."
           className="search-input mr-sm-2 rounded px-2"
         />
       </form>
