@@ -7,6 +7,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./LandingPage.css";
 
 const LandingPage = () => {
+  const { user } = useSelector((state) => state.auth);
   return (
     <div>
       <video
@@ -29,33 +30,19 @@ const LandingPage = () => {
       <Container className="container">
         <Row>
           <Col xs={6} className="Landing ">
-<<<<<<< HEAD
-            <h1>ACÁ VA UN TITULO BIEN LLAMATIVO</h1>
-            {user ? (
-              <div></div>
-            ) : (
+            <h1>IPHONE 12 PRO MAX 5G LiDAR SCANNER </h1>
+            {user === null || !user ? (
               <div className="butn">
                 <Link to={"/login"}>
-                  <Button>INGRESAR</Button>
+                  <button className="login-landing">LOGIN</button>
                 </Link>
                 <Link to={"/register"}>
-                  <Button>REGISTRATE</Button>
+                  <a href="# " class="blue-text ml-1 your-password-landing">
+                    Don't have an account? Create one now.
+                  </a>
                 </Link>
               </div>
-            )}
-=======
-            <h1>IPHONE 12 PRO MAX 5G LiDAR SCANNER </h1>
-            <div className="butn">
-              <Link to={"/login"}>
-                <button className="login-landing">LOGIN</button>
-              </Link>
-              <Link to={"/register"}>
-                <a href="# " class="blue-text ml-1 your-password-landing">
-                  Don't have an account? Create one now.
-                </a>
-              </Link>
-            </div>
->>>>>>> f9a0366873523316fec94595f97d44be75b994da
+            ) : null}
           </Col>
           <Col xs={6} className="iphone">
             <img src={Iphone} type="image/png" />
