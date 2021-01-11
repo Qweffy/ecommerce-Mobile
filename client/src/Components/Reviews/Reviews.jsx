@@ -60,7 +60,7 @@ const Reviews = ({ productId }) => {
             {
                 reviews.map(review => {
                     return (
-                        <Review averageRating={averageRating} description={review.description}/>
+                        <Review review={review}/>
                     )
                 })
             }
