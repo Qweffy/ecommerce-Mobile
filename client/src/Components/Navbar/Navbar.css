@@ -1,7 +1,7 @@
 .nav {
   max-width: 100%;
-  height   : 80px !important;
-  z-index  : 3;
+  height: 80px !important;
+  z-index: 3;
   height: 60px;
 }
 
@@ -9,24 +9,27 @@
   height: 100%;
 }
 
-.navbar-collapse{
+.home-logo {
+  color: #f2f2f2;
+}
+.navbar-collapse {
   display: flex;
-  align-items: flex-end ;
+  align-items: flex-end;
   justify-content: flex-end;
   height: 100%;
 }
 
-.infonav{
+.infonav {
   width: 100%;
-  align-items: flex-end ;
+  align-items: flex-end;
   justify-content: flex-end;
   height: 100%;
 }
 
-.infonav  div {
- height: 100%;
- display: flex;
- align-items: center ;
+.infonav div {
+  height: 100%;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -44,19 +47,19 @@
 *,
 *::before,
 *::after {
-  box-sizing        : border-box;
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
 
 .dropdown {
-  margin          : 0;
-  padding         : 0;
-  display         : -webkit-box;
-  display         : -ms-flexbox;
-  display         : flex;
-  -ms-flex-wrap   : wrap;
-  flex-wrap       : wrap;
-  list-style      : none;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  list-style: none;
 }
 
 .dropdown li {
@@ -64,41 +67,41 @@
 }
 
 .dropdown li a {
-  display        : block;
-  padding        : 0 10px;
-  height         : 50px;
-  line-height    : 50px;
-  color          : #ffffff;
-  cursor         : pointer;
+  display: block;
+  padding: 0 10px;
+  height: 50px;
+  line-height: 50px;
+  color: #ffffff;
+  cursor: pointer;
   text-decoration: none;
 }
 
 .dropdown li ul {
-  display             : none;
-  position            : absolute;
-  margin              : 0;
-  padding             : 0;
-  list-style          : none;
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   /*  background-color: #444444; */
-  width               : 100%;
-  left                : 0;
+  width: 100%;
+  left: 0;
 }
 
 .dropdown li ul li a {
-  height     : 35px;
+  height: 35px;
   line-height: 35px;
-  color      : rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 
-.dropdown:hover{
+.dropdown:hover {
   background-color: #684aa3;
 }
 
-.dropdown li:hover>ul {
+.dropdown li:hover > ul {
   display: block;
 }
 
 .dropdown li > a:hover {
   background-color: #684aa3;
-  color           : #222222;
+  color: #222222;
 }
