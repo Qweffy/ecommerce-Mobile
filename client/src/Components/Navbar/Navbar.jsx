@@ -9,103 +9,47 @@ import {
   faAtlas,
   faShoppingCart,
   faTruck,
-  faUsers
+  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import Searchbar from "../Searchbar/Searchbar.js";
-import { useSelector , useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./Navbar.css";
 
 function BootstrapNavbar() {
-  const { user } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { replace } = useHistory();
   //console.log(user.isAdmin);
   /* const isAdmin = true; */
 
+  function logout() {
+    dispatch(actions.setUser(null));
+    window.localStorage.removeItem("token");
+    replace("/");
+  }
 
-function logout(){
-  dispatch(actions.setUser(null));
-  window.localStorage.removeItem("token");
-  replace("/");
-}
-
-if(user === undefined || user === null){
-  return (
-    <Container className='' fluid>
-      <Row >
-        <Navbar collapseOnSelect expand="lg" className="p-2 nav">
-          <Col xs={5} className="logo-div">
-            <Navbar.Brand href="/" ></Navbar.Brand>
-          </Col>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto infonav align">
-              <Col xs={1.5} className="text-center">
-                <Nav.Link href="/catalogue">
-                  <FontAwesomeIcon icon={faShoppingBag} /> Catalogue
-                  </Nav.Link>
-              </Col>
-              <Col xs={1.5} className="text-center">
-                <Nav.Link href="/cart">
-                  <FontAwesomeIcon icon={faShoppingCart} /> My Cart
-                  </Nav.Link>
-              </Col>
-              <Col xs={3}>
-                <Searchbar />
-              </Col>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      </Row>
-    </Container>
-  );
-}else {
-  if (user && user.isAdmin) {
+  if (user === undefined || user === null) {
     return (
-      <Container fluid>
+      <Container className="" fluid>
         <Row>
           <Navbar collapseOnSelect expand="lg" className="p-2 nav">
             <Col xs={5} className="logo-div">
-              <Navbar.Brand href="/" ></Navbar.Brand>
+              <Navbar.Brand href="/">
+                <i class="fas fa-home home-logo"></i>
+              </Navbar.Brand>
             </Col>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="mr-auto infonav">
-                <Col xs={2}>
-                  <ul className="dropdown">
-                    <li>
-                      <a href="#">Welcome {user.givenName}!</a>
-                      <ul>
-                        <li><a href="/me">My profile</a></li>
-                        <li><a onClick = {logout}>Log out</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </Col>
+              <Nav className="mr-auto infonav align">
                 <Col xs={1.5} className="text-center">
                   <Nav.Link href="/catalogue">
                     <FontAwesomeIcon icon={faShoppingBag} /> Catalogue
-                </Nav.Link>
+                  </Nav.Link>
                 </Col>
                 <Col xs={1.5} className="text-center">
-                  <Nav.Link href="/showProducts">
-                    <FontAwesomeIcon icon={faCartArrowDown} /> My Products
-                </Nav.Link>
-                </Col>
-                <Col xs={1.5} className="text-center">
-                  <Nav.Link href="/showCategories">
-                    <FontAwesomeIcon icon={faAtlas} /> My Categories
-                </Nav.Link>
-                </Col>
-                <Col xs={1.5} className="text-center">
-                  <Nav.Link href="/orders">
-                    <FontAwesomeIcon icon={faTruck} /> All Orders
-                </Nav.Link>
-                </Col>
-                <Col xs={1.5} className="text-center">
-                  <Nav.Link href="/userlist">
-                    <FontAwesomeIcon icon={faUsers} /> User List
-                </Nav.Link>
+                  <Nav.Link href="/cart">
+                    <FontAwesomeIcon icon={faShoppingCart} /> My Cart
+                  </Nav.Link>
                 </Col>
                 <Col xs={3}>
                   <Searchbar />
@@ -117,23 +61,30 @@ if(user === undefined || user === null){
       </Container>
     );
   } else {
+    if (user && user.isAdmin) {
       return (
         <Container fluid>
-          <Row >
+          <Row>
             <Navbar collapseOnSelect expand="lg" className="p-2 nav">
-              <Col xs={5}>
-                <Navbar.Brand href="/" className="logo-div"></Navbar.Brand>
+              <Col xs={5} className="logo-div">
+                <Navbar.Brand href="/">
+                  <i class="fas fa-home home-logo"></i>
+                </Navbar.Brand>
               </Col>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="mr-auto infonav align">
+                <Nav className="mr-auto infonav">
                   <Col xs={2}>
                     <ul className="dropdown">
                       <li>
                         <a href="#">Welcome {user.givenName}!</a>
                         <ul>
-                          <li><a href="/me">My profile</a></li>
-                          <li><a onClick = {logout}>Log out</a></li>
+                          <li>
+                            <a href="/me">My profile</a>
+                          </li>
+                          <li>
+                            <a onClick={logout}>Log out</a>
+                          </li>
                         </ul>
                       </li>
                     </ul>
@@ -141,12 +92,27 @@ if(user === undefined || user === null){
                   <Col xs={1.5} className="text-center">
                     <Nav.Link href="/catalogue">
                       <FontAwesomeIcon icon={faShoppingBag} /> Catalogue
-                      </Nav.Link>
+                    </Nav.Link>
                   </Col>
                   <Col xs={1.5} className="text-center">
-                    <Nav.Link href="/cart">
-                      <FontAwesomeIcon icon={faShoppingCart} /> My Cart
-                      </Nav.Link>
+                    <Nav.Link href="/showProducts">
+                      <FontAwesomeIcon icon={faCartArrowDown} /> My Products
+                    </Nav.Link>
+                  </Col>
+                  <Col xs={1.5} className="text-center">
+                    <Nav.Link href="/showCategories">
+                      <FontAwesomeIcon icon={faAtlas} /> My Categories
+                    </Nav.Link>
+                  </Col>
+                  <Col xs={1.5} className="text-center">
+                    <Nav.Link href="/orders">
+                      <FontAwesomeIcon icon={faTruck} /> All Orders
+                    </Nav.Link>
+                  </Col>
+                  <Col xs={1.5} className="text-center">
+                    <Nav.Link href="/userlist">
+                      <FontAwesomeIcon icon={faUsers} /> User List
+                    </Nav.Link>
                   </Col>
                   <Col xs={3}>
                     <Searchbar />
@@ -157,9 +123,55 @@ if(user === undefined || user === null){
           </Row>
         </Container>
       );
+    } else {
+      return (
+        <Container fluid>
+          <Row>
+            <Navbar collapseOnSelect expand="lg" className="p-2 nav">
+              <Col xs={5}>
+                <Navbar.Brand href="/" className="logo-div ">
+                  <i class="fas fa-home home-logo"></i>
+                </Navbar.Brand>
+              </Col>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="mr-auto infonav align">
+                  <Col xs={2}>
+                    <ul className="dropdown">
+                      <li>
+                        <a href="#">Welcome {user.givenName}!</a>
+                        <ul>
+                          <li>
+                            <a href="/me">My profile</a>
+                          </li>
+                          <li>
+                            <a onClick={logout}>Log out</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </Col>
+                  <Col xs={1.5} className="text-center">
+                    <Nav.Link href="/catalogue">
+                      <FontAwesomeIcon icon={faShoppingBag} /> Catalogue
+                    </Nav.Link>
+                  </Col>
+                  <Col xs={1.5} className="text-center">
+                    <Nav.Link href="/cart">
+                      <FontAwesomeIcon icon={faShoppingCart} /> My Cart
+                    </Nav.Link>
+                  </Col>
+                  <Col xs={3}>
+                    <Searchbar />
+                  </Col>
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
+          </Row>
+        </Container>
+      );
+    }
   }
-}
-
 }
 
 export default BootstrapNavbar;
