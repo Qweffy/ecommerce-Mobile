@@ -73,7 +73,7 @@ const Producto = ({ match }) => {
 
   function renderaddtocartinvite() {
     return (
-    <div>
+    <div onClick={notify}>
         <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
     </div>
     );
@@ -81,7 +81,7 @@ const Producto = ({ match }) => {
 
   function renderaddtocartuser() {
     return (
-    <div>
+    <div onClick={notify}>
         <AddToCart id={id} btnDisabled={btnDisabled} />
     </div>
     );
@@ -200,3 +200,4 @@ const Producto = ({ match }) => {
 };
 
 export default Producto;
+
