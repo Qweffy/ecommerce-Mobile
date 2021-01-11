@@ -6,3 +6,25 @@ p.danger {
 input.danger {
   border: 2px solid red;
 }
+
+.add-user-container {
+  background-image: url("../../img/fondos/fondo4.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: scroll;
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  padding-top: 80px;
+  overflow: scroll;
+  color: #f2f2f2;
+}
+
+.add-user-content {
+  width: 1000px;
+}
