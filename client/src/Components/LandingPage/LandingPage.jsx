@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Background from "./Twirl__2.mp4";
@@ -8,7 +7,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./LandingPage.css";
 
 const LandingPage = () => {
-
+  const { user } = useSelector((state) => state.auth)
   return (
     <div>
       {/* <video
@@ -32,14 +31,17 @@ const LandingPage = () => {
         <Row>
           <Col xs={6} className="Landing ">
             <h1>ACÁ VA UN TITULO BIEN LLAMATIVO</h1>
-            <div className="butn">
-              <Link to={"/login"}>
-                <button className="login-landing">LOGIN</button>
-              </Link>
-              <Link to={"/register"}>
-                <button className="login-landing">Register</button>
-              </Link>
-            </div>
+            {user === null || !user ? 
+              <div className="butn">
+                <Link to={"/login"}>
+                  <button className="login-landing">LOGIN</button>
+                </Link>
+                <Link to={"/register"}>
+                  <button className="login-landing">Register</button>
+                </Link>
+              </div>
+              : null
+            }
           </Col>
           <Col xs={6} className="iphone">
             <img src={Iphone} type="image/png" />

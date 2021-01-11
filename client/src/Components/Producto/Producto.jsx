@@ -193,7 +193,8 @@ const Producto = ({ match }) => {
         </div>
       </div>
       <Reviews productId={match.params.id} />
-      <CreateReview productId={match.params.id}/>
+      { user ? <CreateReview productId={match.params.id}/> : null }
+      
     </div>
   );
 };
