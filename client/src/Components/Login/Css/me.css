@@ -1,8 +1,11 @@
-.count{
+.info-user{
   width: 100%;
   display: flex;
+  background-color: rebeccapurple;
   padding-top: 20px;
   color: #f2f2f2 !important;
+  position: absolute;
+  left: 50%;
 }
 
 .bar-left{

@@ -15,7 +15,7 @@ function App() {
   const dispatch = useDispatch();
   const { replace } = useHistory();
   return (
-    <div className="count">
+    <div className="info-user">
       <div className="bar-left">
         <span>Mi Cuenta</span>
         <div className='count-option'>
