@@ -1,13 +1,13 @@
-.conten-order{
+.conten-review{
   margin-top: 60px;
   width: 90%;
 }
 
-.conten-order .all-orders-us{
+.conten-review .all-orders-us{
   margin-top: 20px;
 }
 
-.conten-order .all-orders-us .individual-order{
+.conten-review .all-orders-us .individual-order{
   border: 1px solid rgba(187, 186, 186, 0.842);
   margin-bottom: 20px;
   padding: 20px 20px;
@@ -35,12 +35,21 @@
   align-items: center;
 }
 
-.last-product{
+.review-user{
   display: flex;
   align-items: center;
+  width: 380px;
 }
 
-.last-product img{
+.review-user img{
   width: 60px;
   height: 70px;
+}
+
+.review-user h5{
+  margin-left: 20px;
+}
+
+.review-user h5 span{
+  font-weight: lighter;
 }
