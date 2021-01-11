@@ -2,17 +2,27 @@
 }
 
 .search-btn:hover {
-  background-color: #684aa3;
+  background-color: #444499;
   color: white;
   border-color: #2b2b54;
+}
+.search-input:focus {
+  background-color: rgb(43, 43, 84, 0.5);
+  backdrop-filter: blur(15px);
+  outline: none;
 }
 
 .search-input {
   border: none;
-  background-color: black;
+  background-color: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
   color: #f2f2f2;
 }
 
 .search-input::placeholder {
+  color: #f2f2f2;
+}
+
+.search-icon {
   color: #f2f2f2;
 }
