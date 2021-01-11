@@ -1,0 +1,15 @@
+.conten-order{
+  margin-top: 60px;
+  width: 90%;
+}
+
+.conten-order .all-orders-us{
+  margin-top: 20px;
+}
+
+.conten-order .all-orders-us .individual-order{
+  height: 150px;
+  border: 1px solid rgba(187, 186, 186, 0.842);
+  margin-bottom: 20px;
+  padding: 20px 20px;
+}

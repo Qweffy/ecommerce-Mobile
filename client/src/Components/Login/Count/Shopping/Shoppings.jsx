@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import axios from "axios";
 import { useSelector } from "react-redux";
+import './Shopping.css'
 
 const CountShoppings = () => {
   const user = useSelector((state) => state.auth.user);
@@ -18,13 +19,15 @@ const CountShoppings = () => {
 
 
   return ( 
-    <div>
+    <div className='conten-order'>
       <h1>Tus compras</h1>
-      {Orders && Orders.map(order=>{
-        return(
-          <div>cada orden</div>
-        )
-      })}
+      <div className='all-orders-us'>
+        {Orders && Orders.map(order=>{
+          return(
+            <div className='individual-order'>cada orden</div>
+          )
+        })}
+      </div>
     </div>
    );
 }
