@@ -29,7 +29,8 @@ server.get('/cart/:id' , (req, res) =>{
 server.get('/user/:id', (req, res)=>{
   const { id } = req.params;
   Order.findAll({
-    where:{  userId: id }
+    where:{  userId: id },
+    include:[{ model: Product}]
   })
   .then( orders => {
     res.status(200).json({

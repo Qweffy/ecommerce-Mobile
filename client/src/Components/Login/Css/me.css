@@ -1,5 +1,5 @@
-.info-user{
-  background-image: url("../../../img/fondoproducto.png");
+.info-user {
+  background-image: url("../../../img/fondos/fondo5.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-attachment: scroll;
@@ -17,7 +17,7 @@
   display: flex;
 }
 
-.bar-left{
+.bar-left {
   width: 25%;
   padding: 2% 3%;
   display: flex;
@@ -27,17 +27,17 @@
   background-color: rgba(255, 255, 255, 0.281);
 }
 
-.bar-left .name{
+.bar-left .name {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-.bar-left .avatar-img{
+.bar-left .avatar-img {
   margin-bottom: 20px;
 }
 
-.bar-left .count-option{
+.bar-left .count-option {
   padding: 10px 20px;
   width: 100%;
   height: 90px;
@@ -48,7 +48,7 @@
   cursor: pointer;
 }
 
-.count-option .option-hover{
+.count-option .option-hover {
   height: 100%;
   width: 10px;
   margin-right: 15px;
@@ -57,34 +57,34 @@
   transition: 0.3s;
 }
 
-.count-option:hover .option-hover{
-  background-color: purple; 
+.count-option:hover .option-hover {
+  background-color: purple;
 }
 
-.count-option .icon{
+.count-option .icon {
   margin-right: 15px;
 }
 
-.count-option .option-text{
+.count-option .option-text {
   margin-right: auto;
 }
 
-.bar-left .option-support{
+.bar-left .option-support {
   margin-bottom: auto;
 }
 
-.user-me{
+.user-me {
   width: 100%;
   color: white !important;
   display: flex;
   justify-content: center;
 }
 
-.rs-panel{
+.rs-panel {
   width: 30%;
   margin: auto;
 }
 
-.rs-panel-heading{
-  color: #f2f2f2 ;
+.rs-panel-heading {
+  color: #f2f2f2;
 }

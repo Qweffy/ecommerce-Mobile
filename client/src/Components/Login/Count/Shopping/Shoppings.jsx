@@ -24,7 +24,9 @@ const CountShoppings = () => {
       <div className='all-orders-us'>
         {Orders && Orders.map(order=>{
           return(
-            <div className='individual-order'>cada orden</div>
+            <div className='individual-order'>
+              <div>{order.createdAt}</div>
+            </div>
           )
         })}
       </div>
