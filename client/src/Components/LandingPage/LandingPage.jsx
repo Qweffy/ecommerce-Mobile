@@ -4,26 +4,14 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Background from "./Twirl__2.mp4";
 import Iphone from "./iPhone.png";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "./LandingPage.css";
 
 const LandingPage = () => {
-  const user = useSelector((state) => state.auth.user);
-
-  const [products, setProducts] = useState([]);
-
-  async function getProducts() {
-    let response = await axios.get("http://localhost:4000/products/");
-    setProducts(response.data);
-  }
-
-  useEffect(() => {
-    getProducts();
-  }, []);
 
   return (
     <div>
-      <video
+      {/* <video
         autoPlay
         muted
         loop
@@ -39,7 +27,7 @@ const LandingPage = () => {
         }}
       >
         <source src={Background} type="video/mp4" />
-      </video>
+      </video> */}
       <Container className="container">
         <Row>
           <Col xs={6} className="Landing ">
@@ -47,6 +35,9 @@ const LandingPage = () => {
             <div className="butn">
               <Link to={"/login"}>
                 <button className="login-landing">LOGIN</button>
+              </Link>
+              <Link to={"/register"}>
+                <button className="login-landing">Register</button>
               </Link>
             </div>
           </Col>

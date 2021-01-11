@@ -177,7 +177,6 @@ const Producto = ({ match }) => {
                             className="product-img"
                           />
                         </div>
-                        <p>plateado</p>
                       </div>
                     );
                   })}
