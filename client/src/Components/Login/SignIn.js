@@ -24,7 +24,6 @@ export function validate(input) {
 }
 
 function SignIn() {
-  const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const { replace, push } = useHistory();
   const dispatch = useDispatch();
@@ -45,9 +44,6 @@ function SignIn() {
     );
   };
   const [errors, setErrors] = React.useState({});
-  useEffect(() => {
-    /*   user && replace("/"); */
-  }, []);
   return (
     <form
       class="all-login"
@@ -97,7 +93,7 @@ function SignIn() {
 
           <div class="modal-body mx-4">
             <div class=" login-user">
-              <i class="fas fa-user fa-2x icon-email"></i>
+              <i class="fas fa-envelope fa-2x icon-email"></i>
               <input
                 onChange={(e) => {
                   handleInputChange(e);
@@ -105,7 +101,9 @@ function SignIn() {
                 type="email"
                 name="email"
                 placeholder="Email"
-                className={` form-control validate ${errors.email && "danger"}`}
+                className={` form-control validate ${
+                  errors.email && "danger"
+                } border-login`}
               />
             </div>
             {errors.email && <p className="danger">{errors.email}</p>}
@@ -121,7 +119,7 @@ function SignIn() {
                 placeholder="Password"
                 className={`form-control validate ${
                   errors.password && "danger"
-                }`}
+                } border-login`}
               />
             </div>
             {errors.password && <p className="danger">{errors.password}</p>}
@@ -137,9 +135,9 @@ function SignIn() {
                 Sign in
               </button>
               <Link to={"/register"}>
-                <button class="btn btn-primary z-depth-1a register-in">
-                  Register
-                </button>
+                <a href="# " class="blue-text ml-1 your-password">
+                  Don't have an account? Create one now.
+                </a>
               </Link>
             </div>
             <p class="font-small dark-grey-text d-flex justify-content-center">
@@ -147,11 +145,14 @@ function SignIn() {
             </p>
 
             <div class="text-center mb-3">
-              <button type="button" class="btn btn-primary z-depth-1a sign-fb">
+              {/* <button type="button" class="btn btn-primary z-depth-1a sign-fb">
                 <i class="fab fa-facebook-f text-center"></i>
-              </button>
+              </button> */}
               <button type="button" class="btn btn-danger z-depth-1a sign-go">
                 <i class="fab fa-google-plus-g text-center"></i>
+              </button>
+              <button type="button" class="btn btn-dark z-depth-1a sign-git">
+                <i class="fab fa-github text-center"></i>
               </button>
             </div>
           </div>
