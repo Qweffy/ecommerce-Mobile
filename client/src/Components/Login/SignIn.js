@@ -63,7 +63,7 @@ function SignIn() {
         replace("/");
       }}
     >
-      <video
+      {/* <video
         autoPlay
         muted
         loop
@@ -79,7 +79,7 @@ function SignIn() {
         }}
       >
         <source src={Background} type="video/mp4" />
-      </video>
+      </video> */}
       <div class="">
         <div class=" login">
           <div class="modal-header text-center">
