@@ -35,9 +35,8 @@ input.danger {
   margin-left: 5px;
   color: #684aa3;
 }
-.your-password :hover {
-  color: #684aa3;
-  background-color: #444499;
+.your-password:hover {
+  color: #444499;
 }
 
 .icon-password {

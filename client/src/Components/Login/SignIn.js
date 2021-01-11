@@ -104,7 +104,7 @@ function SignIn() {
                 }}
                 type="email"
                 name="email"
-                placeholder="email"
+                placeholder="Email"
                 className={` form-control validate ${errors.email && "danger"}`}
               />
             </div>

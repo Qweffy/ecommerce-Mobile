@@ -44,25 +44,11 @@ const LandingPage = () => {
         <Row>
           <Col xs={6} className="Landing ">
             <h1>ACÁ VA UN TITULO BIEN LLAMATIVO</h1>
-<<<<<<< HEAD
             <div className="butn">
               <Link to={"/login"}>
                 <button className="login-landing">LOGIN</button>
               </Link>
             </div>
-=======
-            { user ? 
-              <div></div> :
-              <div className="butn">
-                <Link to={'/login'}>
-                  <Button >INGRESAR</Button>
-                </Link>
-                <Link to={'/register'}>
-                  <Button >REGISTRATE</Button>
-                </Link>
-              </div>
-            }       
->>>>>>> 95cc72a8162d0abfdbad5a347f37f1337f880ea0
           </Col>
           <Col xs={6} className="iphone">
             <img src={Iphone} type="image/png" />
