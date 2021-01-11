@@ -42,3 +42,12 @@
   justify-content: space-around;
   height: 170px;
 }
+
+.your-password-landing {
+  color: #684aa3;
+  margin-left: 21px;
+}
+
+.your-password-landing:hover {
+  color: #444499;
+}

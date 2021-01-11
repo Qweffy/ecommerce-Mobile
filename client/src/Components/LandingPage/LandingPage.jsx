@@ -43,10 +43,15 @@ const LandingPage = () => {
       <Container className="container">
         <Row>
           <Col xs={6} className="Landing ">
-            <h1>ACÁ VA UN TITULO BIEN LLAMATIVO</h1>
+            <h1>IPHONE 12 PRO MAX 5G LiDAR SCANNER </h1>
             <div className="butn">
               <Link to={"/login"}>
                 <button className="login-landing">LOGIN</button>
+              </Link>
+              <Link to={"/register"}>
+                <a href="# " class="blue-text ml-1 your-password-landing">
+                  Don't have an account? Create one now.
+                </a>
               </Link>
             </div>
           </Col>
