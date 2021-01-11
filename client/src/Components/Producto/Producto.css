@@ -1,5 +1,5 @@
 .producto {
-  background-image: url("../../img/fondoproducto.png");
+  background-image: url("../../img/fondos/fondo1.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-attachment: scroll;
@@ -34,7 +34,6 @@
   width: 65%;
   height: 60%;
 }
-
 
 .product-info-stat {
   width: 65%;
@@ -120,9 +119,9 @@
   color: #f2f2f2 !important;
 }
 
-.product-price button{
+.product-price button {
   width: 180px;
-  background-color: #6C66BF;
+  background-color: #6c66bf;
   border-radius: 20px;
   border: none;
   padding-top: 10px;

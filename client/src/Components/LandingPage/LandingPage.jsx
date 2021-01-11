@@ -8,7 +8,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./LandingPage.css";
 
 const LandingPage = () => {
-
   return (
     <div>
       {/* <video
@@ -37,13 +36,9 @@ const LandingPage = () => {
                 <button className="login-landing">LOGIN</button>
               </Link>
               <Link to={"/register"}>
-<<<<<<< HEAD
                 <a href="# " class="blue-text ml-1 your-password-landing">
                   Don't have an account? Create one now.
                 </a>
-=======
-                <button className="login-landing">Register</button>
->>>>>>> 0161c621bae7865055d9b46a6b36145c0b4512a2
               </Link>
             </div>
           </Col>

@@ -168,7 +168,7 @@ function SignUp() {
 
             <div class="text-center mb-3">
               <button type="submit" class="btn btn-primary z-depth-1a sign-in">
-                Sign in
+                Register
               </button>
               <Link to={"/register"}>
                 <a href="# " class="blue-text ml-1 your-password">
