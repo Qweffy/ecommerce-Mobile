@@ -1,26 +1,12 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Background from "./Twirl__2.mp4";
 import Iphone from "./iPhone.png";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "./LandingPage.css";
 
 const LandingPage = () => {
-  const user = useSelector((state) => state.auth.user);
-
-  const [products, setProducts] = useState([]);
-
-  async function getProducts() {
-    let response = await axios.get("http://localhost:4000/products/");
-    setProducts(response.data);
-  }
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
   return (
     <div>
       <video
@@ -43,6 +29,7 @@ const LandingPage = () => {
       <Container className="container">
         <Row>
           <Col xs={6} className="Landing ">
+<<<<<<< HEAD
             <h1>ACÁ VA UN TITULO BIEN LLAMATIVO</h1>
             {user ? (
               <div></div>
@@ -56,6 +43,19 @@ const LandingPage = () => {
                 </Link>
               </div>
             )}
+=======
+            <h1>IPHONE 12 PRO MAX 5G LiDAR SCANNER </h1>
+            <div className="butn">
+              <Link to={"/login"}>
+                <button className="login-landing">LOGIN</button>
+              </Link>
+              <Link to={"/register"}>
+                <a href="# " class="blue-text ml-1 your-password-landing">
+                  Don't have an account? Create one now.
+                </a>
+              </Link>
+            </div>
+>>>>>>> f9a0366873523316fec94595f97d44be75b994da
           </Col>
           <Col xs={6} className="iphone">
             <img src={Iphone} type="image/png" />

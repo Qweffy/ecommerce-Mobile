@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import "./Producto.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,6 +18,9 @@ import Reviews from "../Reviews/Reviews.jsx";
 import AddToCart from "../AddToCart/AddToCart.jsx";
 import AddToCartInvite from "../AddToCart/AddToCartInvite.jsx";
 import { useSelector } from "react-redux";
+
+toast.configure();
+
 
 const Producto = ({ match }) => {
   // We get => id = :1
@@ -52,9 +57,23 @@ const Producto = ({ match }) => {
     setProduct(response.data.data);
   }
 
+  //notifiacion de add to cart
+
+  const notify = ()=>{
+    toast.dark(' 🦄 Se agrego este producto al carrito', {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    })
+  }
+
   function renderaddtocartinvite() {
     return (
-    <div>
+    <div onClick={notify}>
         <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
     </div>
     );
@@ -62,7 +81,7 @@ const Producto = ({ match }) => {
 
   function renderaddtocartuser() {
     return (
-    <div>
+    <div onClick={notify}>
         <AddToCart id={id} btnDisabled={btnDisabled} />
     </div>
     );
@@ -158,7 +177,6 @@ const Producto = ({ match }) => {
                             className="product-img"
                           />
                         </div>
-                        <p>plateado</p>
                       </div>
                     );
                   })}
@@ -175,7 +193,8 @@ const Producto = ({ match }) => {
         </div>
       </div>
       <Reviews productId={match.params.id} />
-      <CreateReview productId={match.params.id}/>
+      { user ? <CreateReview productId={match.params.id}/> : null }
+      
     </div>
   );
 };

@@ -5,13 +5,15 @@ import axios from "axios";
 import actions from "../../store/Actions/authactions.js";
 import jwt from "jsonwebtoken";
 import "./Css/signIn.css";
+import Background from "../LandingPage/Twirl__2.mp4";
+import { Link } from "react-router-dom";
 
 export function validate(input) {
   let errors = {};
-  if (!input.username) {
-    errors.username = "Username is required";
-  } else if (!/\S+@\S+\.\S+/.test(input.username)) {
-    errors.username = "Username is invalid";
+  if (!input.email) {
+    errors.email = "Mail is required";
+  } else if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(input.email)) {
+    errors.email = "Mail is invalid";
   }
   if (!input.password) {
     errors.password = "Password is required";
@@ -22,12 +24,11 @@ export function validate(input) {
 }
 
 function SignIn() {
-  const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const { replace, push } = useHistory();
   const dispatch = useDispatch();
   const [input, setInput] = React.useState({
-    username: "",
+    email: "",
     password: "",
   });
   const handleInputChange = function (e) {
@@ -43,11 +44,9 @@ function SignIn() {
     );
   };
   const [errors, setErrors] = React.useState({});
-  useEffect(() => {
-    /*   user && replace("/"); */
-  }, []);
   return (
     <form
+      class="all-login"
       style={{ maxWidth: "30rem", margin: "auto", marginTop: "4rem" }}
       onSubmit={async (e) => {
         e.preventDefault();
@@ -64,84 +63,96 @@ function SignIn() {
         replace("/");
       }}
     >
-      <div class="modal-dialog">
-        <div class="modal-content login">
+      <video
+        autoPlay
+        muted
+        loop
+        style={{
+          position: "absolute",
+          width: "100%",
+          left: "50%",
+          top: "50%",
+          height: "100%",
+          objectFit: "cover",
+          transform: "translate(-50%, -50%)",
+          zIndex: "-1",
+        }}
+      >
+        <source src={Background} type="video/mp4" />
+      </video>
+      <div class="">
+        <div class=" login">
           <div class="modal-header text-center">
             <h3 class="modal-title w-100 dark-grey-text font-weight-bold">
               Sign In
             </h3>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-lable="close"
-            >
-              &times;
+            <button type="button" class="close-login">
+              X
             </button>
           </div>
 
           <div class="modal-body mx-4">
-            <div class="md-form">
+            <div class=" login-user">
+              <i class="fas fa-envelope fa-2x icon-email"></i>
               <input
                 onChange={(e) => {
                   handleInputChange(e);
                 }}
                 type="email"
                 name="email"
+                placeholder="Email"
                 className={` form-control validate ${
-                  errors.username && "danger"
-                }`}
+                  errors.email && "danger"
+                } border-login`}
               />
-              {errors.username && <p className="danger">{errors.username}</p>}
-              <label data-error="wrong" data-success="right">
-                Your Email
-              </label>
             </div>
+            {errors.email && <p className="danger">{errors.email}</p>}
 
-            <div class="md-form">
+            <div class="login-user">
+              <i class="fas fa-lock fa-2x icon-password"></i>
               <input
                 onChange={(e) => {
                   handleInputChange(e);
                 }}
                 type="password"
                 name="password"
+                placeholder="Password"
                 className={`form-control validate ${
                   errors.password && "danger"
-                }`}
+                } border-login`}
               />
-              {errors.password && <p className="danger">{errors.password}</p>}
-              <label data-error="wrong" data-success="right">
-                Your Password
-              </label>
-              <p class="font-small blue-text d-flex justify-content-end">
-                Forgot
-                <a href="#" class="blue-text ml-1">
-                  Password?
-                </a>
-              </p>
             </div>
+            {errors.password && <p className="danger">{errors.password}</p>}
+            <p class="font-small blue-text d-flex justify-content-end forgot">
+              Forgot
+              <a href="#" class="blue-text ml-1 your-password">
+                Password?
+              </a>
+            </p>
 
             <div class="text-center mb-3">
-              <button
-                type="submit"
-                class="btn btn-primary btn-block z-depth-1a"
-              >
+              <button type="submit" class="btn btn-primary z-depth-1a sign-in">
                 Sign in
               </button>
+              <Link to={"/register"}>
+                <a href="# " class="blue-text ml-1 your-password">
+                  Don't have an account? Create one now.
+                </a>
+              </Link>
             </div>
             <p class="font-small dark-grey-text d-flex justify-content-center">
               or sign in with:
             </p>
 
-            <div class="row my-3 justify-content-center">
-              <button type="button" class="btn btn-primary z-depth-1a">
+            <div class="text-center mb-3">
+              {/* <button type="button" class="btn btn-primary z-depth-1a sign-fb">
                 <i class="fab fa-facebook-f text-center"></i>
-              </button>
-              <button type="button" class="btn btn-purple z-depth-1a">
-                <i class="fab fa-twitter text-center"></i>
-              </button>
-              <button type="button" class="btn btn-red z-depth-1a">
+              </button> */}
+              <button type="button" class="btn btn-danger z-depth-1a sign-go">
                 <i class="fab fa-google-plus-g text-center"></i>
+              </button>
+              <button type="button" class="btn btn-dark z-depth-1a sign-git">
+                <i class="fab fa-github text-center"></i>
               </button>
             </div>
           </div>
