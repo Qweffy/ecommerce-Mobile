@@ -24,8 +24,8 @@
 .login-landing {
   width: 415px;
   height: 60px;
-  background-color: rgb(104, 74, 163, 0.7);
-  backdrop-filter: blur(15px);
+  background-color: rgb(104, 74, 163, 0.65);
+  backdrop-filter: blur(5px);
   font-size: 26px;
   font-family: "Roboto";
   border-radius: 360px;
@@ -42,4 +42,13 @@
   flex-direction: column;
   justify-content: space-around;
   height: 170px;
+}
+
+.your-password-landing {
+  color: #684aa3;
+  margin-left: 21px;
+}
+
+.your-password-landing:hover {
+  color: #444499;
 }

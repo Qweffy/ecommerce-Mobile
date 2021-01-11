@@ -41,9 +41,11 @@ input.danger {
 
 .icon-password {
   margin-right: 10px;
+  margin-top: 5px;
 }
 .icon-email {
   margin-right: 10px;
+  margin-top: 5px;
 }
 
 .sign-in {
@@ -51,6 +53,7 @@ input.danger {
   padding-inline: 129px;
   background-color: #684aa3;
   border: none;
+  border-radius: 12px;
 }
 
 .sign-in:hover {
@@ -59,9 +62,15 @@ input.danger {
 
 .sign-fb {
   padding-inline: 147px;
+  border-radius: 12px;
 }
 .sign-go {
   padding-inline: 145px;
+  border-radius: 12px;
+}
+.sign-git {
+  padding-inline: 147px;
+  border-radius: 12px;
 }
 .register-in {
   padding-inline: 124px;
@@ -76,4 +85,8 @@ input.danger {
 .close-login {
   background-color: transparent;
   font-size: 20px;
+}
+
+.border-login {
+  border-radius: 12px;
 }
