@@ -1,32 +1,40 @@
 .producto {
-  height: 86vh;
-  background-image: url("../../img/back.gif");
+  background-image: url("../../img/fondoproducto.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
+  background-attachment: scroll;
   position: absolute;
   width: 100%;
   left: 50%;
-  top: 40%;
+  top: 50%;
   height: 100%;
   object-fit: cover;
   transform: translate(-50%, -50%);
   z-index: -1;
+  padding-top: 80px;
+  overflow: scroll;
+  color: #f2f2f2;
 }
 
 .product-content {
   width: 90%;
-  margin-top: 240px;
+  max-height: 820vh;
+  margin: 70px auto 20px auto;
+}
+
+.info-top {
+  width: 35%;
+  padding: 0 20px 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .info-top > img {
   width: 65%;
-  height: 80%;
+  height: 60%;
 }
-.info-top {
-  width: 35%;
-  padding: 0 20px;
-  text-align: end;
-}
+
 
 .product-info-stat {
   width: 65%;
