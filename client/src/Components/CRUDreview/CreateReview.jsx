@@ -5,7 +5,8 @@ import { createReview } from "../../store/Actions/reviewActions.js";
 import './CreateReview.css'
 
 const CreateReview = (props) => {
-    const user = useSelector(state => state.Reducer.user);
+    //const user = useSelector(state => state.Reducer.user);
+    const { user } = useSelector((state) => state.auth);
     //const reduxReviews = useSelector(state => state.Reducer.reviews);
     const dispatch = useDispatch();
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Producto.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,7 +20,6 @@ import AddToCartInvite from "../AddToCart/AddToCartInvite.jsx";
 import { useSelector } from "react-redux";
 
 toast.configure();
-
 
 const Producto = ({ match }) => {
   // We get => id = :1
@@ -59,8 +58,8 @@ const Producto = ({ match }) => {
 
   //notifiacion de add to cart
 
-  const notify = ()=>{
-    toast.dark(' 🦄 Se agrego este producto al carrito', {
+  const notify = () => {
+    toast.dark(" 🦄 Se agrego este producto al carrito", {
       position: "bottom-center",
       autoClose: 2000,
       hideProgressBar: false,
@@ -68,24 +67,24 @@ const Producto = ({ match }) => {
       pauseOnHover: false,
       draggable: true,
       progress: undefined,
-    })
-  }
+    });
+  };
 
   function renderaddtocartinvite() {
     return (
-    <div onClick={notify}>
+      <div onClick={notify}>
         <AddToCartInvite product={product} id={id} btnDisabled={btnDisabled} />
-    </div>
+      </div>
     );
-}
+  }
 
   function renderaddtocartuser() {
     return (
-    <div onClick={notify}>
+      <div onClick={notify}>
         <AddToCart id={id} btnDisabled={btnDisabled} />
-    </div>
+      </div>
     );
-}
+  }
 
   return (
     <div className="producto">
@@ -101,63 +100,63 @@ const Producto = ({ match }) => {
                 <FontAwesomeIcon icon={faCamera} />
                 <div>
                   <p>{product.frontcamara}</p>
-                  <p>cámara</p>
+                  <p className="product-info-details">cámara</p>
                 </div>
               </div>
               <div className="product-specific-ind d-flex">
                 <FontAwesomeIcon icon={faChartPie} />
                 <div>
                   <p>{product.storage}</p>
-                  <p>memoria interna</p>
+                  <p className="product-info-details">memoria interna</p>
                 </div>
               </div>
               <div className="product-specific-ind d-flex">
                 <FontAwesomeIcon icon={faExpandAlt} />
                 <div>
                   <p>{product.screen}</p>
-                  <p>tamaño de pantalla</p>
+                  <p className="product-info-details">tamaño de pantalla</p>
                 </div>
               </div>
               <div className="product-specific-ind d-flex">
                 <FontAwesomeIcon icon={faCamera} />
                 <div>
                   <p>{product.camara}</p>
-                  <p>cámara trasera</p>
+                  <p className="product-info-details">cámara trasera</p>
                 </div>
               </div>
               <div className="product-specific-ind d-flex">
                 <FontAwesomeIcon icon={faBatteryFull} />
                 <div>
                   <p>{product.battery}</p>
-                  <p>Bateria</p>
+                  <p className="product-info-details">Bateria</p>
                 </div>
               </div>
               <div className="product-specific-ind d-flex">
                 <FontAwesomeIcon icon={faMicrochip} />
                 <div>
                   <p>{product.processor}</p>
-                  <p>Procesador</p>
+                  <p className="product-info-details">Procesador</p>
                 </div>
               </div>
               <div className="product-specific-ind d-flex">
                 <FontAwesomeIcon icon={faMicrochip} />
                 <div>
                   <p>{product.ram}</p>
-                  <p>Ram</p>
+                  <p className="product-info-details">Ram</p>
                 </div>
               </div>
               <div className="product-specific-ind d-flex">
                 <FontAwesomeIcon icon={faExpandArrowsAlt} />
                 <div>
                   <p>{product.dimensions}</p>
-                  <p>Dimensiones del Cel</p>
+                  <p className="product-info-details">Dimensiones del Cel</p>
                 </div>
               </div>
               <div className="product-specific-ind d-flex">
                 <FontAwesomeIcon icon={faInfo} />
                 <div>
                   <p>{product.others}</p>
-                  <p>Otros</p>
+                  <p className="product-info-details">Otros</p>
                 </div>
               </div>
             </div>
@@ -174,7 +173,7 @@ const Producto = ({ match }) => {
                           <img
                             src={JSON.parse(color).text}
                             alt="img not found"
-                            className="product-img"
+                            className="detail-product-colors"
                           />
                         </div>
                       </div>
@@ -187,14 +186,15 @@ const Producto = ({ match }) => {
                 <p>Precio final</p>
                 <p>${product.price}</p>
               </div>
-              {user === undefined ? renderaddtocartinvite() : renderaddtocartuser()}
+              {user === undefined
+                ? renderaddtocartinvite()
+                : renderaddtocartuser()}
             </div>
           </div>
         </div>
       </div>
       <Reviews productId={match.params.id} />
-      { user ? <CreateReview productId={match.params.id}/> : null }
-      
+      {user ? <CreateReview productId={match.params.id} /> : null}
     </div>
   );
 };

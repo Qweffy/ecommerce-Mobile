@@ -61,7 +61,7 @@ const Categorys = () => {
   }
 
   return (
-    <div className=" container mt-3 category-container ">
+    <div className=" container category-container ">
       <div className="row">
         <div className="col-3"></div>
         <div className="col-8">
