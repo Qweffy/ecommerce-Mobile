@@ -16,6 +16,7 @@ import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import Sugestions from "./Components/LandingPage/Sugestions.jsx";
 import CreateReview from "./Components/CRUDreview/CreateReview.jsx";
+import Checkout from "./Components/CheckOut/Checkout.jsx";
 import Test from "./Components/test.jsx";
 /* Proteccion de rutas */
 import RoutAdmin from "./Components/RoutAuth/RoutAdmin.jsx";
@@ -54,6 +55,7 @@ function App() {
       {/* Rutas del cliente */}
       <Route exact path="/me" component={ props => <RoutClient { ...props } Component={Me} />}/>
       <Route exact path="/createreview" component={ props => <RoutClient { ...props } Component={CreateReview} />} />
+      <Route exact path="/checkout" component={ props => <RoutClient { ...props } Component={Checkout} />} />
 
       {/* Rutas del Admin */}
       <Route exact path="/showProducts" component={ props => <RoutAdmin { ...props } Component={Productos} />} />

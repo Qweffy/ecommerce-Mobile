@@ -4,7 +4,7 @@ import axios from "axios";
 
 import "./ItemCart.css";
 
-const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
+const ItemCart = ({ product, idorder, setCart, setAllTotal, getOrders }) => {
   const { id, order_line, stock } = product;
   const [acum, setAcum] = useState(order_line.count);
   const [totalItem, setTotalItem] = useState(order_line.price);
@@ -18,12 +18,13 @@ const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
     }
   },[acum])
 
-  function deleteProduct() {
-    axios
-      .delete(`http://localhost:4000/orders/cart/${idorder}/${id}`)
+  async function deleteProduct() {
+    await axios.delete(`http://localhost:4000/orders/cart/${idorder}/${id}`)
       .then((res) => {
         setCart(res.data.order);
+        setAllTotal(res.data.order.price);
       });
+    await getOrders();
   }
 
   function decAcum() {
@@ -69,10 +70,10 @@ const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
           <p>{product.name}</p>
         </div>
       </td>
-      <td className="text-gen">
+      <td className="text-gen text-center">
         <p>$ {product.price}</p>
       </td>
-      <td className="text-gen div-acum">
+      <td className="text-gen div-acum text-center">
         <button className="less-cart" onClick={decAcum}>
           -
         </button>
@@ -86,8 +87,8 @@ const ItemCart = ({ product, idorder, setCart, setAllTotal }) => {
           +
         </button>
       </td>
-      <td className="text-gen">{stock}</td>
-      <td className="text-gen">$ {isNaN(totalItem) ? 0 : totalItem}</td>
+      <td className="text-gen text-center">{stock}</td>
+      <td className="text-gen text-center">$ {isNaN(totalItem) ? 0 : totalItem}</td>
       <td>
         <button
           onClick={deleteProduct}

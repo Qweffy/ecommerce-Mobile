@@ -14,6 +14,7 @@ import {
 import Searchbar from "../Searchbar/Searchbar.js";
 import { useSelector, useDispatch } from "react-redux";
 import "./Navbar.css";
+import MiniCart from './minicart/minicart'
 import CartInvite from "../cart/cartInvite.jsx";
 
 function BootstrapNavbar() {
@@ -36,11 +37,11 @@ function BootstrapNavbar() {
           <Navbar collapseOnSelect expand="lg" className="p-2 nav">
             <Col xs={5} className="logo-div">
               <Navbar.Brand href="/">
-                <i class="fas fa-home home-logo"></i>
+                <i className="fas fa-home home-logo"></i>
               </Navbar.Brand>
             </Col>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
+            <Navbar.Collapse className='nav-drop-down' id="responsive-navbar-nav">
               <Nav className="mr-auto infonav align">
                 <Col xs={1.5} className="text-center">
                   <Nav.Link href="/catalogue">
@@ -51,9 +52,17 @@ function BootstrapNavbar() {
                   <Searchbar />
                 </Col>
                 <Col xs={3}>
-                  <CartInvite></CartInvite>
+                    <Nav.Link href="/cart">
+                      <FontAwesomeIcon icon={faShoppingCart} /> 
+                    
+                    </Nav.Link>
+                    <div>
+                    
+                    </div>
+                  {/* <CartInvite></CartInvite> */}
                 </Col>
               </Nav>
+              <MiniCart />
             </Navbar.Collapse>
           </Navbar>
         </Row>
