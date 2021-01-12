@@ -1,13 +1,4 @@
-import React, { useEffect, useState } from "react";
-import {
-  Button,
-  ButtonToolbar,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
-  Panel,
-} from "rsuite";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -15,6 +6,7 @@ import actions from "../../store/Actions/authactions.js";
 import jwt from "jsonwebtoken";
 import { Link } from "react-router-dom";
 import Background from "../LandingPage/Twirl__2.mp4";
+import { Modal, TextField, Button } from "@material-ui/core";
 
 export function validate(input) {
   let errors = {};
@@ -31,8 +23,7 @@ export function validate(input) {
   return errors;
 }
 
-function SignUp() {
-  const [data, setData] = useState();
+function SignUp({ handleCloseUp, handleOpen }) {
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const { replace, push } = useHistory();
@@ -56,48 +47,35 @@ function SignUp() {
       })
     );
   };
+  function responsive() {
+    handleCloseUp();
+    handleOpen();
+  }
   return (
-    <form
-      class="all-login"
-      style={{ maxWidth: "30rem", margin: "auto", marginTop: "4rem" }}
-      onSubmit={async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        const { input: token } = await axios.post(
-          `http://localhost:4000/auth/register`,
-          input
-        );
-        window.localStorage.setItem("token", token);
-        const user = jwt.decode(token);
-        dispatch(actions.setUser(user));
-        setLoading(false);
-        replace("/me");
-      }}
-    >
-      {/* <video
-        autoPlay
-        muted
-        loop
-        style={{
-          position: "absolute",
-          width: "100%",
-          left: "50%",
-          top: "50%",
-          height: "100%",
-          objectFit: "cover",
-          transform: "translate(-50%, -50%)",
-          zIndex: "-1",
+    <div class="background-login">
+      <form
+        class="all-login"
+        style={{ maxWidth: "30rem", margin: "auto", marginTop: "4rem" }}
+        onSubmit={async (e) => {
+          e.preventDefault();
+          setLoading(true);
+          const { input: token } = await axios.post(
+            `http://localhost:4000/auth/register`,
+            input
+          );
+          window.localStorage.setItem("token", token);
+          const user = jwt.decode(token);
+          dispatch(actions.setUser(user));
+          setLoading(false);
+          replace("/me");
         }}
       >
-        <source src={Background} type="video/mp4" />
-      </video> */}
-      <div class="">
         <div class=" login">
           <div class="modal-header text-center">
             <h3 class="modal-title w-100 dark-grey-text font-weight-bold">
               Sign Up
             </h3>
-            <button type="button" class="close-login">
+            <button type="button" class="close-login" onClick={handleCloseUp}>
               X
             </button>
           </div>
@@ -170,11 +148,13 @@ function SignUp() {
               <button type="submit" class="btn btn-primary z-depth-1a sign-in">
                 Register
               </button>
-              <Link to={"/register"}>
-                <a href="# " class="blue-text ml-1 your-password">
-                  Don't have an account? Create one now.
-                </a>
-              </Link>
+              <a
+                href="# "
+                class="blue-text ml-1 your-password"
+                onClick={responsive}
+              >
+                Already have an account? Click here!
+              </a>
             </div>
             <p class="font-small dark-grey-text d-flex justify-content-center">
               or sign in with:
@@ -193,27 +173,8 @@ function SignUp() {
             </div>
           </div>
         </div>
-      </div>
-      {/* <Panel bordered header="Iniciar sesión">
-          <FormGroup>
-            <ControlLabel>Email</ControlLabel>
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>Password</ControlLabel>
-          </FormGroup>
-          <FormGroup>
-            <ButtonToolbar>
-              <Button type="submit" appearance="primary">
-                Login
-              </Button>
-              <Button type="button" onClick={() => push("register")}>
-                Crearme una cuenta
-              </Button>
-            </ButtonToolbar>
-          </FormGroup>
-        </Form>
-      </Panel> */}
-    </form>
+      </form>
+    </div>
   );
 }
 
