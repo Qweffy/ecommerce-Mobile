@@ -235,4 +235,22 @@ server.get("/:id/reviews", (req, res, next) => {
     });
 });
 
+// Get all user reviews
+server.get("/reviews/:userid", (req, res, next) => {
+  let {userid} = req.params;
+
+  Review.findAll({
+    where: { userId: userid},
+    include: {
+      model: Product
+    }
+  })
+    .then((reviews) => {
+      res.json({ message: "All reviews obtained", data: reviews });
+    })
+    .catch((err) => {
+      res.status(400).json({ message: "Couldn't get reviews", data: err });
+    });
+});
+
 module.exports = server;

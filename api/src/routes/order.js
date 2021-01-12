@@ -24,9 +24,32 @@ server.get('/cart/:id' , (req, res) =>{
     });
 });
 
+//traer todas las ordenes de un usuario en especifico
+
+server.get('/user/:id', (req, res)=>{
+  const { id } = req.params;
+  Order.findAll({
+    where:{  userId: id },
+    include:[{ model: Product}]
+  })
+  .then( orders => {
+    res.status(200).json({
+      mensaje: "Se encontraron las ordenes",
+      data: orders,
+    });
+  })
+  .catch((err) => {
+      res.status(400).json({
+        mensaje: "No se encontraron Ordenes",
+        data: err,
+      });
+    });
+})
+
 
 server.post('/cart', (req, res, next) => {  //ruta para agregar elementos a la orden carrito y sumar con contador
   const { id } = req.body
+  console.log(req.body)
   Order.findAll({                         //cuando entra aca busca si ya existe una orden carrito
     where: {
       state: 'cart',
@@ -53,6 +76,19 @@ server.post('/cart', (req, res, next) => {  //ruta para agregar elementos a la o
     }); */
   });
 });
+
+// Crear ordenes al azar pueba de todas mis ordenes 
+server.post('/create/:userid', (req, res)=>{
+  const { userid } = req.params
+  Order.create({
+    state: 'success',
+    price: 0,
+    userId: userid
+  })
+  .then(respn =>{
+    res.status(200).json({ msg: 'ok', data: respn})
+  })
+})
 
 server.post('/cart/:orderid', (req, res, next) => {  
   //con el id de la orden creada y el id del producto se hace el addProduct a la tabla intermedia
