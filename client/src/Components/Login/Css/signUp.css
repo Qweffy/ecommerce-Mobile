@@ -6,3 +6,12 @@
   backdrop-filter: blur(15px);
   width: 390px;
 }
+.modalBackground {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-in-out;
+}
+.modalShowing-true {
+  opacity: 1;
+  pointer-events: showing;
+}

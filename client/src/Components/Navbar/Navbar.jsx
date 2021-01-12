@@ -14,6 +14,7 @@ import {
 import Searchbar from "../Searchbar/Searchbar.js";
 import { useSelector, useDispatch } from "react-redux";
 import "./Navbar.css";
+import CartInvite from "../cart/cartInvite.jsx";
 
 function BootstrapNavbar() {
   const { user } = useSelector((state) => state.auth);
@@ -47,12 +48,10 @@ function BootstrapNavbar() {
                   </Nav.Link>
                 </Col>
                 <Col xs={1.5} className="text-center">
-                  <Nav.Link href="/cart">
-                    <FontAwesomeIcon icon={faShoppingCart} /> My Cart
-                  </Nav.Link>
+                  <Searchbar />
                 </Col>
                 <Col xs={3}>
-                  <Searchbar />
+                  <CartInvite></CartInvite>
                 </Col>
               </Nav>
             </Navbar.Collapse>
