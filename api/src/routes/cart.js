@@ -9,6 +9,7 @@ server.put('/:userId/cart', (req, res)=>{
   Promise.all([Product.findOne({ where: { id }}), Order.findOne({ where: {userId}})])
           .then( data => {
               var total = data[0].price * acum; 
+              console.log(total)
               data[0].setOrders(data[1], { through: { price: total, count: acum }})
               .then(()=>{
                 Order.findOne({ 

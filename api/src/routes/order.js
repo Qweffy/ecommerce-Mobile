@@ -49,7 +49,6 @@ server.get('/user/:id', (req, res)=>{
 
 server.post('/cart', (req, res, next) => {  //ruta para agregar elementos a la orden carrito y sumar con contador
   const { id } = req.body
-  console.log(req.body)
   Order.findAll({                         //cuando entra aca busca si ya existe una orden carrito
     where: {
       state: 'cart',
@@ -153,22 +152,22 @@ server.get('/', (req, res) => {
 })
 
 server.delete("/cart/:orderid/:productid",(req ,res, next) =>{  //borra un producto especifico del carrito
-  Order.findByPk(req.params.orderid)
-        .then(order => {
-          order.removeProduct(req.params.productid)
-                .then(()=>{
-                  Order.findOne({
-                    where: {id: req.params.orderid},
-                    include: {model: Product}
-                  })
-                    .then(order=>{
-                      res.status(200).json({
-                        message: 'Se borro el producto del carrito',
-                        order
-                      })
-                    })
-                })
-        });
+  
+  var orderInc = Order.findByPk(req.params.orderid);
+  var deleteProduct = Product.findByPk(req.params.productid);
+  var produtOrder = Product.findOne({ where: {id: req.params.productid}, include:{ where: {id: req.params.orderid}, model: Order}});
+  
+  Promise.all([orderInc, deleteProduct, produtOrder ])
+          .then(data=>{
+            var deleteTotal = data[0].price - (data[1].price * data[2].orders[0].order_line.count)
+            data[0].price = deleteTotal;
+            data[0].removeProduct(req.params.productid);
+            data[0].save();
+            res.status(200).json({
+                                message: 'Se borro el producto del carrito',
+                                order: data[0]
+                              })
+          })
 });
 
 //Obtiene una orden especifica.

@@ -16,3 +16,37 @@
   overflow: scroll;
   color: #f2f2f2;
 }
+
+.init-cont-cart{
+  margin: 50px auto;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.cart-table-info{
+  max-height: none;
+}
+
+.cart-table-info .title{
+  align-items: center;
+  width: 100%;
+}
+
+.cart-table-info .title h3:first-child{
+  margin-right: auto;
+} 
+
+.cart-table-info .title h4{
+  margin-right: 20px;
+}
+
+.cart-table-info .title h4 span{
+  color: blueviolet;
+}
+
+.total-shop{
+  margin-left: auto;
+  width: 25%;
+}

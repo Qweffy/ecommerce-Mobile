@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import ItemCart from "../itemCart/ItemCart";
 import axios from "axios";
 
@@ -16,7 +17,6 @@ const Cart = () => {
 
 
   useEffect(() => {
-
     getOrders();
   }, [user, allTotal]);
 
@@ -24,20 +24,17 @@ const Cart = () => {
     //trae los productos de la orden carrito
     if(user){
       let response = await axios.get(`http://localhost:4000/orders/cart/${user.id}` );
-      console.log(response);
       if(response.data.data === null || response.data.data.products.length < 1){
         var storageCart =JSON.parse( localStorage.getItem('cartItems'));
         localStorage.removeItem('cartItems');
         if(storageCart){
           axios.post(`http://localhost:4000/orders/cart`, { id: user.id })
                 .then( res => {
-                  console.log(res);
                   storageCart.map(product =>{
                     axios.post(`http://localhost:4000/users/${user.id}/cart/${res.data}`, { id: product.id, acum: product.count });
                   })
                 })
                 .then(res => {
-                  console.log(res);
                   axios.get(`http://localhost:4000/orders/cart/${user.id}` )
                         .then( localResponse =>{
                           console.log(localResponse)
@@ -45,9 +42,9 @@ const Cart = () => {
                           setAllTotal(localResponse.data.data && localResponse.data.data.price);
                         })
                 })
-          console.log(user)
         }
       }else{
+        console.log('aqui entro')
         setCart(response.data.data);
         setAllTotal(response.data.data && response.data.data.price);
       }
@@ -55,11 +52,16 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart-log container d-flex">
+    <div className="cart-log d-flex">
     { cart ? 
-      <div className="row justify-content-end">
-        <div className="col-12">
-          <h3>Shopping Cart</h3>
+      <div className="init-cont-cart">
+        <div className="cart-table-info">
+          <div className='d-flex title'>
+            <h3>Shopping Cart</h3>
+            <h4><span>1 Resumen de compras</span></h4>
+            <h4> {'> 2 Datos de envio'}</h4>
+            <h4>{'> 3 Formas de pago'}</h4>
+          </div>
           <hr />
           <table className="table table-borderless">
             <thead className="table-secondary">
@@ -72,7 +74,7 @@ const Cart = () => {
                 <th scope="col"> Delete </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className='text-center'>
               {cart.products && cart.products.map((product, index) => {
                 return (
                   <ItemCart
@@ -82,19 +84,22 @@ const Cart = () => {
                     allTotal={allTotal}
                     product={product}
                     idorder={cart.id}
+                    getOrders={getOrders}
                   />
                 );
               })}
             </tbody>
           </table>
         </div>
-        <div className="col-4">
+        <div className="total-shop">
           <div>
             <p>Subtotal: {allTotal}</p>
           </div>
           <h3> Total: </h3>
           <div className='bot-button'>
-            <button> Next </button>
+            <Link to={`/checkout`}>
+              <button className='detail-product-card'>Next</button>
+            </Link>
             <button> Cancel </button>
           </div>
         </div>
