@@ -19,6 +19,11 @@
   height: 100%;
 }
 
+.nav-drop-down{
+  display: flex;
+  align-items: center;
+}
+
 .infonav {
   width: 100%;
   align-items: flex-end;
@@ -82,7 +87,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  /*  background-color: #444444; */
   width: 100%;
   left: 0;
 }
