@@ -7,6 +7,7 @@ const userRouter = require("./user.js");
 const cartRouter = require("./cart.js");
 const sugestionRouter = require("./sugestion.js");
 const authRouter = require("./auth.js");
+const emailRouter = require('./email.js');
 
 const router = Router();
 
@@ -17,8 +18,9 @@ router.use("/orders", orderRouter);
 router.use("/products", productRouter);
 router.use("/category", categoryRouter);
 router.use("/user", userRouter);
-router.use("/users", cartRouter)
+router.use("/users", cartRouter);
 router.use("/sugestions", sugestionRouter);
 router.use("/auth", authRouter);
+router.use("/email", emailRouter);
 
 module.exports = router;
