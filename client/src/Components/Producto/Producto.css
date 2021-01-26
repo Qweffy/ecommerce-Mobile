@@ -1,0 +1,139 @@
+.producto {
+  background-image: url("../../img/fondos/fondo1.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: scroll;
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  padding-top: 80px;
+  overflow: scroll;
+  color: #f2f2f2;
+}
+
+.product-content {
+  width: 90%;
+  max-height: 820vh;
+  margin: 70px auto 20px auto;
+  background-color: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(15px);
+  border-radius: 30px;
+}
+
+.info-top {
+  width: 35%;
+  padding: 0 20px 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 40px;
+}
+
+.product-info-stat {
+  width: 65%;
+  font-family: "Roboto";
+  margin: 60px 10px 140px 10px;
+  color: #f2f2f2;
+  margin-left: 50px;
+  align-self: flex-end;
+}
+
+.product-info-stat .product-description h3 {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.product-specific {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  width: 70%;
+  height: 230px;
+}
+
+.product-info-stat .product-description .product-specific-ind {
+  width: 200px;
+  height: 70px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.product-specific-ind .svg-inline--fa {
+  font-size: 25px;
+}
+
+.product-specific-ind div {
+  margin-left: 30px;
+  font-weight: 500;
+  font-size: 15px;
+}
+.product-info-bot {
+  width: 100%;
+  height: 44%;
+}
+
+.cont {
+  width: 40%;
+  margin-top: 40px;
+}
+
+.product-info-bot .product-colors {
+  width: 100%;
+  height: 86%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.product-colors .color {
+  width: 110px;
+  text-align: center;
+}
+
+.color {
+  width: 100%;
+  height: 83%;
+  border-radius: 15px;
+  margin-top: 25px;
+}
+
+.product-price {
+  width: 60%;
+  padding: 0px 50px;
+
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.product-price .price {
+  margin-bottom: 20px;
+}
+
+.product-price p {
+  color: #f2f2f2 !important;
+}
+
+.product-price button {
+  width: 180px;
+  background-color: #6c66bf;
+  border-radius: 20px;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.detail-product-colors {
+  width: 85px;
+}
+
+.product-info-details {
+  font-size: 13px;
+}

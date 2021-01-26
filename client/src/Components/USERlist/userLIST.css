@@ -1,0 +1,25 @@
+.all-users-container {
+  background-image: url("../../img/fondos/fondo8.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: scroll;
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  padding-top: 80px;
+  overflow: scroll;
+  color: #f2f2f2;
+}
+
+.all-users-content {
+  color: #f2f2f2 !important;
+}
+
+.all-users-table {
+  margin-top: 30px;
+}
